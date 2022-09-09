@@ -3,7 +3,6 @@ package com.zzs.iam.server.dto.resp;
 import com.zzs.framework.core.lang.TreeNode;
 import com.zzs.iam.common.pojo.Menu;
 import com.zzs.iam.server.domain.model.front.MenuDo;
-import com.zzs.iam.server.domain.model.front.MenuDo;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

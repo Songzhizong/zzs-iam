@@ -3,8 +3,6 @@ package com.zzs.iam.server.domain.model.authorization.token;
 import com.zzs.framework.core.date.DateTimes;
 import com.zzs.iam.server.domain.model.authorization.Authentication;
 import com.zzs.iam.server.domain.model.authorization.BearerAuthorization;
-import com.zzs.iam.server.domain.model.authorization.Authentication;
-import com.zzs.iam.server.domain.model.authorization.BearerAuthorization;
 import com.zzs.iam.server.domain.model.org.AuthClientDo;
 
 import javax.annotation.Nonnull;

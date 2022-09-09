@@ -20,7 +20,7 @@ class AccessTokenStore(
   private val redisTemplate: ReactiveStringRedisTemplate,
 ) {
 
-  suspend fun saveAccessToken(accessTokenDo: com.zzs.iam.server.domain.model.authorization.token.AccessTokenDo) {
+  suspend fun saveAccessToken(accessTokenDo: AccessTokenDo) {
     coroutineScope {
       val asyncList = ArrayList<Deferred<*>>()
       val clientId = accessTokenDo.clientId
@@ -69,11 +69,11 @@ class AccessTokenStore(
     if (tokenJson.isNullOrBlank()) {
       return
     }
-    val accessTokenDo = tokenJson.parseJson(com.zzs.iam.server.domain.model.authorization.token.AccessTokenDo::class.java)
+    val accessTokenDo = tokenJson.parseJson(AccessTokenDo::class.java)
     deleteAccessToken(accessTokenDo)
   }
 
-  suspend fun deleteAccessToken(accessTokenDo: com.zzs.iam.server.domain.model.authorization.token.AccessTokenDo) {
+  suspend fun deleteAccessToken(accessTokenDo: AccessTokenDo) {
     val clientId = accessTokenDo.clientId
     val userId = accessTokenDo.authentication.userId
     val accessToken = accessTokenDo.value
@@ -92,14 +92,14 @@ class AccessTokenStore(
     }
   }
 
-  suspend fun readAccessToken(accessToken: String): com.zzs.iam.server.domain.model.authorization.token.AccessTokenDo? {
+  suspend fun readAccessToken(accessToken: String): AccessTokenDo? {
     val accessTokenKey = genAccessTokenKey(accessToken)
     val valueOps = redisTemplate.opsForValue()
     val tokenJson = valueOps.getAndAwait(accessTokenKey)
     if (tokenJson.isNullOrBlank()) {
       return null
     }
-    val accessTokenDo = tokenJson.parseJson(com.zzs.iam.server.domain.model.authorization.token.AccessTokenDo::class.java)
+    val accessTokenDo = tokenJson.parseJson(AccessTokenDo::class.java)
     val validity = accessTokenDo.validity
     if (accessTokenDo.isAutoRenewal && accessTokenDo.expiresIn < (validity shr 1)) {
       accessTokenDo.expiration = DateTimes.now().plusSeconds(validity.toLong())
@@ -110,14 +110,14 @@ class AccessTokenStore(
     return accessTokenDo
   }
 
-  suspend fun readRefreshToken(refreshToken: String): com.zzs.iam.server.domain.model.authorization.token.RefreshTokenDo? {
+  suspend fun readRefreshToken(refreshToken: String): RefreshTokenDo? {
     val refreshTokenKey = genRefreshTokenKey(refreshToken)
     val valueOps = redisTemplate.opsForValue()
     val tokenJson = valueOps.getAndAwait(refreshTokenKey)
     if (tokenJson.isNullOrBlank()) {
       return null
     }
-    return tokenJson.parseJson(com.zzs.iam.server.domain.model.authorization.token.RefreshTokenDo::class.java)
+    return tokenJson.parseJson(RefreshTokenDo::class.java)
   }
 
   suspend fun cleanAllToken(clientId: String, userId: String) {

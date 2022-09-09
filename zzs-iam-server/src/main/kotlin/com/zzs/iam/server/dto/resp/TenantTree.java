@@ -3,7 +3,6 @@ package com.zzs.iam.server.dto.resp;
 import com.zzs.framework.core.lang.TreeNode;
 import com.zzs.iam.common.pojo.Tenant;
 import com.zzs.iam.server.domain.model.org.TenantDo;
-import com.zzs.iam.server.domain.model.org.TenantDo;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;

@@ -23,13 +23,13 @@ class CaptchaService(
 
   /** 生成文本验证码 */
   suspend fun generate(key: String, userId: String) {
-    val generate = com.zzs.iam.server.domain.model.captcha.Captcha.generate()
+    val generate = Captcha.generate()
     captchaStore.save(key, generate, timeout)
   }
 
   /** 生成图片验证码 */
-  suspend fun generateImage(key: String): com.zzs.iam.server.domain.model.captcha.ImageCaptcha {
-    val generate = com.zzs.iam.server.domain.model.captcha.ImageCaptcha.generate()
+  suspend fun generateImage(key: String): ImageCaptcha {
+    val generate = ImageCaptcha.generate()
     captchaStore.save(key, generate, timeout)
     return generate
   }

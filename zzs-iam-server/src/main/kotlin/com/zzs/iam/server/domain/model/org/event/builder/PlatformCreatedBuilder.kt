@@ -8,7 +8,7 @@ import com.zzs.iam.server.domain.model.org.PlatformDo
 /**
  * @author 宋志宗 on 2022/8/17
  */
-class PlatformCreatedBuilder(private val platformDo: com.zzs.iam.server.domain.model.org.PlatformDo) : EventBuilder {
+class PlatformCreatedBuilder(private val platformDo: PlatformDo) : EventBuilder {
 
   override fun build(): Event {
     val platform = platformDo.toPlatform()

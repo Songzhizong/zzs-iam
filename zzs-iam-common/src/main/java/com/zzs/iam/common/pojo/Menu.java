@@ -1,7 +1,6 @@
 package com.zzs.iam.common.pojo;
 
 import com.zzs.iam.common.constants.MenuType;
-import com.zzs.iam.common.constants.MenuType;
 
 import javax.annotation.Nonnull;
 import java.time.LocalDateTime;

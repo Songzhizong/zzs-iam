@@ -5,11 +5,11 @@ package com.zzs.iam.server.domain.model.org
  */
 interface PlatformRepository {
 
-  suspend fun save(platformDo: com.zzs.iam.server.domain.model.org.PlatformDo): com.zzs.iam.server.domain.model.org.PlatformDo
+  suspend fun save(platformDo: PlatformDo): PlatformDo
 
-  suspend fun delete(platformDo: com.zzs.iam.server.domain.model.org.PlatformDo)
+  suspend fun delete(platformDo: PlatformDo)
 
-  suspend fun findByCode(code: String): com.zzs.iam.server.domain.model.org.PlatformDo?
+  suspend fun findByCode(code: String): PlatformDo?
 
-  suspend fun findAll(): List<com.zzs.iam.server.domain.model.org.PlatformDo>
+  suspend fun findAll(): List<PlatformDo>
 }

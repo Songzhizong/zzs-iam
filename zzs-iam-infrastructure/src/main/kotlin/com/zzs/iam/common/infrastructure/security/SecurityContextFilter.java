@@ -2,7 +2,6 @@ package com.zzs.iam.common.infrastructure.security;
 
 import com.zzs.framework.core.lang.StringUtils;
 import com.zzs.iam.common.constants.IamHeaders;
-import com.zzs.iam.common.constants.IamHeaders;
 import com.zzs.iam.common.infrastructure.webflux.WebFluxContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;

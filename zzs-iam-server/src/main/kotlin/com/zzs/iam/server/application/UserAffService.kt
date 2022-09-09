@@ -54,7 +54,7 @@ class UserAffService(
     platform: String,
     userIds: Set<String>,
     roles: Collection<Long>?
-  ): List<com.zzs.iam.server.domain.model.org.PlatformUserDo> {
+  ): List<PlatformUserDo> {
     val exists = platformUserRepository.findByPlatformAndUserIdIn(platform, userIds)
     val existsUserId = exists.mapTo(HashSet()) { it.userId }
     val filter = userIds.filter { !existsUserId.contains(it) }
@@ -126,7 +126,7 @@ class UserAffService(
     userIds: Set<String>,
     roles: Collection<Long>?,
     platform: String? = null
-  ): List<com.zzs.iam.server.domain.model.org.TenantUserDo> {
+  ): List<TenantUserDo> {
     val exists = tenantUserRepository.findByTenantIdAndUserIdIn(tenantId, userIds)
     val existsUserId = exists.mapTo(HashSet()) { it.userId }
     val filter = userIds.filter { !existsUserId.contains(it) }
@@ -144,7 +144,7 @@ class UserAffService(
       throw ForbiddenException("没有此租户的管理权限")
     }
     val users = userProvider.findAllById(filter)
-    val list = users.map { com.zzs.iam.server.domain.model.org.TenantUserDo.create(it, tenantDo) }
+    val list = users.map { TenantUserDo.create(it, tenantDo) }
     if (!roles.isNullOrEmpty()) {
       val roleDos = roleRepository.findAllById(roles)
       val roleIdSet = roleDos

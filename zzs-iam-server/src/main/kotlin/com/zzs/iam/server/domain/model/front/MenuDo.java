@@ -5,7 +5,6 @@ import com.zzs.framework.core.utils.Asserts;
 import com.zzs.iam.common.constants.MenuType;
 import com.zzs.iam.common.pojo.Menu;
 import com.zzs.iam.server.dto.args.UpdateMenuArgs;
-import com.zzs.iam.server.dto.args.UpdateMenuArgs;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;

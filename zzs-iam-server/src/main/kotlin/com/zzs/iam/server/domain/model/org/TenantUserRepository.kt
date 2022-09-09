@@ -8,26 +8,26 @@ import org.springframework.data.domain.Page
  */
 interface TenantUserRepository {
 
-  suspend fun save(tenantUserDo: com.zzs.iam.server.domain.model.org.TenantUserDo): com.zzs.iam.server.domain.model.org.TenantUserDo
+  suspend fun save(tenantUserDo: TenantUserDo): TenantUserDo
 
-  suspend fun saveAll(tenantUsers: Collection<com.zzs.iam.server.domain.model.org.TenantUserDo>)
+  suspend fun saveAll(tenantUsers: Collection<TenantUserDo>)
 
-  suspend fun delete(tenantUserDo: com.zzs.iam.server.domain.model.org.TenantUserDo)
+  suspend fun delete(tenantUserDo: TenantUserDo)
 
-  suspend fun deleteAll(tenantUsers: Collection<com.zzs.iam.server.domain.model.org.TenantUserDo>)
+  suspend fun deleteAll(tenantUsers: Collection<TenantUserDo>)
 
-  suspend fun findAllByUserId(userId: String): List<com.zzs.iam.server.domain.model.org.TenantUserDo>
+  suspend fun findAllByUserId(userId: String): List<TenantUserDo>
 
-  suspend fun findByTenantIdAndUserId(tenantId: Long, userId: String): com.zzs.iam.server.domain.model.org.TenantUserDo?
+  suspend fun findByTenantIdAndUserId(tenantId: Long, userId: String): TenantUserDo?
 
   suspend fun findByTenantIdAndUserIdIn(
     tenantId: Long,
     userIds: Collection<String>
-  ): List<com.zzs.iam.server.domain.model.org.TenantUserDo>
+  ): List<TenantUserDo>
 
-  suspend fun findAllByPlatformAndUserId(platform: String, userId: String): List<com.zzs.iam.server.domain.model.org.TenantUserDo>
+  suspend fun findAllByPlatformAndUserId(platform: String, userId: String): List<TenantUserDo>
 
-  suspend fun query(tenantId: Long, args: com.zzs.iam.server.dto.args.QueryUserArgs): Page<com.zzs.iam.server.domain.model.org.TenantUserDo>
+  suspend fun query(tenantId: Long, args: QueryUserArgs): Page<TenantUserDo>
 
   suspend fun existsByPlatformAndUserId(platform: String, userId: String): Boolean
 

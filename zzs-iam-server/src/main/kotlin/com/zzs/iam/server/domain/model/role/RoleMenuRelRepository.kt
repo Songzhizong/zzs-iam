@@ -5,11 +5,11 @@ package com.zzs.iam.server.domain.model.role
  */
 interface RoleMenuRelRepository {
 
-  suspend fun insertAll(rels: Collection<com.zzs.iam.server.domain.model.role.RoleMenuRelDo>)
+  suspend fun insertAll(rels: Collection<RoleMenuRelDo>)
 
   suspend fun deleteAllByRoleId(roleId: Long): Long
 
   suspend fun deleteAllByRoleIdAndTerminal(roleId: Long, terminal: String): Long
 
-  suspend fun findAllByRoleIdIn(roleIds: Collection<Long>): List<com.zzs.iam.server.domain.model.role.RoleMenuRelDo>
+  suspend fun findAllByRoleIdIn(roleIds: Collection<Long>): List<RoleMenuRelDo>
 }

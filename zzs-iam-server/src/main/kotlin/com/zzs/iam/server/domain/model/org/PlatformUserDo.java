@@ -8,7 +8,6 @@ import com.zzs.iam.common.event.user.PlatformUserFrozen;
 import com.zzs.iam.common.pojo.JoinedUser;
 import com.zzs.iam.common.pojo.User;
 import com.zzs.iam.server.domain.model.user.AuthUser;
-import com.zzs.iam.server.domain.model.user.AuthUser;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;

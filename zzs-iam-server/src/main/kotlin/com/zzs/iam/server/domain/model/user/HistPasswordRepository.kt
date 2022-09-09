@@ -5,8 +5,8 @@ package com.zzs.iam.server.domain.model.user
  */
 interface HistPasswordRepository {
 
-  suspend fun save(histPasswordDo: com.zzs.iam.server.domain.model.user.HistPasswordDo): com.zzs.iam.server.domain.model.user.HistPasswordDo
+  suspend fun save(histPasswordDo: HistPasswordDo): HistPasswordDo
 
   /** 获取用户最近一定次数使用过的密码 */
-  suspend fun findUserLatest(userId: Long, count: Int): List<com.zzs.iam.server.domain.model.user.HistPasswordDo>
+  suspend fun findUserLatest(userId: Long, count: Int): List<HistPasswordDo>
 }

@@ -5,17 +5,17 @@ package com.zzs.iam.server.domain.model.role
  */
 interface RoleRepository {
 
-  suspend fun save(roleDo: com.zzs.iam.server.domain.model.role.RoleDo): com.zzs.iam.server.domain.model.role.RoleDo
+  suspend fun save(roleDo: RoleDo): RoleDo
 
-  suspend fun delete(roleDo: com.zzs.iam.server.domain.model.role.RoleDo)
+  suspend fun delete(roleDo: RoleDo)
 
-  suspend fun findById(id: Long): com.zzs.iam.server.domain.model.role.RoleDo?
+  suspend fun findById(id: Long): RoleDo?
 
-  suspend fun findAllById(ids: Collection<Long>): List<com.zzs.iam.server.domain.model.role.RoleDo>
+  suspend fun findAllById(ids: Collection<Long>): List<RoleDo>
 
-  suspend fun findAll(platform: String, tenantId: Long?): List<com.zzs.iam.server.domain.model.role.RoleDo>
+  suspend fun findAll(platform: String, tenantId: Long?): List<RoleDo>
 
-  suspend fun findAllBasic(platform: String, tenantId: Long?): List<com.zzs.iam.server.domain.model.role.RoleDo>
+  suspend fun findAllBasic(platform: String, tenantId: Long?): List<RoleDo>
 
-  suspend fun findTenantAdmin(platform: String, tenantId: Long): com.zzs.iam.server.domain.model.role.RoleDo?
+  suspend fun findTenantAdmin(platform: String, tenantId: Long): RoleDo?
 }

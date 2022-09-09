@@ -10,7 +10,6 @@ import com.zzs.iam.common.exception.TwoStepVerifyException
 import com.zzs.iam.common.infrastructure.sender.EmailSender
 import com.zzs.iam.common.infrastructure.sender.SmsSender
 import com.zzs.iam.server.domain.model.twostep.ActionRepository
-import com.zzs.iam.server.domain.model.twostep.TwoStepCfgDo
 import com.zzs.iam.server.domain.model.twostep.TwoStepCfgRepository
 import com.zzs.iam.server.domain.model.twostep.TwoStepConfig
 import com.zzs.iam.server.domain.model.user.UserProvider

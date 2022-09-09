@@ -2,7 +2,6 @@ package com.zzs.iam.common.event.user;
 
 import com.zzs.framework.core.event.BaseEvent;
 import com.zzs.iam.common.pojo.User;
-import com.zzs.iam.common.pojo.User;
 
 import javax.annotation.Nonnull;
 

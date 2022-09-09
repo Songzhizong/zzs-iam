@@ -15,7 +15,7 @@ interface UserProvider {
    * @param password 密码
    */
   @Throws(BadRequestException::class)
-  suspend fun authenticate(username: String, password: String): com.zzs.iam.server.domain.model.user.AuthUser
+  suspend fun authenticate(username: String, password: String): AuthUser
 
   /**
    * 通过用户id获取用户信息
@@ -23,19 +23,19 @@ interface UserProvider {
    * @param id 用户唯一id
    */
   @Throws(ResourceNotFoundException::class)
-  suspend fun getById(id: String): com.zzs.iam.server.domain.model.user.AuthUser
+  suspend fun getById(id: String): AuthUser
 
   /**
    * 通过用户id列表批量获取用户信息
    *
    * @param ids 用户id列表
    */
-  suspend fun findAllById(ids: Collection<String>): List<com.zzs.iam.server.domain.model.user.AuthUser>
+  suspend fun findAllById(ids: Collection<String>): List<AuthUser>
 
   /**
    * 通过手机号获取用户信息
    *
    * @param phone 手机号
    */
-  suspend fun getByPhone(phone: String): com.zzs.iam.server.domain.model.user.AuthUser
+  suspend fun getByPhone(phone: String): AuthUser
 }

@@ -18,7 +18,7 @@ class RedisCaptchaStore(
   private val redisTemplate: ReactiveStringRedisTemplate
 ) : CaptchaStore {
 
-  override suspend fun save(key: String, captcha: com.zzs.iam.server.domain.model.captcha.Captcha, timeout: Duration) {
+  override suspend fun save(key: String, captcha: Captcha, timeout: Duration) {
     val redisKey = genRedisKey(key)
     val value = JsonUtils.toJsonString(captcha)
     redisTemplate.opsForValue().set(redisKey, value, timeout).awaitSingle()
@@ -29,13 +29,13 @@ class RedisCaptchaStore(
     redisTemplate.delete(redisKey).awaitSingle()
   }
 
-  override suspend fun get(key: String): com.zzs.iam.server.domain.model.captcha.Captcha? {
+  override suspend fun get(key: String): Captcha? {
     val redisKey = genRedisKey(key)
     val value = redisTemplate.opsForValue().get(redisKey).awaitSingleOrNull()
     if (value.isNullOrBlank()) {
       return null
     }
-    return value.parseJson(com.zzs.iam.server.domain.model.captcha.Captcha::class.java)
+    return value.parseJson(Captcha::class.java)
   }
 
   private fun genRedisKey(key: String): String {

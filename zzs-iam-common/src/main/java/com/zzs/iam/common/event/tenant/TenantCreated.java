@@ -2,7 +2,6 @@ package com.zzs.iam.common.event.tenant;
 
 import com.zzs.framework.core.event.BaseEvent;
 import com.zzs.iam.common.pojo.Tenant;
-import com.zzs.iam.common.pojo.Tenant;
 
 import javax.annotation.Nonnull;
 

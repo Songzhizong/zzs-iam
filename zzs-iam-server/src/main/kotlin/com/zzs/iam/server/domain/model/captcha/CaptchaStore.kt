@@ -9,9 +9,9 @@ import java.time.Duration
  */
 interface CaptchaStore {
 
-  suspend fun save(key: String, captcha: com.zzs.iam.server.domain.model.captcha.Captcha, timeout: Duration)
+  suspend fun save(key: String, captcha: Captcha, timeout: Duration)
 
   suspend fun delete(key: String)
 
-  suspend fun get(key: String): com.zzs.iam.server.domain.model.captcha.Captcha?
+  suspend fun get(key: String): Captcha?
 }
