@@ -1,0 +1,48 @@
+### 新建菜单
+POST {{base_url}}/iam/menu/create_menu
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "terminal": "iam_web",
+  "parentId": null,
+  "name": "资源",
+  "type": "MENU",
+  "order": null,
+  "icon": "",
+  "selectedIcon": "",
+  "url": "",
+  "path": "",
+  "apis": [
+  ]
+}
+
+### 修改菜单信息
+POST {{base_url}}/iam/menu/update_menu?id=393403096727814144
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "name": "资源",
+  "type": "MENU",
+  "order": null,
+  "icon": "",
+  "selectedIcon": "",
+  "url": "",
+  "path": "",
+  "apis": [
+  ]
+}
+
+### 变更父菜单
+POST {{base_url}}/iam/menu/change_parent?id=393403253447983104&parentId=393403096727814144
+Authorization: {{token_type}} {{access_token}}
+
+### 删除菜单
+POST {{base_url}}/iam/menu/delete_menu?id=393403444112654336
+Authorization: {{token_type}} {{access_token}}
+
+### 获取终端下的菜单树
+GET {{base_url}}/iam/menu/menu_tree_by_terminal?terminal=iam_web
+Authorization: {{token_type}} {{access_token}}
+

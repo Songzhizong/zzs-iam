@@ -1,0 +1,6 @@
+### 发送两步验证邮箱验证码
+POST {{base_url}}/iam/two_step/sen_email_code
+Authorization: {{token_type}} {{access_token}}
+
+###
+

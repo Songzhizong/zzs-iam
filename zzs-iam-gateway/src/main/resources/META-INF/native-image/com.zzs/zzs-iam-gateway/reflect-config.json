@@ -1,0 +1,317 @@
+[
+  {
+    "name": "com.zzs.iam.gateway.filter.auth.IamAuthGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.PredicateDefinition",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.AfterRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.BeforeRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.BetweenRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.CookieRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.HeaderRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.HostRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.MethodRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.PathRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.QueryRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.ReadBodyRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.handler.predicate.XForwardedRemoteAddrRoutePredicateFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.support.WeightConfig",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory$NameConfig",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.AbstractNameValueGatewayFilterFactory$NameValueConfig",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.CacheRequestBodyGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.DedupeResponseHeaderGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.FallbackHeadersGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.MapRequestHeaderGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.PrefixPathGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.RedirectToGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.RequestHeaderSizeGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.RequestRateLimiterGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.RequestSizeGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.RetryGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.RewriteLocationResponseHeaderGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.RewritePathGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.RewriteResponseHeaderGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.SecureHeadersGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.SetPathGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.SetRequestHostHeaderGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.SetStatusGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.SpringCloudCircuitBreakerFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  },
+  {
+    "name": "org.springframework.cloud.gateway.filter.factory.StripPrefixGatewayFilterFactory$Config",
+    "allPublicFields": true,
+    "allDeclaredFields": true,
+    "allDeclaredConstructors": true,
+    "allPublicConstructors": true,
+    "allDeclaredMethods": true,
+    "allPublicMethods": true
+  }
+]

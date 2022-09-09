@@ -1,0 +1,45 @@
+### 注册用户
+POST {{base_url}}/iam/user/register
+Content-Type: application/json
+
+
+{
+  "name": "宋某某",
+  "account": "general",
+  "phone": "18888888888",
+  "email": "zzsong91@163.com",
+  "password": "geQHJF9fke2gGTFihnhuRoRBfphPWYM7"
+}
+
+### 冻结用户
+POST {{base_url}}/iam/user/freeze?id=391954220057624576
+Authorization: {{token_type}} {{access_token}}
+
+### 解除冻结
+POST {{base_url}}/iam/user/unfreeze?id=391954220057624576
+Authorization: {{token_type}} {{access_token}}
+
+### 通过主键获取用户信息
+GET {{base_url}}/iam/user/get_user_by_id?id=391954220057624576
+Authorization: {{token_type}} {{access_token}}
+
+### 选择性更新用户信息
+POST {{base_url}}/iam/user/selectivity_update?id=391954220057624576
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "name": null,
+  "nickname": "宋某某",
+  "account": null,
+  "phone": null,
+  "email": null,
+  "profilePhoto": null
+}
+
+### 通过用户身份标识和密码进行身份认证
+POST {{base_url}}/iam/user/authenticate/password
+Content-Type: application/x-www-form-urlencoded
+Authorization: {{token_type}} {{access_token}}
+
+uniqueIdent=general&password=geQHJF9fke2gGTFihnhuRoRBfphPWYM7

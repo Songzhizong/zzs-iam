@@ -1,0 +1,34 @@
+### 当前用户信息
+GET {{base_url}}/iam/user/self/information
+Authorization: {{token_type}} {{access_token}}
+
+### 修改当前登录用户密码
+POST {{base_url}}/iam/user/self/change_password
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "oldPassword": "geQHJF9fke2gGTFihnhuRoRBfphPWYM7",
+  "newPassword": "geQHJF9fke2gGTFihnhuRoRBfphPWYM",
+  "confirmationPassword": "geQHJF9fke2gGTFihnhuRoRBfphPWYM"
+}
+
+### 修改当前登录用户手机号
+POST {{base_url}}/iam/user/self/change_phone
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "password": "geQHJF9fke2gGTFihnhuRoRBfphPWYM",
+  "newPhone": "18666666666"
+}
+
+### 修改当前登录用户邮箱
+POST {{base_url}}/iam/user/self/change_email
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "password": "geQHJF9fke2gGTFihnhuRoRBfphPWYM",
+  "newEmail": "general@126.com"
+}

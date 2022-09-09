@@ -1,0 +1,29 @@
+### 新增终端
+POST {{base_url}}/iam/terminal/create_terminal
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "platform": "iam",
+  "code": "iam_web",
+  "name": "IAM WEB端",
+  "note": "IAM WEB端"
+}
+
+### 修改终端信息
+POST {{base_url}}/iam/terminal/update_terminal?code=iam_web
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "name": "IAM WEB端",
+  "note": "WEB端"
+}
+
+### 删除终端
+POST {{base_url}}/iam/terminal/delete_terminal?code=iam_wechat
+Authorization: {{token_type}} {{access_token}}
+
+### 获取指定平台下所有的终端
+GET {{base_url}}/iam/terminal/find_all_by_platform?platform=iam
+Authorization: {{token_type}} {{access_token}}

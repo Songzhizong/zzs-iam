@@ -1,0 +1,29 @@
+server:
+  port: 30030
+  shutdown: graceful
+spring:
+  application:
+    name: ZZS-IAM
+  codec:
+    max-in-memory-size: 2MB
+  jackson:
+    locale: zh_CN
+    time-zone: 'GMT+8'
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+  profiles:
+    active: local
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'prometheus'
+  metrics:
+    export:
+      jmx:
+        enabled: false
+
+endpoints:
+  jmx:
+    enabled: false

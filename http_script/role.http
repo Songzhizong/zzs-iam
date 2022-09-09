@@ -1,0 +1,9 @@
+### 创建角色
+POST {{base_url}}/iam/menu/cur/create_role
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "name": "操作员",
+  "note": "操作员"
+}

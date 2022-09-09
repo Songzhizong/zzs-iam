@@ -1,0 +1,12 @@
+### 用户名密码登录
+POST {{base_url}}/iam/login/password
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic aWFtX3dlYjppYW1fd2Vi
+
+username=general&password=geQHJF9fke2gGTFihnhuRoRBfphPWYM7&rememberMe=true&ptype=plain
+
+> {%
+client.global.set("token_type", response.body.data.token_type);
+client.global.set("access_token", response.body.data.access_token);
+client.global.set("refresh_token", response.body.data.refresh_token);
+ %}

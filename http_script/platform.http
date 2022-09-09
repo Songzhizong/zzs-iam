@@ -1,0 +1,19 @@
+### 新增平台
+POST http://127.0.0.1:30030/iam/platform/create_platform
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "code": "iam",
+  "name": "iam",
+  "multiTenant": false,
+  "enableApiAuthenticate": false
+}
+
+### 删除平台
+POST {{base_url}}/iam/platform/delete_platform?code=dcim
+Authorization: {{token_type}} {{access_token}}
+
+### 获取所有平台
+POST {{base_url}}/iam/platform/find_all
+Authorization: {{token_type}} {{access_token}}

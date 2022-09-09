@@ -1,0 +1,23 @@
+### 创建客户端
+POST http://127.0.0.1:30030/iam/auth_client/create_client
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "platform": "iam",
+  "clientId": "iam_web",
+  "clientSecret": "iam_web",
+  "name": "iam_web",
+  "note": null,
+  "accessTokenValidity": null,
+  "refreshTokenValidity": null,
+  "accessTokenAutoRenewal": true
+}
+
+### 删除客户端
+POST {{base_url}}/iam/auth_client/delete_client?clientId=iam_wechat
+Authorization: {{token_type}} {{access_token}}
+
+### 获取平台下所有的认证客户端
+GET {{base_url}}/iam/auth_client/find_all_by_platform?platform=iam
+Authorization: {{token_type}} {{access_token}}

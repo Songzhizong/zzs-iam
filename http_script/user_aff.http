@@ -1,0 +1,182 @@
+### 向指定平台添加用户
+POST http://127.0.0.1:30030/iam/user_aff/platform/add_user?platform=iam
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "394395625132666880",
+    "393399584442810368"
+  ],
+  "roles": [
+    "393399642462617600"
+  ]
+}
+
+### 从指定平台移除用户
+POST {{base_url}}/iam/user_aff/platform/remove_user?platform=iam
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023645141696512"
+  ]
+}
+
+### 冻结指定平台下用户
+POST {{base_url}}/iam/user_aff/platform/freeze_user?platform=iam
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023720915992576",
+    "393023645141696512"
+  ]
+}
+
+### 解冻指定平台下用户
+POST {{base_url}}/iam/user_aff/platform/unfreeze_user?platform=iam
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023720915992576",
+    "393023645141696512"
+  ]
+}
+
+### 查询指定平台下的用户列表
+POST {{base_url}}/iam/user_aff/platform/query_user?platform=iam
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "paging": {
+    "pageNumber": 1,
+    "pageSize": 10
+  },
+  "uniqueIdent": "general@163.com"
+}
+
+### 向指定租户下添加用户
+POST {{base_url}}/iam/user_aff/tenant/add_user
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023720915992576"
+  ],
+  "roles": [
+  ]
+}
+
+### 从指定租户移除用户
+POST {{base_url}}/iam/user_aff/tenant/remove_user
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023645141696512"
+  ]
+}
+
+### 冻结指定租户下的用户
+POST {{base_url}}/iam/user_aff/tenant/freeze_user
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023645141696512"
+  ]
+}
+
+### 解冻指定租户下的用户
+POST {{base_url}}/iam/user_aff/tenant/unfreeze_user
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023645141696512"
+  ]
+}
+
+### 向当前平台(租户)添加用户
+POST http://127.0.0.1:30030/iam/user_aff/cur/add_user
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023720915992576"
+  ],
+  "roles": [
+  ]
+}
+
+### 移除当前平台(租户)下的用户
+POST http://127.0.0.1:30030/iam/user_aff/cur/remove_user
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023645141696512"
+  ]
+}
+
+### 冻结当前平台(租户)下的用户
+POST http://127.0.0.1:30030/iam/user_aff/cur/freeze_user
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023720915992576",
+    "393023645141696512"
+  ]
+}
+
+### 解冻当前平台(租户)下的用户
+POST http://127.0.0.1:30030/iam/user_aff/cur/unfreeze_user
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023720915992576",
+    "393023645141696512"
+  ]
+}
+
+### 修改当前平台(租户)下指定用户的角色
+POST {{base_url}}/iam/user_aff/cur/change_roles
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "userIds": [
+    "393023645141696512"
+  ],
+  "roles": [
+  ]
+}
+
+### 查询当前平台(租户)下的用户列表
+POST http://127.0.0.1:30030/iam/user_aff/cur/unfreeze_user
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "paging": {
+    "pageNumber": 1,
+    "pageSize": 10
+  },
+  "uniqueIdent": "general@163.com"
+}

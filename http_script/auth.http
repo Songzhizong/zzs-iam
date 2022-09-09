@@ -1,0 +1,7 @@
+### 获取用户在指定终端下拥有权限的菜单列表
+GET {{base_url}}/iam/user_self/terminal_menus?terminal=test
+Authorization: {{token_type}} {{access_token}}
+
+### 退出登录
+POST {{base_url}}/iam/user_self/sign_out
+Authorization: {{token_type}} {{access_token}}

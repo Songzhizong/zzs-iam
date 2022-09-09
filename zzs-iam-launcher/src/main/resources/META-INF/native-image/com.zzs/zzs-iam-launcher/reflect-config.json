@@ -1,0 +1,13 @@
+[
+  {
+    "name": "org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean",
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
+  }
+]
