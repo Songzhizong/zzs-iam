@@ -16,8 +16,8 @@
   <modules>
     <module>zzs-iam-common</module>
     <module>zzs-iam-server</module>
-    <module>zzs-iam-launcher</module>
     <module>zzs-iam-gateway</module>
+    <module>zzs-iam-launcher</module>
     <module>zzs-iam-infrastructure</module>
   </modules>
 
