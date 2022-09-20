@@ -65,6 +65,13 @@ class IamAuthGatewayFilterFactory(
         val apiAuthenticate = apiAuthenticate(requestPath)
         iamAuthenticateService.authenticate(authorization, tenantId, requestPath, apiAuthenticate)
       }.flatMap { forwardHeaderMap ->
+        val renameHeaders = config.renameForwardHeaders
+        for ((k, v) in renameHeaders) {
+          val remove = forwardHeaderMap.remove(k)
+          if (!remove.isNullOrEmpty()) {
+            forwardHeaderMap[v] = remove
+          }
+        }
         val serverHttpRequest = request.mutate().headers { it.putAll(forwardHeaderMap) }.build()
         chain.filter(exchange.mutate().request(serverHttpRequest).build())
       }.onErrorResume { exception ->
@@ -133,5 +140,8 @@ class IamAuthGatewayFilterFactory(
 
     /** 不需要通过api鉴权的接口清单, 覆盖上面的配置 */
     var permitApiAuthMatchers = HashSet<String>()
+
+    /** 对转发头进行重命名 */
+    var renameForwardHeaders = HashMap<String, String>()
   }
 }
