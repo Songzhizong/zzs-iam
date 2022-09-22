@@ -2,6 +2,7 @@ package com.zzs.iam.server.application
 
 import com.zzs.framework.core.exception.BadRequestException
 import com.zzs.framework.core.exception.ResourceNotFoundException
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.iam.server.domain.model.front.TerminalDo
 import com.zzs.iam.server.domain.model.front.TerminalRepository
@@ -27,15 +28,16 @@ class TerminalService(
 
   /** 新增终端 */
   suspend fun create(args: CreateTerminalArgs): TerminalDo {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val platform = args.platform.requireNotBlank { "平台编码为空" }.also {
       platformRepository.findByCode(it) ?: kotlin.run {
-        log.info("平台: {} 不存在", it)
+        log.info("{}平台: {} 不存在", logPrefix, it)
         throw ResourceNotFoundException("平台不存在")
       }
     }
     val code = args.code.requireNotBlank { "终端编码为空" }.also {
       terminalRepository.findByCode(it)?.apply {
-        log.info("重点编码: {} 已被使用", it)
+        log.info("{}重点编码: {} 已被使用", logPrefix, it)
         throw BadRequestException("终端编码已被使用")
       }
     }
@@ -48,8 +50,9 @@ class TerminalService(
 
   /** 修改终端信息 */
   suspend fun update(code: String, name: String, note: String?): TerminalDo {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val terminalDo = terminalRepository.findByCode(code) ?: let {
-      log.info("修改终端信息失败, 终端: {} 不存在", code)
+      log.info("{}修改终端信息失败, 终端: {} 不存在", logPrefix, code)
       throw ResourceNotFoundException("终端不存在")
     }
     terminalDo.name = name
@@ -60,11 +63,12 @@ class TerminalService(
 
   /** 删除终端 */
   suspend fun delete(code: String) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     terminalRepository.findByCode(code)?.also {
       terminalRepository.delete(it)
-      log.info("成功删除终端: [{} {}]", code, it.name)
+      log.info("{}成功删除终端: [{} {}]", logPrefix, code, it.name)
     } ?: let {
-      log.info("终端: {} 不存在", code)
+      log.info("{}终端: {} 不存在", logPrefix, code)
     }
   }
 }

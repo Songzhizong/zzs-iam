@@ -1,6 +1,7 @@
 package com.zzs.iam.server.port.event
 
 import com.zzs.framework.core.event.EventListenerManager
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.event.user.*
 import com.zzs.iam.server.application.UserAffService
 import com.zzs.iam.server.application.UserAuthService
@@ -37,8 +38,9 @@ class UserEventListener(
     UserFrozen.TOPIC,
     UserFrozen::class.java
   ) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userId = it.userId
-    log.info("监听到用户 [{}] 被冻结事件, 清理其所有登录token", userId)
+    log.info("{}监听到用户 [{}] 被冻结事件, 清理其所有登录token", logPrefix, userId)
     userAuthService.cleanAccessToken(userId.toString())
   }
 
@@ -49,8 +51,9 @@ class UserEventListener(
     UserPasswordChanged.TOPIC,
     UserPasswordChanged::class.java
   ) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userId = it.userId
-    log.info("监听到用户 [{}] 密码变更事件, 清理其所有登录token", userId)
+    log.info("{}监听到用户 [{}] 密码变更事件, 清理其所有登录token", logPrefix, userId)
     userAuthService.cleanAccessToken(userId.toString())
   }
 
@@ -61,9 +64,10 @@ class UserEventListener(
     UserAccountChanged.TOPIC,
     UserAccountChanged::class.java
   ) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userId = it.userId.toString()
     val account = it.account ?: ""
-    log.info("监听到用户 [{}] 账号发生变更, 同步该用户的账号信息", userId)
+    log.info("{}监听到用户 [{}] 账号发生变更, 同步该用户的账号信息", logPrefix, userId)
     userAffService.syncAccount(userId, account)
   }
 
@@ -74,9 +78,10 @@ class UserEventListener(
     UserPhoneChanged.TOPIC,
     UserPhoneChanged::class.java
   ) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userId = it.userId.toString()
     val phone = it.phone ?: ""
-    log.info("监听到用户 [{}] 手机号发生变更, 同步该用户的手机号信息", userId)
+    log.info("{}监听到用户 [{}] 手机号发生变更, 同步该用户的手机号信息", logPrefix, userId)
     userAffService.syncPhone(userId, phone)
   }
 
@@ -87,9 +92,10 @@ class UserEventListener(
     UserEmailChanged.TOPIC,
     UserEmailChanged::class.java
   ) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userId = it.userId.toString()
     val email = it.email ?: ""
-    log.info("监听到用户 [{}] 邮箱发生变更, 同步该用户的邮箱信息", userId)
+    log.info("{}监听到用户 [{}] 邮箱发生变更, 同步该用户的邮箱信息", logPrefix, userId)
     userAffService.syncEmail(userId, email)
   }
 
@@ -100,10 +106,11 @@ class UserEventListener(
     UserUpdated.TOPIC,
     UserUpdated::class.java
   ) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val user = it.user ?: return@listen
     val userId = user.id.toString()
     val name = user.name
-    log.info("监听到用户 [{} {}] 个人信息发生变更, 同步该用户的个人信息", userId, name)
+    log.info("{}监听到用户 [{} {}] 个人信息发生变更, 同步该用户的个人信息", logPrefix, userId, name)
     userAffService.syncUser(user)
   }
 
@@ -144,12 +151,14 @@ class UserEventListener(
     PlatformUserFrozen.TOPIC,
     PlatformUserFrozen::class.java
   ) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val platform = it.platform
     val user = it.user
     val userId = user.userId
     val name = user.name
     log.info(
-      "监听到用户 [{} {}] 被平台: {} 冻结, 清理用户在该平台下的登录信息", userId, name, platform
+      "{}监听到用户 [{} {}] 被平台: {} 冻结, 清理用户在该平台下的登录信息",
+      logPrefix, userId, name, platform
     )
     userAuthService.cleanAccessToken(platform, userId)
   }

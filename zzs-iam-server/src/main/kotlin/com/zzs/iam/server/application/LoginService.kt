@@ -3,6 +3,7 @@ package com.zzs.iam.server.application
 import com.zzs.framework.core.event.ReactiveEventPublisher
 import com.zzs.framework.core.event.publishAndAwait
 import com.zzs.framework.core.exception.ForbiddenException
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.event.user.UserLogined
 import com.zzs.iam.server.configure.IamUpmsProperties
 import com.zzs.iam.server.domain.model.authorization.Authentication
@@ -50,14 +51,21 @@ class LoginService(
     user: AuthUser,
     rememberMe: Boolean
   ): AccessToken {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val platform = authClient.platform
     val userId = user.userId
     val userDo = platformUserRepository.findByPlatformAndUserId(platform, userId) ?: let {
-      log.info("登录失败, 用户: [{} {}] 不属于平台: {}", userId, user.name, platform)
+      log.info(
+        "{}登录失败, 用户: [{} {}] 不属于平台: {}",
+        logPrefix, userId, user.name, platform
+      )
       throw ForbiddenException("没有此平台的访问权限")
     }
     if (userDo.isFrozen) {
-      log.info("用户: [{} {}] 登录平台: {} 失败, 用户已被该平台冻结", userId, user.name, platform)
+      log.info(
+        "{}用户: [{} {}] 登录平台: {} 失败, 用户已被该平台冻结",
+        logPrefix, userId, user.name, platform
+      )
       throw ForbiddenException("用户已被当前平台冻结")
     }
     val clientId = authClient.clientId

@@ -52,6 +52,7 @@ public class IamApplication {
   public static void main(String[] args) {
     int ioWorkerCount = Runtime.getRuntime().availableProcessors();
     System.setProperty("reactor.netty.ioWorkerCount", String.valueOf(ioWorkerCount));
+    System.setProperty("reactor.netty.pool.leasingStrategy", "lifo");
     SpringApplication.run(IamApplication.class, args);
     log.info("io worker threads: {}", ioWorkerCount);
   }

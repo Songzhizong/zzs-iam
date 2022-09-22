@@ -1,6 +1,7 @@
 package com.zzs.iam.launcher.intergration
 
 import com.zzs.framework.core.exception.ResourceNotFoundException
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.iam.server.application.UserService
 import com.zzs.iam.server.domain.model.user.AuthUser
 import com.zzs.iam.server.domain.model.user.UserDo
@@ -29,9 +30,10 @@ class IamUserProvider(
   }
 
   override suspend fun getById(id: String): AuthUser {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     return userRepository.findById(id.toLong())?.let { userDo2AuthUser(it) }
       ?: let {
-        log.info("通过用户ID: {} 获取用户信息为空", id)
+        log.info("{}通过用户ID: {} 获取用户信息为空", logPrefix, id)
         throw ResourceNotFoundException("用户不存在")
       }
   }
@@ -42,9 +44,10 @@ class IamUserProvider(
   }
 
   override suspend fun getByPhone(phone: String): AuthUser {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     return userRepository.findByPhone(phone)?.let { userDo2AuthUser(it) }
       ?: let {
-        log.info("通过手机号: {} 获取用户信息为空", phone)
+        log.info("{}通过手机号: {} 获取用户信息为空", logPrefix, phone)
         throw ResourceNotFoundException("用户不存在")
       }
   }

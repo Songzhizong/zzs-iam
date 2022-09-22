@@ -35,6 +35,10 @@
       <artifactId>zzs-starter-cache-coroutine</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.zzs.framework</groupId>
+      <artifactId>zzs-starter-trace-reactive</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.experimental</groupId>
       <artifactId>spring-native</artifactId>
     </dependency>

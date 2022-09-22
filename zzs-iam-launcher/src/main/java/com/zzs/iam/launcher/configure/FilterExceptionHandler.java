@@ -10,6 +10,8 @@ import com.zzs.framework.core.json.JsonParseException;
 import com.zzs.framework.core.json.JsonUtils;
 import com.zzs.framework.core.lang.StringUtils;
 import com.zzs.framework.core.spring.ExchangeUtils;
+import com.zzs.framework.core.trace.TraceContext;
+import com.zzs.framework.core.trace.reactive.TraceExchangeUtils;
 import com.zzs.framework.core.transmission.Result;
 import com.zzs.framework.core.utils.ExceptionUtils;
 import org.slf4j.Logger;
@@ -33,6 +35,7 @@ import reactor.core.publisher.Mono;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -47,52 +50,58 @@ public class FilterExceptionHandler implements ErrorWebExceptionHandler, Ordered
     HTTP_HEADERS.set("Content-Type", "application/json;charset=utf-8");
   }
 
-
   @Nonnull
   @Override
-  public Mono<Void> handle(@Nonnull ServerWebExchange exchange, @Nonnull Throwable ex) {
+  public Mono<Void> handle(@Nonnull ServerWebExchange exchange, @Nonnull Throwable throwable) {
     HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
     Result<Object> res = null;
-
-    if (ex instanceof VisibleException exception) {
+    String logPrefix = "";
+    String traceId = null;
+    Optional<TraceContext> optional = TraceExchangeUtils.getTraceContext(exchange);
+    if (optional.isPresent()) {
+      TraceContext context = optional.get();
+      logPrefix = context.getLogPrefix();
+      traceId = context.getTraceId();
+    }
+    if (throwable instanceof VisibleException exception) {
       int status = exception.getHttpStatus();
       httpStatus = HttpStatus.valueOf(status);
-      res = Result.exception(ex);
+      res = Result.exception(throwable);
     }
 
     // json序列化异常
-    if (ex instanceof JsonFormatException) {
-      log.info("JsonFormatException: ", ex);
-      res = Result.exception(ex);
+    if (throwable instanceof JsonFormatException) {
+      log.info("{}JsonFormatException: ", logPrefix, throwable);
+      res = Result.exception(throwable);
     }
 
     // json解析异常
-    if (ex instanceof JsonParseException) {
-      log.info("JsonParseException: ", ex);
-      res = Result.exception(ex);
+    if (throwable instanceof JsonParseException) {
+      log.info("{}JsonParseException: ", logPrefix, throwable);
+      res = Result.exception(throwable);
     }
 
     // 参数校验不通过异常处理
-    if (ex instanceof MethodArgumentNotValidException exception) {
+    if (throwable instanceof MethodArgumentNotValidException exception) {
       httpStatus = HttpStatus.BAD_REQUEST;
       String message = exception.getBindingResult().getFieldErrors().stream()
         .map(DefaultMessageSourceResolvable::getDefaultMessage)
         .collect(Collectors.joining(", "));
-      log.info("MethodArgumentNotValidException {}", message);
+      log.info("{}MethodArgumentNotValidException {}", logPrefix, message);
       res = Result.failure(message);
     }
 
     // 参数校验不通过异常处理
-    if (ex instanceof BindException exception) {
+    if (throwable instanceof BindException exception) {
       httpStatus = HttpStatus.BAD_REQUEST;
       String message = exception.getBindingResult().getFieldErrors().stream()
         .map(DefaultMessageSourceResolvable::getDefaultMessage)
         .collect(Collectors.joining(", "));
-      log.info("BindException {}", message);
+      log.info("{}BindException {}", logPrefix, message);
       res = Result.failure(message);
     }
 
-    if (ex instanceof HttpMessageNotReadableException exception) {
+    if (throwable instanceof HttpMessageNotReadableException exception) {
       httpStatus = HttpStatus.BAD_REQUEST;
       Throwable rootCause = exception.getRootCause();
       String originalMessage;
@@ -104,7 +113,7 @@ public class FilterExceptionHandler implements ErrorWebExceptionHandler, Ordered
       if (originalMessage == null) {
         originalMessage = "HttpMessageNotReadableException";
       }
-      log.info("HttpMessageNotReadableException: {}", originalMessage);
+      log.info("{}HttpMessageNotReadableException: {}", logPrefix, originalMessage);
       res = Result.failure(originalMessage);
       String prefix = "Cannot coerce empty String";
       if (originalMessage.startsWith(prefix)) {
@@ -112,91 +121,92 @@ public class FilterExceptionHandler implements ErrorWebExceptionHandler, Ordered
       }
     }
 
-    if (ex instanceof IllegalArgumentException exception) {
+    if (throwable instanceof IllegalArgumentException exception) {
       httpStatus = HttpStatus.BAD_REQUEST;
       String message = exception.getLocalizedMessage();
       if (message == null) {
         message = "illegal argument";
       }
-      log.info("", exception);
+      log.info("{}", logPrefix, exception);
       res = Result.failure(message);
     }
 
-    if (ex instanceof IllegalStateException exception) {
+    if (throwable instanceof IllegalStateException exception) {
       httpStatus = HttpStatus.BAD_REQUEST;
       String message = getOrgExMessage(exception);
       if (message == null) {
         message = "illegal status";
       }
-      log.info("", exception);
+      log.info("{}", logPrefix, exception);
       res = Result.failure(message);
     }
 
-    if (ex instanceof MethodArgumentTypeMismatchException exception) {
+    if (throwable instanceof MethodArgumentTypeMismatchException exception) {
       httpStatus = HttpStatus.BAD_REQUEST;
       String message = getOrgExMessage(exception);
       if (message == null) {
         message = exception.getClass().getName();
       }
-      log.info("MethodArgumentTypeMismatchException, {}", message);
+      log.info("{}MethodArgumentTypeMismatchException, {}", logPrefix, message);
       res = Result.failure(message);
     }
 
-    if (ex instanceof ServerWebInputException exception) {
+    if (throwable instanceof ServerWebInputException exception) {
       httpStatus = HttpStatus.BAD_REQUEST;
       String message = exception.getReason();
       Throwable cause = exception.getCause();
       if (cause != null) {
         message = getOrgExMessage(exception);
       }
-      log.info("ServerWebInputException {}", message);
+      log.info("{}ServerWebInputException {}", logPrefix, message);
       res = Result.failure(message);
     }
 
-    if (ex instanceof UncategorizedMongoDbException exception) {
+    if (throwable instanceof UncategorizedMongoDbException exception) {
       httpStatus = HttpStatus.BAD_REQUEST;
       Throwable rootCause = ExceptionUtils.getRootCause(exception);
       String message = rootCause.getMessage();
       if (StringUtils.isBlank(message)) {
         message = rootCause.getClass().getName();
       }
-      log.info("UncategorizedMongoDbException {}", message);
+      log.info("{}UncategorizedMongoDbException {}", logPrefix, message);
       res = Result.failure(message);
     }
 
-    if (ex instanceof MongoCommandException exception) {
+    if (throwable instanceof MongoCommandException exception) {
       httpStatus = HttpStatus.BAD_REQUEST;
       Throwable rootCause = ExceptionUtils.getRootCause(exception);
       String message = rootCause.getMessage();
       if (StringUtils.isBlank(message)) {
         message = rootCause.getClass().getName();
       }
-      log.info("MongoCommandException {}", message);
+      log.info("{}MongoCommandException {}", logPrefix, message);
       res = Result.failure(message);
     }
 
-    if (ex instanceof DuplicateKeyException exception) {
+    if (throwable instanceof DuplicateKeyException exception) {
       String message = getDuplicateMessage(exception);
-      log.info("DuplicateKeyException {}", message);
+      log.info("{}DuplicateKeyException {}", logPrefix, message);
       res = Result.failure(message);
     }
 
-    if (ex instanceof org.springframework.web.server.ResponseStatusException exception) {
+    if (throwable instanceof org.springframework.web.server.ResponseStatusException exception) {
       httpStatus = exception.getStatus();
       String message = exception.getMessage();
       res = Result.failure(message);
       String uri = exchange.getRequest().getURI().getPath();
-      log.info("{} {}", message, uri);
+      log.info("{}{} {}", logPrefix, message, uri, throwable);
     }
 
     if (res == null) {
-      String message = getOrgExMessage(ex);
+      String message = getOrgExMessage(throwable);
       if (message == null) {
-        message = ex.getClass().getSimpleName();
+        message = throwable.getClass().getSimpleName();
       }
-      log.warn("未针对处理的异常: ", ex);
+      log.warn("{}未针对处理的异常: ", logPrefix, throwable);
       res = Result.failure(message);
     }
+    res.setTraceId(traceId);
     String jsonString = JsonUtils.toJsonString(res);
     byte[] bytes = jsonString.getBytes(StandardCharsets.UTF_8);
     return ExchangeUtils.writeResponse(exchange, httpStatus, HTTP_HEADERS, bytes);

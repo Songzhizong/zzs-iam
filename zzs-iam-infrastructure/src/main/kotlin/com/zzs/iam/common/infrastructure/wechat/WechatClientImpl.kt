@@ -3,6 +3,7 @@ package com.zzs.iam.common.infrastructure.wechat
 import com.zzs.framework.core.exception.BadRequestException
 import com.zzs.framework.core.exception.InternalServerException
 import com.zzs.framework.core.json.parseJson
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.iam.common.infrastructure.wechat.resp.AccessTokenResp
 import com.zzs.iam.common.infrastructure.wechat.resp.Code2SessionResp
@@ -26,16 +27,18 @@ class WechatClientImpl(
   }
 
   override suspend fun getOpenId(code: String): String {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val resp = code2Session(code)
     if (resp.isFailure) {
       val msg = "获取openId失败: ${resp.errCode} ${resp.errMsg}"
-      log.info(msg)
+      log.info("{}{}", logPrefix, msg)
       throw InternalServerException(msg)
     }
     return resp.openId
   }
 
   override suspend fun code2Session(code: String): Code2SessionResp {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val baseUrl = properties.codeToSessionUrl.requireNotBlank { "未配置微信访问地址" }
     val appId = properties.appId.requireNotBlank { "微信appid为空" }
     val appSecret = properties.appSecret.requireNotBlank { "微信appSecret配置为空" }
@@ -47,7 +50,7 @@ class WechatClientImpl(
           .doOnNext { s ->
             val httpStatus = response.statusCode()
             if (httpStatus.isError) {
-              log.info("code2Session返回错误的状态码: ${httpStatus.value()} $s")
+              log.info("{}code2Session返回错误的状态码: ${httpStatus.value()} $s", logPrefix)
               throw InternalServerException("code2Session返回错误的状态码: ${httpStatus.value()}")
             }
           }
@@ -56,6 +59,7 @@ class WechatClientImpl(
   }
 
   override suspend fun getUserPhoneNumber(code: String): String {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val baseUrl = properties.phoneNumberUrl.requireNotBlank { "获取微信手机号方位地址未配置" }
     val accessToken = getAccessToken()
     val url = "$baseUrl?access_token=$accessToken"
@@ -69,7 +73,7 @@ class WechatClientImpl(
           .defaultIfEmpty("")
           .doOnNext { s ->
             if (httpStatus.isError) {
-              log.info("获取微信手机号返回错误的状态码: ${httpStatus.value()} $s")
+              log.info("{}获取微信手机号返回错误的状态码: ${httpStatus.value()} $s", logPrefix)
               throw InternalServerException("获取微信手机号返回错误的状态码: ${httpStatus.value()}")
             }
           }
@@ -84,13 +88,13 @@ class WechatClientImpl(
       throw BadRequestException("无效的code")
     }
     if (phoneInfo == null) {
-      log.info("获取微信手机号失败: {}", body)
+      log.info("{}获取微信手机号失败: {}", logPrefix, body)
       val msg = "获取微信手机号失败: $errCode ${resp.errMsg}"
       throw InternalServerException(msg)
     }
     val purePhoneNumber = phoneInfo.purePhoneNumber
     if (purePhoneNumber.isNullOrBlank()) {
-      log.info("获取微信手机号失败: {}", body)
+      log.info("{}获取微信手机号失败: {}", logPrefix, body)
       val msg = "获取微信手机号失败: $errCode ${resp.errMsg}"
       throw InternalServerException(msg)
     }
@@ -99,6 +103,7 @@ class WechatClientImpl(
 
 
   private suspend fun getAccessToken(): String {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val baseUrl = properties.accessTokenUrl.requireNotBlank { "微信获取accessToken地址配置为空" }
     val appId = properties.appId.requireNotBlank { "微信appid为空" }
     val appSecret = properties.appSecret.requireNotBlank { "微信appSecret配置为空" }
@@ -111,7 +116,7 @@ class WechatClientImpl(
             val httpStatus = response.statusCode()
             if (httpStatus.isError) {
               val msg = "获取微信accessToken失败: ${httpStatus.value()} $s"
-              log.info(msg)
+              log.info("{}{}", logPrefix, msg)
               throw InternalServerException(msg)
             }
           }
@@ -119,11 +124,11 @@ class WechatClientImpl(
     val resp = body.parseJson(AccessTokenResp::class.java)
     val accessToken = resp.accessToken
     if (accessToken.isNullOrBlank()) {
-      log.info("获取微信accessToken失败: {}", body)
+      log.info("{}获取微信accessToken失败: {}", logPrefix, body)
       val msg = "获取微信accessToken失败: ${resp.errCode} ${resp.errMsg}"
       throw InternalServerException(msg)
     }
-    log.debug("获取微信access token返回结果; {}", body)
+    log.debug("{}获取微信access token返回结果; {}", logPrefix, body)
     return accessToken
   }
 }

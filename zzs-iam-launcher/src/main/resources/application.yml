@@ -4,8 +4,20 @@ server:
 spring:
   application:
     name: ZZS-IAM
+  cloud:
+    gateway:
+      metrics:
+        enabled: true
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 30S
+        pool:
+          max-idle-time: 30S
+          max-life-time: 10M
+          eviction-interval: 10S
+          metrics: true
   codec:
-    max-in-memory-size: 2MB
+    max-in-memory-size: 10MB
   jackson:
     locale: zh_CN
     time-zone: 'GMT+8'
@@ -13,7 +25,6 @@ spring:
     default-property-inclusion: non_null
   profiles:
     active: local
-
 management:
   endpoints:
     web:

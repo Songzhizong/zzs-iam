@@ -2,6 +2,7 @@ package com.zzs.iam.server.application
 
 import com.zzs.framework.core.exception.ForbiddenException
 import com.zzs.framework.core.exception.ResourceNotFoundException
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNonnull
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.iam.common.constants.RoleType
@@ -58,8 +59,9 @@ class RoleService(
     name: String,
     note: String?
   ): RoleDo {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val platformDo = platformRepository.findByCode(platform) ?: let {
-      log.info("新增角色失败, 平台 : {} 不存在", platform)
+      log.info("{}新增角色失败, 平台 : {} 不存在", logPrefix, platform)
       throw ResourceNotFoundException("平台不存在")
     }
     return create(platformDo, tenantId, RoleType.GENERAL, name, note)
@@ -73,11 +75,12 @@ class RoleService(
     name: String,
     note: String?
   ): RoleDo {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     var tenant: TenantDo? = null
     if (platformDo.isMultiTenant) {
       tenantId.requireNonnull { "租户ID为空" }
       tenant = tenantRepository.findById(tenantId) ?: let {
-        log.info("新增角色失败, 租户 : {} 不存在", tenantId)
+        log.info("{}新增角色失败, 租户 : {} 不存在", logPrefix, tenantId)
         throw ResourceNotFoundException("租户不存在")
       }
     }
@@ -117,6 +120,7 @@ class RoleService(
 
   /** 删除菜单 */
   suspend fun delete(id: Long, platform: String? = null, tenantId: Long? = null) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     roleRepository.findById(id)?.also {
       if (platform != null && platform != it.platform) {
         throw ForbiddenException("没有此角色的管理权限")
@@ -125,9 +129,9 @@ class RoleService(
         throw ForbiddenException("没有此角色的管理权限")
       }
       roleRepository.delete(it)
-      log.info("成功删除角色: [{} {}]", id, it.name)
+      log.info("{}成功删除角色: [{} {}]", logPrefix, id, it.name)
     } ?: let {
-      log.info("角色: {} 不存在", id)
+      log.info("{}角色: {} 不存在", logPrefix, id)
     }
   }
 
@@ -137,26 +141,27 @@ class RoleService(
     tenantId: Long?,
     terminal: String
   ): List<SimpleMenu> {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val terminalDo = terminalRepository.findByCode(terminal) ?: let {
-      log.info("终端: {} 不存在", terminal)
+      log.info("{}终端: {} 不存在", logPrefix, terminal)
       throw ResourceNotFoundException("指定的终端不存在")
     }
     if (terminalDo.platform != platform) {
-      log.info("终端: {} 不属于平台: {}", terminal, platform)
+      log.info("{}终端: {} 不属于平台: {}", logPrefix, terminal, platform)
       throw ForbiddenException("没有此终端权限")
     }
     if (tenantId == null) {
       return menuRepository.findSimpleMenusByTerminal(terminal)
     }
     val platformDo = platformRepository.findByCode(platform) ?: let {
-      log.error("获取平台: {} 信息返回空", platform)
+      log.error("{}获取平台: {} 信息返回空", logPrefix, platform)
       throw ResourceNotFoundException("平台不存在")
     }
     if (platformDo.isTenantHasAllMenus) {
       return menuRepository.findSimpleMenusByTerminal(terminal)
     }
     val roleDo = roleRepository.findTenantAdmin(platform, tenantId) ?: let {
-      log.info("获取租户超管信息返回空: [{} {}]", platform, tenantId)
+      log.info("{}获取租户超管信息返回空: [{} {}]", logPrefix, platform, tenantId)
       throw ResourceNotFoundException("无法获取当前租户的超管信息")
     }
     val menuIds = roleMenuRelRepository
@@ -178,24 +183,27 @@ class RoleService(
 
   /** 为角色分配菜单 */
   suspend fun assignMenus(args: AssignMenuArgs, platform: String? = null, tenantId: Long? = null) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val roleId = args.roleId.requireNonnull { "角色id为空" }
     val terminal = args.terminal.requireNotBlank { "终端编码为空" }
     val menus = args.menus?.toSet()
     val roleDo = checkAndGetRole(roleId, platform, tenantId)
     val count = roleMenuRelRepository.deleteAllByRoleIdAndTerminal(roleId, terminal)
-    log.info("移除角色: {} 在终端: {} 下菜单关系 {}条", roleId, terminal, count)
+    log.info("{}移除角色: {} 在终端: {} 下菜单关系 {}条", logPrefix, roleId, terminal, count)
     if (menus.isNullOrEmpty()) {
       return
     }
     val assignableMenus = assignableMenus(roleDo.platform, tenantId, terminal)
     val assignableMenuIds = assignableMenus.mapTo(HashSet()) { it.id }
     if (!assignableMenuIds.containsAll(menus)) {
-      log.info("分配菜单失败, 因为没有部分菜单的操作权限")
+      log.info("{}分配菜单失败, 因为没有部分菜单的操作权限", logPrefix)
       throw ForbiddenException("缺少部分菜单的操作权限")
     }
     val menuRelDos = menus.map { RoleMenuRelDo.create(roleId, terminal, it) }
     roleMenuRelRepository.insertAll(menuRelDos)
-    log.info("分配角色: {} 在终端: {} 下菜单关系 {}条", roleId, terminal, menuRelDos.size)
+    log.info(
+      "{}分配角色: {} 在终端: {} 下菜单关系 {}条", logPrefix, roleId, terminal, menuRelDos.size
+    )
   }
 
   private suspend fun checkAndGetRole(
@@ -203,6 +211,7 @@ class RoleService(
     platform: String?,
     tenantId: Long?
   ): RoleDo {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     return roleRepository.findById(roleId)?.also {
       if (platform != null && platform != it.platform) {
         throw ForbiddenException("没有此角色的管理权限")
@@ -211,7 +220,7 @@ class RoleService(
         throw ForbiddenException("没有此角色的管理权限")
       }
     } ?: let {
-      log.info("角色: {} 不存在", roleId)
+      log.info("{}角色: {} 不存在", logPrefix, roleId)
       throw ResourceNotFoundException("角色不存在")
     }
   }
