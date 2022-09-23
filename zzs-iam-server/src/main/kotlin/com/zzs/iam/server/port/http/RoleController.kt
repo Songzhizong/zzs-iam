@@ -1,5 +1,6 @@
 package com.zzs.iam.server.port.http
 
+import com.zzs.framework.core.trace.Operation
 import com.zzs.framework.core.transmission.ListResult
 import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNonnull
@@ -34,6 +35,7 @@ class RoleController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("新增角色")
   @PostMapping("/cur/create_role")
   suspend fun create(@RequestBody args: RoleArgs): Result<Role> {
     val current = SecurityContextHolder.current()
@@ -55,6 +57,7 @@ class RoleController(
    *
    * @param id 角色id
    */
+  @Operation("修改角色信息")
   @PostMapping("/update_role")
   suspend fun update(id: Long?, @RequestBody args: RoleArgs): Result<Role> {
     id.requireNonnull { "角色id为空" }
@@ -81,6 +84,7 @@ class RoleController(
    *
    * @param id 角色id
    */
+  @Operation("设置基础角色")
   @PostMapping("/set_as_basic")
   suspend fun setAsBasic(id: Long?): Result<Void> {
     id.requireNonnull { "角色id为空" }
@@ -104,6 +108,7 @@ class RoleController(
    *
    * @param id 角色id
    */
+  @Operation("取消基础角色")
   @PostMapping("/cancel_basic")
   suspend fun cancelBasic(id: Long?): Result<Void> {
     id.requireNonnull { "角色id为空" }
@@ -127,6 +132,7 @@ class RoleController(
    *
    * @param id 角色id
    */
+  @Operation("删除角色")
   @PostMapping("/delete_role")
   suspend fun delete(id: Long?): Result<Void> {
     id.requireNonnull { "角色id为空" }
@@ -208,6 +214,7 @@ class RoleController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("为角色分配菜单")
   @PostMapping("/assign_menus")
   suspend fun assignMenus(@RequestBody args: AssignMenuArgs): Result<Void> {
     val context = SecurityContextHolder.optional()

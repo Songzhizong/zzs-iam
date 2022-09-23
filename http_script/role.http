@@ -7,3 +7,16 @@ Authorization: {{token_type}} {{access_token}}
   "name": "操作员",
   "note": "操作员"
 }
+
+### 修改角色信息
+POST {{base_url}}/iam/menu/update_role?id=404150010985320448
+Content-Type: application/json
+Authorization: {{token_type}} {{access_token}}
+
+{
+  "name": "超级管理员",
+  "note": "超级管理员"
+}
+
+###
+

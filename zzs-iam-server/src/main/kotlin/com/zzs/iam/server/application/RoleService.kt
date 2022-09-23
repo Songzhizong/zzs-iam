@@ -1,7 +1,10 @@
 package com.zzs.iam.server.application
 
+import com.zzs.framework.core.exception.BadRequestException
 import com.zzs.framework.core.exception.ForbiddenException
 import com.zzs.framework.core.exception.ResourceNotFoundException
+import com.zzs.framework.core.json.toJsonString
+import com.zzs.framework.core.trace.coroutine.Operations
 import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNonnull
 import com.zzs.framework.core.utils.requireNotBlank
@@ -60,6 +63,10 @@ class RoleService(
     note: String?
   ): RoleDo {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
+    Operations.log()?.also {
+      it.details = "新增角色[$name]"
+      it.after = mapOf("name" to name, "note" to note).toJsonString()
+    }
     val platformDo = platformRepository.findByCode(platform) ?: let {
       log.info("{}新增角色失败, 平台 : {} 不存在", logPrefix, platform)
       throw ResourceNotFoundException("平台不存在")
@@ -97,7 +104,18 @@ class RoleService(
     platform: String? = null,
     tenantId: Long? = null
   ): RoleDo {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val roleDo = checkAndGetRole(id, platform, tenantId)
+    val curName = roleDo.name
+    Operations.log()?.also {
+      it.details = "修改[$curName]的基本信息"
+      it.before = mapOf("name" to curName, "note" to roleDo.note).toJsonString()
+      it.after = mapOf("name" to name, "note" to note).toJsonString()
+    }
+    if (roleDo.type == RoleType.ADMIN && curName != name) {
+      log.info("{}无法修改超管角色的名称", logPrefix)
+      throw BadRequestException("无法修改超管角色的名称")
+    }
     roleDo.name = name
     roleDo.note = note
     roleRepository.save(roleDo)
@@ -107,6 +125,11 @@ class RoleService(
   /** 将角色设置我基础角色 */
   suspend fun setAsBasic(id: Long, platform: String? = null, tenantId: Long? = null) {
     val roleDo = checkAndGetRole(id, platform, tenantId)
+    Operations.log()?.also {
+      it.details = "将[${roleDo.name}]设为基础角色"
+      it.before = if (roleDo.isBasic) "基础角色" else "非基础角色"
+      it.after = "基础角色"
+    }
     roleDo.setAsBasic()
     roleRepository.save(roleDo)
   }
@@ -114,6 +137,11 @@ class RoleService(
   /** 取消基础角色 */
   suspend fun cancelBasic(id: Long, platform: String? = null, tenantId: Long? = null) {
     val roleDo = checkAndGetRole(id, platform, tenantId)
+    Operations.log()?.also {
+      it.details = "将[${roleDo.name}]设为非基础角色"
+      it.before = if (roleDo.isBasic) "基础角色" else "非基础角色"
+      it.after = "非基础角色"
+    }
     roleDo.cancelBasic()
     roleRepository.save(roleDo)
   }
@@ -122,6 +150,7 @@ class RoleService(
   suspend fun delete(id: Long, platform: String? = null, tenantId: Long? = null) {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     roleRepository.findById(id)?.also {
+      Operations.details("删除[${it.name}]")
       if (platform != null && platform != it.platform) {
         throw ForbiddenException("没有此角色的管理权限")
       }
@@ -188,6 +217,7 @@ class RoleService(
     val terminal = args.terminal.requireNotBlank { "终端编码为空" }
     val menus = args.menus?.toSet()
     val roleDo = checkAndGetRole(roleId, platform, tenantId)
+    Operations.details("变更[${roleDo.name}]的菜单权限")
     val count = roleMenuRelRepository.deleteAllByRoleIdAndTerminal(roleId, terminal)
     log.info("{}移除角色: {} 在终端: {} 下菜单关系 {}条", logPrefix, roleId, terminal, count)
     if (menus.isNullOrEmpty()) {

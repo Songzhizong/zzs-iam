@@ -1,6 +1,6 @@
 spring:
   config:
-    import: application-dev-log.yml,application-router-iam.yml
+    import: application-log-dev.yml,application-router-iam.yml
   data:
     mongodb:
       auto-index-creation: true
