@@ -11,6 +11,7 @@ import com.zzs.iam.common.exception.TwoStepVerifyException
 import com.zzs.iam.common.infrastructure.sender.EmailSender
 import com.zzs.iam.common.infrastructure.sender.SmsSender
 import com.zzs.iam.server.domain.model.twostep.ActionRepository
+import com.zzs.iam.server.domain.model.twostep.TwoStepCfgDO
 import com.zzs.iam.server.domain.model.twostep.TwoStepCfgRepository
 import com.zzs.iam.server.domain.model.twostep.TwoStepConfig
 import com.zzs.iam.server.domain.model.user.UserProvider
@@ -135,7 +136,7 @@ class TwoStepService(
         twoStepCfgRepository.findByPlatformAndTenantId(platform, tenantId ?: -1L)
       }
       val actions = async1.await()
-      val cfg = async2.await() ?: com.zzs.iam.server.domain.model.twostep.TwoStepCfgDo()
+      val cfg = async2.await() ?: TwoStepCfgDO()
       TwoStepConfig().also { config ->
         config.expireMinutes = cfg.expireMinutes
         val enabled = cfg.isEnabled
@@ -143,7 +144,7 @@ class TwoStepService(
           val map = actions.associateByTo(HashMap()) { it.id }
           cfg.disableActions.forEach { map.remove(it) }
           val apis = map.values.map { it.apis }.flatMapTo(HashSet()) { it }
-          config.apis = apis
+          config.apis = ArrayList(apis)
         }
       }
     }!!

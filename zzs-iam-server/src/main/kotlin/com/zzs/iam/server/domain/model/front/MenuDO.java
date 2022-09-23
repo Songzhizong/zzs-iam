@@ -23,7 +23,7 @@ import java.util.Set;
  * @author 宋志宗 on 2022/8/15
  */
 @Document("iam_menu")
-public class MenuDo {
+public class MenuDO {
   public static final String ROUTER_SEPARATOR = "-";
 
   @Id
@@ -86,14 +86,31 @@ public class MenuDo {
   @LastModifiedDate
   private LocalDateTime updatedTime;
 
-  public void changeParent(@Nullable MenuDo parent) {
-    if (parent == null) {
-      setParentId(-1);
-      setParentRouter("");
-      return;
+  @Nonnull
+  public static MenuDO create(@Nullable MenuDO parent,
+                              @Nonnull TerminalDO terminal,
+                              @Nonnull String name,
+                              @Nonnull MenuType type,
+                              int order,
+                              @Nullable String icon,
+                              @Nullable String selectedIcon,
+                              @Nullable String url,
+                              @Nullable String path,
+                              @Nullable Set<String> apis) {
+    MenuDO menuDo = new MenuDO();
+    if (parent != null) {
+      menuDo.setParentId(parent.getId());
+      menuDo.setParentRouter(parent.generateRouter());
     }
-    setParentId(parent.getId());
-    setParentRouter(parent.generateRouter());
+    menuDo.setPlatform(terminal.getPlatform());
+    menuDo.setTerminal(terminal.getCode());
+    menuDo.setName(name);
+    menuDo.setType(type);
+    menuDo.setOrder(order);
+    menuDo.setIcon(icon);
+    menuDo.setUrl(url);
+    menuDo.setApis(apis);
+    return menuDo;
   }
 
 
@@ -121,31 +138,14 @@ public class MenuDo {
     setApis(apis);
   }
 
-  @Nonnull
-  public static MenuDo create(@Nullable MenuDo parent,
-                              @Nonnull TerminalDo terminal,
-                              @Nonnull String name,
-                              @Nonnull MenuType type,
-                              int order,
-                              @Nullable String icon,
-                              @Nullable String selectedIcon,
-                              @Nullable String url,
-                              @Nullable String path,
-                              @Nullable Set<String> apis) {
-    MenuDo menuDo = new MenuDo();
-    if (parent != null) {
-      menuDo.setParentId(parent.getId());
-      menuDo.setParentRouter(parent.generateRouter());
+  public void changeParent(@Nullable MenuDO parent) {
+    if (parent == null) {
+      setParentId(-1);
+      setParentRouter("");
+      return;
     }
-    menuDo.setPlatform(terminal.getPlatform());
-    menuDo.setTerminal(terminal.getCode());
-    menuDo.setName(name);
-    menuDo.setType(type);
-    menuDo.setOrder(order);
-    menuDo.setIcon(icon);
-    menuDo.setUrl(url);
-    menuDo.setApis(apis);
-    return menuDo;
+    setParentId(parent.getId());
+    setParentRouter(parent.generateRouter());
   }
 
   @Nonnull

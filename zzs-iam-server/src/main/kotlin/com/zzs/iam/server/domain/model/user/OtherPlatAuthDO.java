@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
   @CompoundIndex(name = "uk_code_uid", def = "{plat_code:1,other_plat_user_id:1}", unique = true),
   @CompoundIndex(name = "uk_user_code", def = "{user_id:1,plat_code:1}", unique = true),
 })
-public class OtherPlatAuthDo {
+public class OtherPlatAuthDO {
 
   @Id
   private long id;
@@ -40,10 +40,10 @@ public class OtherPlatAuthDo {
   private LocalDateTime createdTime;
 
   @Nonnull
-  public static OtherPlatAuthDo create(long userId,
+  public static OtherPlatAuthDO create(long userId,
                                        @Nonnull String platCode,
                                        @Nonnull String otherPlatUserId) {
-    OtherPlatAuthDo otherPlatAuthDo = new OtherPlatAuthDo();
+    OtherPlatAuthDO otherPlatAuthDo = new OtherPlatAuthDO();
     otherPlatAuthDo.setUserId(userId);
     otherPlatAuthDo.setPlatCode(platCode);
     otherPlatAuthDo.setOtherPlatUserId(otherPlatUserId);

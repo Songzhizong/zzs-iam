@@ -4,7 +4,7 @@ import com.zzs.framework.core.exception.BadRequestException
 import com.zzs.framework.core.exception.ResourceNotFoundException
 import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNotBlank
-import com.zzs.iam.server.domain.model.front.TerminalDo
+import com.zzs.iam.server.domain.model.front.TerminalDO
 import com.zzs.iam.server.domain.model.front.TerminalRepository
 import com.zzs.iam.server.domain.model.org.PlatformRepository
 import com.zzs.iam.server.dto.args.CreateTerminalArgs
@@ -27,7 +27,7 @@ class TerminalService(
   }
 
   /** 新增终端 */
-  suspend fun create(args: CreateTerminalArgs): TerminalDo {
+  suspend fun create(args: CreateTerminalArgs): TerminalDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val platform = args.platform.requireNotBlank { "平台编码为空" }.also {
       platformRepository.findByCode(it) ?: kotlin.run {
@@ -43,13 +43,13 @@ class TerminalService(
     }
     val name = args.name.requireNotBlank { "终端名称为空" }
     val note = args.note
-    val terminalDo = TerminalDo.create(code, platform, name, note)
+    val terminalDo = TerminalDO.create(code, platform, name, note)
     terminalRepository.save(terminalDo)
     return terminalDo
   }
 
   /** 修改终端信息 */
-  suspend fun update(code: String, name: String, note: String?): TerminalDo {
+  suspend fun update(code: String, name: String, note: String?): TerminalDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val terminalDo = terminalRepository.findByCode(code) ?: let {
       log.info("{}修改终端信息失败, 终端: {} 不存在", logPrefix, code)

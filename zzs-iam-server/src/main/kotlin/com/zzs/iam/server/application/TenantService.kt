@@ -4,7 +4,7 @@ import com.zzs.framework.core.exception.BadRequestException
 import com.zzs.framework.core.exception.ResourceNotFoundException
 import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNotBlank
-import com.zzs.iam.server.domain.model.org.TenantDo
+import com.zzs.iam.server.domain.model.org.TenantDO
 import com.zzs.iam.server.domain.model.org.TenantRepository
 import com.zzs.iam.server.domain.model.org.TenantUserRepository
 import com.zzs.iam.server.dto.args.CreateTenantArgs
@@ -27,7 +27,7 @@ class TenantService(
   }
 
   /** 新增租户 */
-  suspend fun create(platform: String, args: CreateTenantArgs): TenantDo {
+  suspend fun create(platform: String, args: CreateTenantArgs): TenantDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val parent = args.parentId?.let {
       tenantRepository.findById(it)?.apply {
@@ -46,7 +46,7 @@ class TenantService(
     val name = args.name.requireNotBlank { "租户名称为空" }
     val address = args.address
     val note = args.note
-    val tenantDo = TenantDo.create(platform, parent, name, address, note)
+    val tenantDo = TenantDO.create(platform, parent, name, address, note)
     tenantRepository.save(tenantDo)
     return tenantDo
   }
@@ -105,7 +105,7 @@ class TenantService(
   }
 
   /** 获取指定租户下所有层级的子租户 */
-  suspend fun getAllChild(id: Long): List<TenantDo> {
+  suspend fun getAllChild(id: Long): List<TenantDO> {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     return tenantRepository.findById(id)?.let {
       val parentRouter = it.parentRouter

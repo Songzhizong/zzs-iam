@@ -3,7 +3,7 @@ package com.zzs.iam.server.domain.model.authorization.token;
 import com.zzs.framework.core.date.DateTimes;
 import com.zzs.iam.server.domain.model.authorization.Authentication;
 import com.zzs.iam.server.domain.model.authorization.BearerAuthorization;
-import com.zzs.iam.server.domain.model.org.AuthClientDo;
+import com.zzs.iam.server.domain.model.org.AuthClientDO;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -14,7 +14,7 @@ import java.util.UUID;
 /**
  * @author 宋志宗 on 2022/8/16
  */
-public class AccessTokenDo {
+public class AccessTokenDO {
 
   @Nonnull
   private String value = "";
@@ -33,15 +33,15 @@ public class AccessTokenDo {
   private String clientId = "";
 
   @Nullable
-  private RefreshTokenDo refreshToken;
+  private RefreshTokenDO refreshToken;
 
   private Authentication authentication;
 
   @Nonnull
-  public static AccessTokenDo create(boolean rememberMe,
-                                     @Nonnull AuthClientDo authClient,
+  public static AccessTokenDO create(boolean rememberMe,
+                                     @Nonnull AuthClientDO authClient,
                                      @Nonnull Authentication authentication) {
-    AccessTokenDo accessTokenDo = new AccessTokenDo();
+    AccessTokenDO accessTokenDo = new AccessTokenDO();
     accessTokenDo.setValue(UUID.randomUUID().toString().replace("-", ""));
     accessTokenDo.setAutoRenewal(accessTokenDo.isAutoRenewal());
     int accessTokenValidity = authClient.getAccessTokenValidity();
@@ -50,7 +50,7 @@ public class AccessTokenDo {
     accessTokenDo.setClientId(authClient.getClientId());
     if (rememberMe) {
       int refreshTokenValidity = authClient.getRefreshTokenValidity();
-      RefreshTokenDo refreshToken = RefreshTokenDo.create(refreshTokenValidity, authentication);
+      RefreshTokenDO refreshToken = RefreshTokenDO.create(refreshTokenValidity, authentication);
       accessTokenDo.setRefreshToken(refreshToken);
     }
     accessTokenDo.setAuthentication(authentication);
@@ -118,11 +118,11 @@ public class AccessTokenDo {
   }
 
   @Nullable
-  public RefreshTokenDo getRefreshToken() {
+  public RefreshTokenDO getRefreshToken() {
     return refreshToken;
   }
 
-  public void setRefreshToken(@Nullable RefreshTokenDo refreshToken) {
+  public void setRefreshToken(@Nullable RefreshTokenDO refreshToken) {
     this.refreshToken = refreshToken;
   }
 

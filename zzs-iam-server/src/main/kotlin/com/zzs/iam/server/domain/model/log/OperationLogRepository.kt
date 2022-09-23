@@ -5,5 +5,5 @@ package com.zzs.iam.server.domain.model.log
  */
 interface OperationLogRepository {
 
-  suspend fun save(log: OperationLogDo): OperationLogDo
+  suspend fun save(log: OperationLogDO): OperationLogDO
 }

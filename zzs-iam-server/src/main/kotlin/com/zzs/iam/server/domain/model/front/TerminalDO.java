@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  * @author 宋志宗 on 2022/8/15
  */
 @Document("iam_terminal")
-public class TerminalDo {
+public class TerminalDO {
 
   @Id
   private long id;
@@ -50,11 +50,11 @@ public class TerminalDo {
   private LocalDateTime updatedTime;
 
   @Nonnull
-  public static TerminalDo create(@Nonnull String code,
+  public static TerminalDO create(@Nonnull String code,
                                   @Nonnull String platform,
                                   @Nonnull String name,
                                   @Nullable String note) {
-    TerminalDo terminalDo = new TerminalDo();
+    TerminalDO terminalDo = new TerminalDO();
     terminalDo.setCode(code);
     terminalDo.setPlatform(platform);
     terminalDo.setName(name);

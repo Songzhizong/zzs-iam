@@ -3,8 +3,8 @@ package com.zzs.iam.server.domain.model.role;
 import com.zzs.framework.core.exception.BadRequestException;
 import com.zzs.iam.common.constants.RoleType;
 import com.zzs.iam.common.pojo.Role;
-import com.zzs.iam.server.domain.model.org.PlatformDo;
-import com.zzs.iam.server.domain.model.org.TenantDo;
+import com.zzs.iam.server.domain.model.org.PlatformDO;
+import com.zzs.iam.server.domain.model.org.TenantDO;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -25,7 +25,7 @@ import java.util.UUID;
 @CompoundIndexes({
   @CompoundIndex(name = "uk_", def = "{platform:1,tenant_id:1,type:1,flag:1}", unique = true),
 })
-public class RoleDo {
+public class RoleDO {
 
   @Id
   private long id;
@@ -68,12 +68,12 @@ public class RoleDo {
   private LocalDateTime updatedTime;
 
   @Nonnull
-  public static RoleDo create(@Nonnull PlatformDo platform,
-                              @Nullable TenantDo tenant,
+  public static RoleDO create(@Nonnull PlatformDO platform,
+                              @Nullable TenantDO tenant,
                               @Nonnull RoleType type,
                               @Nonnull String name,
                               @Nullable String note) {
-    RoleDo roleDo = new RoleDo();
+    RoleDO roleDo = new RoleDO();
     roleDo.setPlatform(platform.getCode());
     if (tenant != null) {
       roleDo.setTenantId(tenant.getId());

@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.iam.server.domain.model.user.UserDo
+import com.zzs.iam.server.domain.model.user.UserDO
 import com.zzs.iam.server.domain.model.user.UserRepository
 import com.zzs.iam.server.infrastructure.IamIDGenerator
 import kotlinx.coroutines.reactor.awaitSingle
@@ -19,7 +19,7 @@ class UserRepositoryImpl(
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : UserRepository {
 
-  override suspend fun save(userDo: UserDo): UserDo {
+  override suspend fun save(userDo: UserDO): UserDO {
     if (userDo.id < 1) {
       userDo.id = idGenerator.generate()
       return mongoTemplate.insert(userDo).awaitSingle()
@@ -27,34 +27,34 @@ class UserRepositoryImpl(
     return mongoTemplate.save(userDo).awaitSingle()
   }
 
-  override suspend fun findById(id: Long): UserDo? {
+  override suspend fun findById(id: Long): UserDO? {
     val criteria = Criteria.where("id").`is`(id)
     val query = Query.query(criteria)
-    return mongoTemplate.findOne(query, UserDo::class.java).awaitSingleOrNull()
+    return mongoTemplate.findOne(query, UserDO::class.java).awaitSingleOrNull()
   }
 
-  override suspend fun findAllById(ids: Collection<Long>): List<UserDo> {
+  override suspend fun findAllById(ids: Collection<Long>): List<UserDO> {
     val criteria = Criteria.where("id").`in`(ids)
     val query = Query.query(criteria)
-    return mongoTemplate.find(query, UserDo::class.java).collectList().awaitSingle()
+    return mongoTemplate.find(query, UserDO::class.java).collectList().awaitSingle()
   }
 
-  override suspend fun findByPhone(phone: String): UserDo? {
-    val encrypt = UserDo.encrypt(phone)
+  override suspend fun findByPhone(phone: String): UserDO? {
+    val encrypt = UserDO.encrypt(phone)
     val criteria = Criteria.where("phone").`is`(encrypt)
     val query = Query.query(criteria)
-    return mongoTemplate.findOne(query, UserDo::class.java).awaitSingleOrNull()
+    return mongoTemplate.findOne(query, UserDO::class.java).awaitSingleOrNull()
   }
 
-  override suspend fun findByUniqueIdent(uniqueIdent: String): UserDo? {
-    val encrypt = UserDo.encrypt(uniqueIdent)
+  override suspend fun findByUniqueIdent(uniqueIdent: String): UserDO? {
+    val encrypt = UserDO.encrypt(uniqueIdent)
     val criteria = Criteria().orOperator(
       Criteria.where("account").`is`(uniqueIdent),
       Criteria.where("email").`is`(encrypt),
       Criteria.where("phone").`is`(encrypt)
     )
     val query = Query.query(criteria)
-    return mongoTemplate.findOne(query, UserDo::class.java).awaitSingleOrNull()
+    return mongoTemplate.findOne(query, UserDO::class.java).awaitSingleOrNull()
   }
 
 }

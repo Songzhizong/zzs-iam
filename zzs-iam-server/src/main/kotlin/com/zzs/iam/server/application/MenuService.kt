@@ -7,7 +7,7 @@ import com.zzs.framework.core.spring.RedisTemplateUtils
 import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNonnull
 import com.zzs.framework.core.utils.requireNotBlank
-import com.zzs.iam.server.domain.model.front.MenuDo
+import com.zzs.iam.server.domain.model.front.MenuDO
 import com.zzs.iam.server.domain.model.front.MenuRepository
 import com.zzs.iam.server.domain.model.front.TerminalRepository
 import com.zzs.iam.server.dto.args.CreateMenuArgs
@@ -40,7 +40,7 @@ class MenuService(
     private val lockValue = UUID.randomUUID().toString().replace("-", "")
   }
 
-  suspend fun create(args: CreateMenuArgs): MenuDo {
+  suspend fun create(args: CreateMenuArgs): MenuDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     // 校验终端
     val terminal = args.terminal.requireNonnull { "终端编码为空" }.let {
@@ -68,7 +68,7 @@ class MenuService(
     val url = args.url
     val path = args.path
     val apis = args.apis?.toSet()
-    val menuDo = MenuDo.create(
+    val menuDo = MenuDO.create(
       parent, terminal, name, type, order, icon, selectedIcon, url, path, apis
     )
     menuRepository.save(menuDo)
@@ -76,7 +76,7 @@ class MenuService(
   }
 
   /** 修改菜单信息 */
-  suspend fun update(id: Long, args: UpdateMenuArgs): MenuDo {
+  suspend fun update(id: Long, args: UpdateMenuArgs): MenuDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val menuDo = menuRepository.findById(id) ?: let {
       log.info("{}修改菜单信息失败, 菜单 {} 不存在", logPrefix, id)
@@ -88,7 +88,7 @@ class MenuService(
   }
 
   /** 变更父菜单 */
-  suspend fun changeParent(id: Long, parentId: Long?): MenuDo {
+  suspend fun changeParent(id: Long, parentId: Long?): MenuDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val menuDo = menuRepository.findById(id) ?: let {
       log.info("{}修改菜单信息失败, 菜单 {} 不存在", logPrefix, id)
@@ -113,7 +113,7 @@ class MenuService(
         log.info("{}父菜单未发生变更", logPrefix)
         return menuDo
       }
-      var parent: MenuDo? = null
+      var parent: MenuDO? = null
       if (parentId != null) {
         parent = menuRepository.findById(parentId) ?: let {
           log.info("{}变更父菜单失败, 所选的菜单: {} 不存在", logPrefix, parentId)
@@ -135,7 +135,7 @@ class MenuService(
   }
 
   /** 递归修改父菜单 */
-  private fun changeParent(menuDo: MenuDo, childMap: Map<Long, List<MenuDo>>) {
+  private fun changeParent(menuDo: MenuDO, childMap: Map<Long, List<MenuDO>>) {
     val childList = childMap[menuDo.id]
     if (childList.isNullOrEmpty()) {
       return

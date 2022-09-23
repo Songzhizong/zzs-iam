@@ -5,9 +5,9 @@ package com.zzs.iam.server.domain.model.twostep
  */
 interface ActionRepository {
 
-  suspend fun save(actionDo: ActionDo): ActionDo
+  suspend fun save(actionDo: ActionDO): ActionDO
 
-  suspend fun findAllByPlatform(platform: String): List<ActionDo>
+  suspend fun findAllByPlatform(platform: String): List<ActionDO>
 
-  suspend fun findAllEnabledByPlatform(platform: String): List<ActionDo>
+  suspend fun findAllEnabledByPlatform(platform: String): List<ActionDO>
 }

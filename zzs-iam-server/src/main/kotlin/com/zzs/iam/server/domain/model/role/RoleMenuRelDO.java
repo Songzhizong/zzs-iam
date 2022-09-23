@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
 @CompoundIndexes({
   @CompoundIndex(name = "uk_role_terminal_menu", def = "{role_id:1,terminal_id:1,menu_id:1}", unique = true),
 })
-public class RoleMenuRelDo {
+public class RoleMenuRelDO {
 
   @Id
   private long id;
@@ -29,8 +29,8 @@ public class RoleMenuRelDo {
   private long menuId;
 
   @Nonnull
-  public static RoleMenuRelDo create(long roleId, String terminal, long menuId) {
-    RoleMenuRelDo roleMenuRel = new RoleMenuRelDo();
+  public static RoleMenuRelDO create(long roleId, String terminal, long menuId) {
+    RoleMenuRelDO roleMenuRel = new RoleMenuRelDO();
     roleMenuRel.setRoleId(roleId);
     roleMenuRel.setTerminal(terminal);
     roleMenuRel.setMenuId(menuId);

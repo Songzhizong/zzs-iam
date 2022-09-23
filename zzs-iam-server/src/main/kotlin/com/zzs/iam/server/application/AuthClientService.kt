@@ -7,7 +7,7 @@ import com.zzs.framework.core.lang.StringUtils
 import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.iam.common.password.PasswordEncoder
-import com.zzs.iam.server.domain.model.org.AuthClientDo
+import com.zzs.iam.server.domain.model.org.AuthClientDO
 import com.zzs.iam.server.domain.model.org.AuthClientRepository
 import com.zzs.iam.server.domain.model.org.PlatformRepository
 import com.zzs.iam.server.dto.args.CreateAuthClientArgs
@@ -32,7 +32,7 @@ class AuthClientService(
   }
 
   /** 创建客户端 */
-  suspend fun create(args: CreateAuthClientArgs): AuthClientDo {
+  suspend fun create(args: CreateAuthClientArgs): AuthClientDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val platform = args.platform.requireNotBlank { "平台编码为空" }.let {
       platformRepository.findByCode(it) ?: run {
@@ -55,7 +55,7 @@ class AuthClientService(
     val byteArray = "$clientId:$clientSecret".toByteArray(Charsets.UTF_8)
     val tokenValue = Base64.getUrlEncoder().encodeToString(byteArray)
     val encode = passwordEncoder.encode(clientSecret)
-    val clientDo = AuthClientDo.create(
+    val clientDo = AuthClientDO.create(
       platform, clientId, encode, name, note, accessTokenValidity, refreshTokenValidity,
       accessTokenAutoRenewal, repetitionLoginLimit, "Basic $tokenValue"
     )
@@ -75,7 +75,7 @@ class AuthClientService(
   }
 
   /** 客户端认证 */
-  suspend fun authenticate(authorization: String): AuthClientDo {
+  suspend fun authenticate(authorization: String): AuthClientDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     if (!authorization.startsWith("Basic ")) {
       log.info("{}authClient认证失败, 客户端授权码不合法: {}", logPrefix, authorization)
@@ -97,7 +97,7 @@ class AuthClientService(
   }
 
   /** 客户端认证 */
-  suspend fun authenticate(clientId: String, clientSecret: String): AuthClientDo {
+  suspend fun authenticate(clientId: String, clientSecret: String): AuthClientDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val authClientDo = authClientRepository.findByClientId(clientId) ?: let {
       log.info("{}客户端不存在: {}", logPrefix, clientId)

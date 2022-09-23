@@ -1,7 +1,7 @@
 package com.zzs.iam.server.domain.model.authorization;
 
 import com.zzs.framework.core.date.DateTimes;
-import com.zzs.iam.server.domain.model.org.AuthClientDo;
+import com.zzs.iam.server.domain.model.org.AuthClientDO;
 import com.zzs.iam.server.domain.model.user.AuthUser;
 
 import javax.annotation.Nonnull;
@@ -52,7 +52,7 @@ public class Authentication {
   private long passwordExpire = Long.MAX_VALUE;
 
   @Nonnull
-  public static Authentication crete(@Nonnull AuthClientDo client,
+  public static Authentication crete(@Nonnull AuthClientDO client,
                                      @Nonnull AuthUser user,
                                      int passwordExpireDays) {
     Authentication authentication = new Authentication();

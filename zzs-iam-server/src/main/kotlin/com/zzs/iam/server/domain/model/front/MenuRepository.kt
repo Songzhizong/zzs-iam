@@ -7,21 +7,21 @@ import com.zzs.iam.common.pojo.SimpleMenu
  */
 interface MenuRepository {
 
-  suspend fun save(menuDo: MenuDo): MenuDo
+  suspend fun save(menuDo: MenuDO): MenuDO
 
-  suspend fun saveAll(menus: Collection<MenuDo>): List<MenuDo>
+  suspend fun saveAll(menus: Collection<MenuDO>): List<MenuDO>
 
-  suspend fun delete(menuDo: MenuDo)
+  suspend fun delete(menuDo: MenuDO)
 
   suspend fun deleteAllChildByRouter(router: String): Long
 
-  suspend fun findById(id: Long): MenuDo?
+  suspend fun findById(id: Long): MenuDO?
 
-  suspend fun findAllById(ids: Collection<Long>): List<MenuDo>
+  suspend fun findAllById(ids: Collection<Long>): List<MenuDO>
 
-  suspend fun findAllByTerminal(terminal: String): List<MenuDo>
+  suspend fun findAllByTerminal(terminal: String): List<MenuDO>
 
-  suspend fun findAllChild(parentRouter: String): List<MenuDo>
+  suspend fun findAllChild(parentRouter: String): List<MenuDO>
 
   suspend fun existsByParentId(parentId: Long): Boolean
 

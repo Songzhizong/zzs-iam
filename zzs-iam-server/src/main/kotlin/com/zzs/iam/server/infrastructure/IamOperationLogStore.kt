@@ -2,7 +2,7 @@ package com.zzs.iam.server.infrastructure
 
 import com.zzs.framework.core.trace.OperationLog
 import com.zzs.framework.core.trace.reactive.OperationLogStore
-import com.zzs.iam.server.domain.model.log.OperationLogDo
+import com.zzs.iam.server.domain.model.log.OperationLogDO
 import com.zzs.iam.server.domain.model.log.OperationLogRepository
 import kotlinx.coroutines.reactor.mono
 import org.springframework.stereotype.Repository
@@ -18,7 +18,7 @@ class IamOperationLogStore(
 
   override fun save(operationLog: OperationLog): Mono<Boolean> {
     return mono {
-      val operationLogDo = OperationLogDo.create(operationLog)
+      val operationLogDo = OperationLogDO.create(operationLog)
       operationLogRepository.save(operationLogDo)
       true
     }

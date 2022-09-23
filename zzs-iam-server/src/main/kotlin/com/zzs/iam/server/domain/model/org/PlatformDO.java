@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * @author 宋志宗 on 2022/8/15
  */
 @Document("iam_platform")
-public class PlatformDo {
+public class PlatformDO {
 
   @Id
   private long id;
@@ -49,12 +49,12 @@ public class PlatformDo {
   private LocalDateTime updatedTime;
 
   @Nonnull
-  public static EventTuple<PlatformDo> create(@Nonnull String code,
+  public static EventTuple<PlatformDO> create(@Nonnull String code,
                                               @Nonnull String name,
                                               boolean multiTenant,
                                               boolean tenantHasAllMenus,
                                               boolean enableApiAuthenticate) {
-    PlatformDo platformDo = new PlatformDo();
+    PlatformDO platformDo = new PlatformDO();
     platformDo.setCode(code);
     platformDo.setName(name);
     platformDo.setMultiTenant(multiTenant);

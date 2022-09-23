@@ -22,7 +22,7 @@ import java.util.Set;
 @CompoundIndexes({
   @CompoundIndex(name = "uk_platform_tenant", def = "{platform:1,tenant_id:1}"),
 })
-public class TwoStepCfgDo {
+public class TwoStepCfgDO {
 
   @Id
   private long id;
@@ -57,7 +57,7 @@ public class TwoStepCfgDo {
     return id;
   }
 
-  public TwoStepCfgDo setId(long id) {
+  public TwoStepCfgDO setId(long id) {
     this.id = id;
     return this;
   }
@@ -67,7 +67,7 @@ public class TwoStepCfgDo {
     return platform;
   }
 
-  public TwoStepCfgDo setPlatform(@Nonnull String platform) {
+  public TwoStepCfgDO setPlatform(@Nonnull String platform) {
     this.platform = platform;
     return this;
   }
@@ -76,7 +76,7 @@ public class TwoStepCfgDo {
     return tenantId;
   }
 
-  public TwoStepCfgDo setTenantId(long tenantId) {
+  public TwoStepCfgDO setTenantId(long tenantId) {
     this.tenantId = tenantId;
     return this;
   }
@@ -85,7 +85,7 @@ public class TwoStepCfgDo {
     return enabled;
   }
 
-  public TwoStepCfgDo setEnabled(boolean enabled) {
+  public TwoStepCfgDO setEnabled(boolean enabled) {
     this.enabled = enabled;
     return this;
   }
@@ -95,7 +95,7 @@ public class TwoStepCfgDo {
     return disableActions;
   }
 
-  public TwoStepCfgDo setDisableActions(@Nonnull Set<Long> disableActions) {
+  public TwoStepCfgDO setDisableActions(@Nonnull Set<Long> disableActions) {
     this.disableActions = disableActions;
     return this;
   }
@@ -104,7 +104,7 @@ public class TwoStepCfgDo {
     return expireMinutes;
   }
 
-  public TwoStepCfgDo setExpireMinutes(int expireMinutes) {
+  public TwoStepCfgDO setExpireMinutes(int expireMinutes) {
     this.expireMinutes = expireMinutes;
     return this;
   }
@@ -113,7 +113,7 @@ public class TwoStepCfgDo {
     return version;
   }
 
-  public TwoStepCfgDo setVersion(long version) {
+  public TwoStepCfgDO setVersion(long version) {
     this.version = version;
     return this;
   }
@@ -122,7 +122,7 @@ public class TwoStepCfgDo {
     return createdTime;
   }
 
-  public TwoStepCfgDo setCreatedTime(LocalDateTime createdTime) {
+  public TwoStepCfgDO setCreatedTime(LocalDateTime createdTime) {
     this.createdTime = createdTime;
     return this;
   }
@@ -131,7 +131,7 @@ public class TwoStepCfgDo {
     return updatedTime;
   }
 
-  public TwoStepCfgDo setUpdatedTime(LocalDateTime updatedTime) {
+  public TwoStepCfgDO setUpdatedTime(LocalDateTime updatedTime) {
     this.updatedTime = updatedTime;
     return this;
   }

@@ -4,7 +4,6 @@ import com.zzs.framework.core.crypto.AES;
 import com.zzs.framework.core.event.EventSuppliers;
 import com.zzs.framework.core.lang.Sets;
 import com.zzs.framework.core.lang.StringUtils;
-import com.zzs.iam.common.event.user.PlatformUserFrozen;
 import com.zzs.iam.common.pojo.JoinedUser;
 import com.zzs.iam.common.pojo.User;
 import com.zzs.iam.server.domain.model.user.AuthUser;
@@ -25,24 +24,29 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.UUID;
 
+
 /**
- * 平台用户信息
+ * 租户用户信息
  *
  * @author 宋志宗 on 2022/8/15
  */
-@Document("iam_platform_user")
+@Document("iam_tenant_user")
 @CompoundIndexes({
-  @CompoundIndex(name = "uk_platform_user", def = "{platform:1,user_id:1}", unique = true),
+  @CompoundIndex(name = "uk_tenant_user", def = "{tenant_id:1,user_id:1}", unique = true),
 })
-public class PlatformUserDo {
-  private static final String SEC = "!ENwKJ.76x3iZMH6vCaQti6Zd8zkC2Jr";
+public class TenantUserDO {
+  private static final String SEC = "EQc9a-3BZvJ!h.@QbuWMnMRo7YXNvn3L";
 
   @Id
   private long id;
 
   /** 平台编码 */
   @Nonnull
+  @Indexed
   private String platform = "";
+
+  /** 租户ID */
+  private long tenantId = -1;
 
   /** 用户id */
   @Nonnull
@@ -76,6 +80,7 @@ public class PlatformUserDo {
   @Indexed
   private Set<Long> roles = Collections.emptySet();
 
+
   /** 是否已被冻结 */
   private boolean frozen = false;
 
@@ -88,23 +93,45 @@ public class PlatformUserDo {
   @LastModifiedDate
   private LocalDateTime updatedTime;
 
-  @Nonnull
-  public EventSuppliers freeze() {
-    if (isFrozen()) {
-      return EventSuppliers.create();
-    }
+  public void freeze() {
     setFrozen(true);
-    return EventSuppliers.of(new PlatformUserFrozen(this.getPlatform(), this.toJoinedUser()));
+  }
+
+  public void unfreeze() {
+    setFrozen(false);
+  }
+
+  @SuppressWarnings("DuplicatedCode")
+  @Nonnull
+  public static TenantUserDO create(@Nonnull AuthUser user,
+                                    @Nonnull TenantDO tenantDo) {
+    TenantUserDO tenantUserDo = new TenantUserDO();
+    tenantUserDo.setPlatform(tenantDo.getPlatform());
+    tenantUserDo.setTenantId(tenantDo.getId());
+    tenantUserDo.setUserId(user.getUserId());
+    tenantUserDo.setName(user.getName());
+    tenantUserDo.setNickname(user.getNickname());
+    tenantUserDo.setAccount(user.getAccount());
+    tenantUserDo.setPhone(user.getPhone());
+    tenantUserDo.setEmail(user.getEmail());
+    return tenantUserDo;
   }
 
   @Nonnull
-  public EventSuppliers unfreeze() {
-    if (!isFrozen()) {
-      return EventSuppliers.create();
-    }
-    setFrozen(false);
-    return EventSuppliers.create();
-//    return EventSuppliers.of(new PlatformUserUnfreezed(this.toPlatformUser()));
+  @SuppressWarnings("DuplicatedCode")
+  public JoinedUser toJoinedUser() {
+    JoinedUser user = new JoinedUser();
+    user.setUserId(getUserId());
+    user.setName(getName());
+    user.setNickname(getNickname());
+    user.setAccount(getAccount());
+    user.setPhone(getPhone());
+    user.setEmail(getEmail());
+    user.setRoles(getRoles());
+    user.setFrozen(isFrozen());
+    user.setCreatedTime(getCreatedTime());
+    user.setUpdatedTime(getUpdatedTime());
+    return user;
   }
 
   @Nonnull
@@ -125,21 +152,6 @@ public class PlatformUserDo {
     setAccount(user.getAccount());
     setPhone(user.getPhone());
     setEmail(user.getEmail());
-  }
-
-  @SuppressWarnings("DuplicatedCode")
-  @Nonnull
-  public static PlatformUserDo create(@Nonnull AuthUser user,
-                                      @Nonnull String platform) {
-    PlatformUserDo platformUserDo = new PlatformUserDo();
-    platformUserDo.setPlatform(platform);
-    platformUserDo.setUserId(user.getUserId());
-    platformUserDo.setName(user.getName());
-    platformUserDo.setNickname(user.getNickname());
-    platformUserDo.setAccount(user.getAccount());
-    platformUserDo.setPhone(user.getPhone());
-    platformUserDo.setEmail(user.getEmail());
-    return platformUserDo;
   }
 
   @Nonnull
@@ -167,23 +179,6 @@ public class PlatformUserDo {
     return StringUtils.startsWith(encrypted, "$empty$");
   }
 
-  @Nonnull
-  @SuppressWarnings("DuplicatedCode")
-  public JoinedUser toJoinedUser() {
-    JoinedUser user = new JoinedUser();
-    user.setUserId(getUserId());
-    user.setName(getName());
-    user.setNickname(getNickname());
-    user.setAccount(getAccount());
-    user.setPhone(getPhone());
-    user.setEmail(getEmail());
-    user.setRoles(getRoles());
-    user.setFrozen(isFrozen());
-    user.setCreatedTime(getCreatedTime());
-    user.setUpdatedTime(getUpdatedTime());
-    return user;
-  }
-
   public long getId() {
     return id;
   }
@@ -199,6 +194,14 @@ public class PlatformUserDo {
 
   public void setPlatform(@Nonnull String platform) {
     this.platform = platform;
+  }
+
+  public long getTenantId() {
+    return tenantId;
+  }
+
+  public void setTenantId(long tenantId) {
+    this.tenantId = tenantId;
   }
 
   @Nonnull

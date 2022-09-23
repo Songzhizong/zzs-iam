@@ -17,7 +17,7 @@ import java.util.Set;
  * @author 宋志宗 on 2022/8/26
  */
 @Document("iam_user_config")
-public class UserConfigDo {
+public class UserConfigDO {
 
   @Id
   private long id;

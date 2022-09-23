@@ -20,7 +20,7 @@ class AccessTokenStore(
   private val redisTemplate: ReactiveStringRedisTemplate,
 ) {
 
-  suspend fun saveAccessToken(accessTokenDo: AccessTokenDo) {
+  suspend fun saveAccessToken(accessTokenDo: AccessTokenDO) {
     coroutineScope {
       val asyncList = ArrayList<Deferred<*>>()
       val clientId = accessTokenDo.clientId
@@ -69,11 +69,11 @@ class AccessTokenStore(
     if (tokenJson.isNullOrBlank()) {
       return
     }
-    val accessTokenDo = tokenJson.parseJson(AccessTokenDo::class.java)
+    val accessTokenDo = tokenJson.parseJson(AccessTokenDO::class.java)
     deleteAccessToken(accessTokenDo)
   }
 
-  suspend fun deleteAccessToken(accessTokenDo: AccessTokenDo) {
+  suspend fun deleteAccessToken(accessTokenDo: AccessTokenDO) {
     val clientId = accessTokenDo.clientId
     val userId = accessTokenDo.authentication.userId
     val accessToken = accessTokenDo.value
@@ -92,14 +92,14 @@ class AccessTokenStore(
     }
   }
 
-  suspend fun readAccessToken(accessToken: String): AccessTokenDo? {
+  suspend fun readAccessToken(accessToken: String): AccessTokenDO? {
     val accessTokenKey = genAccessTokenKey(accessToken)
     val valueOps = redisTemplate.opsForValue()
     val tokenJson = valueOps.getAndAwait(accessTokenKey)
     if (tokenJson.isNullOrBlank()) {
       return null
     }
-    val accessTokenDo = tokenJson.parseJson(AccessTokenDo::class.java)
+    val accessTokenDo = tokenJson.parseJson(AccessTokenDO::class.java)
     val validity = accessTokenDo.validity
     if (accessTokenDo.isAutoRenewal && accessTokenDo.expiresIn < (validity shr 1)) {
       accessTokenDo.expiration = DateTimes.now().plusSeconds(validity.toLong())
@@ -110,14 +110,14 @@ class AccessTokenStore(
     return accessTokenDo
   }
 
-  suspend fun readRefreshToken(refreshToken: String): RefreshTokenDo? {
+  suspend fun readRefreshToken(refreshToken: String): RefreshTokenDO? {
     val refreshTokenKey = genRefreshTokenKey(refreshToken)
     val valueOps = redisTemplate.opsForValue()
     val tokenJson = valueOps.getAndAwait(refreshTokenKey)
     if (tokenJson.isNullOrBlank()) {
       return null
     }
-    return tokenJson.parseJson(RefreshTokenDo::class.java)
+    return tokenJson.parseJson(RefreshTokenDO::class.java)
   }
 
   suspend fun cleanAllToken(clientId: String, userId: String) {

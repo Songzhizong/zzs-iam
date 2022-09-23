@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
  * @author 宋志宗 on 2022/8/23
  */
 @Document("iam_user_hist_password")
-public class HistPasswordDo {
+public class HistPasswordDO {
 
   @Id
   private long id;
@@ -31,8 +31,8 @@ public class HistPasswordDo {
   private LocalDateTime createdTime;
 
   @Nonnull
-  public static HistPasswordDo create(long userId, @Nonnull String password) {
-    HistPasswordDo histPasswordDo = new HistPasswordDo();
+  public static HistPasswordDO create(long userId, @Nonnull String password) {
+    HistPasswordDO histPasswordDo = new HistPasswordDO();
     histPasswordDo.setUserId(userId);
     histPasswordDo.setPassword(password);
     return histPasswordDo;

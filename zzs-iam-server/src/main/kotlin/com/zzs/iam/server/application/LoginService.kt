@@ -8,9 +8,9 @@ import com.zzs.iam.common.event.user.UserLogined
 import com.zzs.iam.server.configure.IamUpmsProperties
 import com.zzs.iam.server.domain.model.authorization.Authentication
 import com.zzs.iam.server.domain.model.authorization.token.AccessToken
-import com.zzs.iam.server.domain.model.authorization.token.AccessTokenDo
+import com.zzs.iam.server.domain.model.authorization.token.AccessTokenDO
 import com.zzs.iam.server.domain.model.authorization.token.AccessTokenStore
-import com.zzs.iam.server.domain.model.org.AuthClientDo
+import com.zzs.iam.server.domain.model.org.AuthClientDO
 import com.zzs.iam.server.domain.model.org.PlatformUserRepository
 import com.zzs.iam.server.domain.model.user.AuthUser
 import com.zzs.iam.server.domain.model.user.UserProvider
@@ -37,7 +37,7 @@ class LoginService(
 
   /** 密码登录 */
   suspend fun passwordLogin(
-    authClient: AuthClientDo,
+    authClient: AuthClientDO,
     username: String,
     password: String,
     rememberMe: Boolean
@@ -47,7 +47,7 @@ class LoginService(
   }
 
   private suspend fun login(
-    authClient: AuthClientDo,
+    authClient: AuthClientDO,
     user: AuthUser,
     rememberMe: Boolean
   ): AccessToken {
@@ -77,7 +77,7 @@ class LoginService(
     }
     val passwordExpireDays = properties.passwordExpireDays
     val authentication = Authentication.crete(authClient, user, passwordExpireDays)
-    val accessTokenDo = AccessTokenDo.create(rememberMe, authClient, authentication)
+    val accessTokenDo = AccessTokenDO.create(rememberMe, authClient, authentication)
     tokenStore.saveAccessToken(accessTokenDo)
     val event = UserLogined()
       .also { it.platform = platform;it.userId = userId }

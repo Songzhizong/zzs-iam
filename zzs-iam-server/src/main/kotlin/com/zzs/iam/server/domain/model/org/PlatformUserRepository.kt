@@ -8,26 +8,26 @@ import org.springframework.data.domain.Page
  */
 interface PlatformUserRepository {
 
-  suspend fun save(platformUserDo: PlatformUserDo): PlatformUserDo
+  suspend fun save(platformUserDo: PlatformUserDO): PlatformUserDO
 
-  suspend fun saveAll(platformUsers: Collection<PlatformUserDo>)
+  suspend fun saveAll(platformUsers: Collection<PlatformUserDO>)
 
-  suspend fun delete(platformUserDo: PlatformUserDo)
+  suspend fun delete(platformUserDo: PlatformUserDO)
 
-  suspend fun deleteAll(platformUsers: Collection<PlatformUserDo>)
+  suspend fun deleteAll(platformUsers: Collection<PlatformUserDO>)
 
-  suspend fun findById(id: Long): PlatformUserDo?
+  suspend fun findById(id: Long): PlatformUserDO?
 
-  suspend fun findByPlatformAndUserId(platform: String, userId: String): PlatformUserDo?
+  suspend fun findByPlatformAndUserId(platform: String, userId: String): PlatformUserDO?
 
   suspend fun findByPlatformAndUserIdIn(
     platform: String,
     userIds: Collection<String>
-  ): List<PlatformUserDo>
+  ): List<PlatformUserDO>
 
-  suspend fun findAllByUserId(userId: String): List<PlatformUserDo>
+  suspend fun findAllByUserId(userId: String): List<PlatformUserDO>
 
-  suspend fun query(platform: String, args: QueryUserArgs): Page<PlatformUserDo>
+  suspend fun query(platform: String, args: QueryUserArgs): Page<PlatformUserDO>
 
   suspend fun updateAccountByUserId(userId: String, account: String): Long
 

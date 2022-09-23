@@ -4,7 +4,7 @@ import com.zzs.framework.core.exception.ResourceNotFoundException
 import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.iam.server.application.UserService
 import com.zzs.iam.server.domain.model.user.AuthUser
-import com.zzs.iam.server.domain.model.user.UserDo
+import com.zzs.iam.server.domain.model.user.UserDO
 import com.zzs.iam.server.domain.model.user.UserProvider
 import com.zzs.iam.server.domain.model.user.UserRepository
 import org.slf4j.Logger
@@ -52,7 +52,7 @@ class IamUserProvider(
       }
   }
 
-  private fun userDo2AuthUser(authenticate: UserDo): AuthUser {
+  private fun userDo2AuthUser(authenticate: UserDO): AuthUser {
     return AuthUser().also {
       it.userId = authenticate.id.toString()
       it.name = authenticate.name

@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.iam.server.domain.model.role.RoleMenuRelDo
+import com.zzs.iam.server.domain.model.role.RoleMenuRelDO
 import com.zzs.iam.server.domain.model.role.RoleMenuRelRepository
 import com.zzs.iam.server.infrastructure.IamIDGenerator
 import kotlinx.coroutines.reactive.awaitLast
@@ -18,9 +18,9 @@ class RoleMenuRelRepositoryImpl(
   private val idGenerator: IamIDGenerator,
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : RoleMenuRelRepository {
-  private val clazz = RoleMenuRelDo::class.java
+  private val clazz = RoleMenuRelDO::class.java
 
-  override suspend fun insertAll(rels: Collection<RoleMenuRelDo>) {
+  override suspend fun insertAll(rels: Collection<RoleMenuRelDO>) {
     rels.forEach { it.id = idGenerator.generate() }
     mongoTemplate.insertAll(rels).awaitLast()
   }
@@ -37,7 +37,7 @@ class RoleMenuRelRepositoryImpl(
     return mongoTemplate.remove(query, clazz).awaitSingle().deletedCount
   }
 
-  override suspend fun findAllByRoleIdIn(roleIds: Collection<Long>): List<RoleMenuRelDo> {
+  override suspend fun findAllByRoleIdIn(roleIds: Collection<Long>): List<RoleMenuRelDO> {
     val criteria = Criteria.where("roleId").`in`(roleIds)
     val query = Query.query(criteria)
     return mongoTemplate.find(query, clazz).collectList().awaitSingle()

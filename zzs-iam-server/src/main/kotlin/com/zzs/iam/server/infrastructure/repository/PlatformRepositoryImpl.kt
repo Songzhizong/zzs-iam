@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.iam.server.domain.model.org.PlatformDo
+import com.zzs.iam.server.domain.model.org.PlatformDO
 import com.zzs.iam.server.domain.model.org.PlatformRepository
 import com.zzs.iam.server.infrastructure.IamIDGenerator
 import kotlinx.coroutines.reactor.awaitSingle
@@ -18,9 +18,9 @@ class PlatformRepositoryImpl(
   private val idGenerator: IamIDGenerator,
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : PlatformRepository {
-  private val clazz = PlatformDo::class.java
+  private val clazz = PlatformDO::class.java
 
-  override suspend fun save(platformDo: PlatformDo): PlatformDo {
+  override suspend fun save(platformDo: PlatformDO): PlatformDO {
     if (platformDo.id < 1) {
       platformDo.id = idGenerator.generate()
       return mongoTemplate.insert(platformDo).awaitSingle()
@@ -28,17 +28,17 @@ class PlatformRepositoryImpl(
     return mongoTemplate.save(platformDo).awaitSingle()
   }
 
-  override suspend fun delete(platformDo: PlatformDo) {
+  override suspend fun delete(platformDo: PlatformDO) {
     mongoTemplate.remove(platformDo).awaitSingle()
   }
 
-  override suspend fun findByCode(code: String): PlatformDo? {
+  override suspend fun findByCode(code: String): PlatformDO? {
     val criteria = Criteria.where("code").`is`(code)
     val query = Query.query(criteria)
     return mongoTemplate.findOne(query, clazz).awaitSingleOrNull()
   }
 
-  override suspend fun findAll(): List<PlatformDo> {
+  override suspend fun findAll(): List<PlatformDO> {
     return mongoTemplate.findAll(clazz).collectList().awaitSingle()
   }
 }

@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.iam.server.domain.model.log.OperationLogDo
+import com.zzs.iam.server.domain.model.log.OperationLogDO
 import com.zzs.iam.server.domain.model.log.OperationLogRepository
 import com.zzs.iam.server.infrastructure.IamIDGenerator
 import kotlinx.coroutines.reactor.awaitSingle
@@ -16,7 +16,7 @@ class OperationLogRepositoryImpl(
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : OperationLogRepository {
 
-  override suspend fun save(log: OperationLogDo): OperationLogDo {
+  override suspend fun save(log: OperationLogDO): OperationLogDO {
     if (log.id < 1) {
       log.id = idGenerator.generate()
       return mongoTemplate.insert(log).awaitSingle()

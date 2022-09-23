@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * @author 宋志宗 on 2022/8/15
  */
 @Document("iam_tenant")
-public class TenantDo {
+public class TenantDO {
   public static final String ROUTER_SEPARATOR = "-";
 
   @Id
@@ -62,12 +62,12 @@ public class TenantDo {
   private LocalDateTime updatedTime;
 
   @Nonnull
-  public static TenantDo create(@Nonnull String platform,
-                                @Nullable TenantDo parent,
+  public static TenantDO create(@Nonnull String platform,
+                                @Nullable TenantDO parent,
                                 @Nonnull String name,
                                 @Nullable String address,
                                 @Nullable String note) {
-    TenantDo tenantDo = new TenantDo();
+    TenantDO tenantDo = new TenantDO();
     if (parent != null) {
       tenantDo.setParentId(parent.getId());
       tenantDo.setParentRouter(parent.generateRouter());

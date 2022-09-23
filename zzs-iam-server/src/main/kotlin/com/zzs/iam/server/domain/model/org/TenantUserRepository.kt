@@ -8,26 +8,26 @@ import org.springframework.data.domain.Page
  */
 interface TenantUserRepository {
 
-  suspend fun save(tenantUserDo: TenantUserDo): TenantUserDo
+  suspend fun save(tenantUserDo: TenantUserDO): TenantUserDO
 
-  suspend fun saveAll(tenantUsers: Collection<TenantUserDo>)
+  suspend fun saveAll(tenantUsers: Collection<TenantUserDO>)
 
-  suspend fun delete(tenantUserDo: TenantUserDo)
+  suspend fun delete(tenantUserDo: TenantUserDO)
 
-  suspend fun deleteAll(tenantUsers: Collection<TenantUserDo>)
+  suspend fun deleteAll(tenantUsers: Collection<TenantUserDO>)
 
-  suspend fun findAllByUserId(userId: String): List<TenantUserDo>
+  suspend fun findAllByUserId(userId: String): List<TenantUserDO>
 
-  suspend fun findByTenantIdAndUserId(tenantId: Long, userId: String): TenantUserDo?
+  suspend fun findByTenantIdAndUserId(tenantId: Long, userId: String): TenantUserDO?
 
   suspend fun findByTenantIdAndUserIdIn(
     tenantId: Long,
     userIds: Collection<String>
-  ): List<TenantUserDo>
+  ): List<TenantUserDO>
 
-  suspend fun findAllByPlatformAndUserId(platform: String, userId: String): List<TenantUserDo>
+  suspend fun findAllByPlatformAndUserId(platform: String, userId: String): List<TenantUserDO>
 
-  suspend fun query(tenantId: Long, args: QueryUserArgs): Page<TenantUserDo>
+  suspend fun query(tenantId: Long, args: QueryUserArgs): Page<TenantUserDO>
 
   suspend fun existsByPlatformAndUserId(platform: String, userId: String): Boolean
 

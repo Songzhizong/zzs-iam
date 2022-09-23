@@ -8,7 +8,7 @@ import java.util.UUID;
 /**
  * @author 宋志宗 on 2022/8/16
  */
-public class RefreshTokenDo {
+public class RefreshTokenDO {
 
   @Nonnull
   private String value = "";
@@ -19,9 +19,9 @@ public class RefreshTokenDo {
   private Authentication authentication;
 
   @Nonnull
-  public static RefreshTokenDo create(int validity,
+  public static RefreshTokenDO create(int validity,
                                       @Nonnull Authentication authentication) {
-    RefreshTokenDo refreshTokenDo = new RefreshTokenDo();
+    RefreshTokenDO refreshTokenDo = new RefreshTokenDO();
     refreshTokenDo.setValue(UUID.randomUUID().toString().replace("-", ""));
     refreshTokenDo.setValidity(validity);
     refreshTokenDo.setAuthentication(authentication);

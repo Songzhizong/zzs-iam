@@ -15,7 +15,7 @@ import java.time.Duration;
  * @author 宋志宗 on 2022/9/23
  */
 @Document("iam_operation_log")
-public class OperationLogDo {
+public class OperationLogDO {
 
   /** 主键 */
   @Id
@@ -86,8 +86,8 @@ public class OperationLogDo {
   private long operationTime = -1L;
 
   @Nonnull
-  public static OperationLogDo create(@Nonnull OperationLog operationLog) {
-    OperationLogDo operationLogDo = new OperationLogDo();
+  public static OperationLogDO create(@Nonnull OperationLog operationLog) {
+    OperationLogDO operationLogDo = new OperationLogDO();
     operationLogDo.setPlatform(operationLog.getPlatform());
     operationLogDo.setTenantId(operationLog.getTenantId());
     operationLogDo.setUserId(operationLog.getUserId());
@@ -115,7 +115,7 @@ public class OperationLogDo {
     return id;
   }
 
-  public OperationLogDo setId(long id) {
+  public OperationLogDO setId(long id) {
     this.id = id;
     return this;
   }
@@ -125,7 +125,7 @@ public class OperationLogDo {
     return platform;
   }
 
-  public OperationLogDo setPlatform(@Nonnull String platform) {
+  public OperationLogDO setPlatform(@Nonnull String platform) {
     this.platform = platform;
     return this;
   }
@@ -135,7 +135,7 @@ public class OperationLogDo {
     return tenantId;
   }
 
-  public OperationLogDo setTenantId(@Nonnull String tenantId) {
+  public OperationLogDO setTenantId(@Nonnull String tenantId) {
     this.tenantId = tenantId;
     return this;
   }
@@ -145,7 +145,7 @@ public class OperationLogDo {
     return userId;
   }
 
-  public OperationLogDo setUserId(@Nonnull String userId) {
+  public OperationLogDO setUserId(@Nonnull String userId) {
     this.userId = userId;
     return this;
   }
@@ -155,7 +155,7 @@ public class OperationLogDo {
     return traceId;
   }
 
-  public OperationLogDo setTraceId(@Nonnull String traceId) {
+  public OperationLogDO setTraceId(@Nonnull String traceId) {
     this.traceId = traceId;
     return this;
   }
@@ -165,7 +165,7 @@ public class OperationLogDo {
     return system;
   }
 
-  public OperationLogDo setSystem(@Nonnull String system) {
+  public OperationLogDO setSystem(@Nonnull String system) {
     this.system = system;
     return this;
   }
@@ -175,7 +175,7 @@ public class OperationLogDo {
     return name;
   }
 
-  public OperationLogDo setName(@Nonnull String name) {
+  public OperationLogDO setName(@Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -185,7 +185,7 @@ public class OperationLogDo {
     return details;
   }
 
-  public OperationLogDo setDetails(@Nonnull String details) {
+  public OperationLogDO setDetails(@Nonnull String details) {
     this.details = details;
     return this;
   }
@@ -195,7 +195,7 @@ public class OperationLogDo {
     return path;
   }
 
-  public OperationLogDo setPath(@Nonnull String path) {
+  public OperationLogDO setPath(@Nonnull String path) {
     this.path = path;
     return this;
   }
@@ -205,7 +205,7 @@ public class OperationLogDo {
     return originalIp;
   }
 
-  public OperationLogDo setOriginalIp(@Nonnull String originalIp) {
+  public OperationLogDO setOriginalIp(@Nonnull String originalIp) {
     this.originalIp = originalIp;
     return this;
   }
@@ -215,7 +215,7 @@ public class OperationLogDo {
     return userAgent;
   }
 
-  public OperationLogDo setUserAgent(@Nonnull String userAgent) {
+  public OperationLogDO setUserAgent(@Nonnull String userAgent) {
     this.userAgent = userAgent;
     return this;
   }
@@ -224,7 +224,7 @@ public class OperationLogDo {
     return success;
   }
 
-  public OperationLogDo setSuccess(boolean success) {
+  public OperationLogDO setSuccess(boolean success) {
     this.success = success;
     return this;
   }
@@ -234,7 +234,7 @@ public class OperationLogDo {
     return message;
   }
 
-  public OperationLogDo setMessage(@Nonnull String message) {
+  public OperationLogDO setMessage(@Nonnull String message) {
     this.message = message;
     return this;
   }
@@ -244,7 +244,7 @@ public class OperationLogDo {
     return before;
   }
 
-  public OperationLogDo setBefore(@Nullable String before) {
+  public OperationLogDO setBefore(@Nullable String before) {
     this.before = before;
     return this;
   }
@@ -254,7 +254,7 @@ public class OperationLogDo {
     return after;
   }
 
-  public OperationLogDo setAfter(@Nullable String after) {
+  public OperationLogDO setAfter(@Nullable String after) {
     this.after = after;
     return this;
   }
@@ -263,7 +263,7 @@ public class OperationLogDo {
     return consuming;
   }
 
-  public OperationLogDo setConsuming(int consuming) {
+  public OperationLogDO setConsuming(int consuming) {
     this.consuming = consuming;
     return this;
   }
@@ -272,7 +272,7 @@ public class OperationLogDo {
     return operationTime;
   }
 
-  public OperationLogDo setOperationTime(long operationTime) {
+  public OperationLogDO setOperationTime(long operationTime) {
     this.operationTime = operationTime;
     return this;
   }

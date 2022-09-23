@@ -55,7 +55,7 @@ class UserAffService(
     platform: String,
     userIds: Set<String>,
     roles: Collection<Long>?
-  ): List<PlatformUserDo> {
+  ): List<PlatformUserDO> {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val exists = platformUserRepository.findByPlatformAndUserIdIn(platform, userIds)
     val existsUserId = exists.mapTo(HashSet()) { it.userId }
@@ -68,7 +68,7 @@ class UserAffService(
       throw ResourceNotFoundException("添加用户失败, 平台不存在")
     }
     val users = userProvider.findAllById(filter)
-    val list = users.map { PlatformUserDo.create(it, platform) }
+    val list = users.map { PlatformUserDO.create(it, platform) }
     // 非多租户平台可分配角色
     if (!platformDo.isMultiTenant && !roles.isNullOrEmpty()) {
       val roleDos = roleRepository.findAllById(roles)
@@ -129,7 +129,7 @@ class UserAffService(
     userIds: Set<String>,
     roles: Collection<Long>?,
     platform: String? = null
-  ): List<TenantUserDo> {
+  ): List<TenantUserDO> {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val exists = tenantUserRepository.findByTenantIdAndUserIdIn(tenantId, userIds)
     val existsUserId = exists.mapTo(HashSet()) { it.userId }
@@ -148,7 +148,7 @@ class UserAffService(
       throw ForbiddenException("没有此租户的管理权限")
     }
     val users = userProvider.findAllById(filter)
-    val list = users.map { TenantUserDo.create(it, tenantDo) }
+    val list = users.map { TenantUserDO.create(it, tenantDo) }
     if (!roles.isNullOrEmpty()) {
       val roleDos = roleRepository.findAllById(roles)
       val roleIdSet = roleDos

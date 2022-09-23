@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  * @author 宋志宗 on 2022/8/15
  */
 @Document("iam_auth_client")
-public class AuthClientDo {
+public class AuthClientDO {
 
   @Id
   private long id;
@@ -67,7 +67,7 @@ public class AuthClientDo {
   private LocalDateTime updatedTime;
 
   @Nonnull
-  public static AuthClientDo create(@Nonnull PlatformDo platform,
+  public static AuthClientDO create(@Nonnull PlatformDO platform,
                                     @Nonnull String clientId,
                                     @Nonnull String clientSecret,
                                     @Nonnull String name,
@@ -77,7 +77,7 @@ public class AuthClientDo {
                                     @Nullable Boolean accessTokenAutoRenewal,
                                     @Nullable Integer repetitionLoginLimit,
                                     @Nonnull String tokenValue) {
-    AuthClientDo authClientDo = new AuthClientDo();
+    AuthClientDO authClientDo = new AuthClientDO();
     authClientDo.setPlatform(platform.getCode());
     authClientDo.setMultiTenant(platform.isMultiTenant());
     authClientDo.setClientId(clientId);

@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.iam.server.domain.model.twostep.ActionDo
+import com.zzs.iam.server.domain.model.twostep.ActionDO
 import com.zzs.iam.server.domain.model.twostep.ActionRepository
 import com.zzs.iam.server.infrastructure.IamIDGenerator
 import kotlinx.coroutines.reactor.awaitSingle
@@ -17,9 +17,9 @@ class ActionRepositoryImpl(
   private val idGenerator: IamIDGenerator,
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : ActionRepository {
-  private val clazz = ActionDo::class.java
+  private val clazz = ActionDO::class.java
 
-  override suspend fun save(actionDo: ActionDo): ActionDo {
+  override suspend fun save(actionDo: ActionDO): ActionDO {
     if (actionDo.id < 1) {
       actionDo.id = idGenerator.generate()
       return mongoTemplate.insert(actionDo).awaitSingle()
@@ -27,13 +27,13 @@ class ActionRepositoryImpl(
     return mongoTemplate.save(actionDo).awaitSingle()
   }
 
-  override suspend fun findAllByPlatform(platform: String): List<ActionDo> {
+  override suspend fun findAllByPlatform(platform: String): List<ActionDO> {
     val criteria = Criteria.where("platform").`is`(platform)
     val query = Query.query(criteria)
     return mongoTemplate.find(query, clazz).collectList().awaitSingle()
   }
 
-  override suspend fun findAllEnabledByPlatform(platform: String): List<ActionDo> {
+  override suspend fun findAllEnabledByPlatform(platform: String): List<ActionDO> {
     val criteria = Criteria.where("platform").`is`(platform)
       .and("enabled").`is`(true)
     val query = Query.query(criteria)

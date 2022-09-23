@@ -29,8 +29,8 @@ import java.util.UUID;
  * @author 宋志宗 on 2022/8/15
  */
 @Document("iam_user")
-public class UserDo {
-  private static final Logger log = LoggerFactory.getLogger(UserDo.class);
+public class UserDO {
+  private static final Logger log = LoggerFactory.getLogger(UserDO.class);
   private static final String SEC = "ifGj9v66ptj7p8sMpi2McNNmf4V3D97D";
 
   @Id
@@ -146,7 +146,7 @@ public class UserDo {
 
 
   @Nonnull
-  public static EventTuple<UserDo> create(@Nullable String name,
+  public static EventTuple<UserDO> create(@Nullable String name,
                                           @Nullable String nickname,
                                           @Nullable String account,
                                           @Nullable String phone,
@@ -160,7 +160,7 @@ public class UserDo {
       && account.equals(email)) {
       throw new BadRequestException("账号与邮箱不能相同");
     }
-    UserDo userDo = new UserDo();
+    UserDO userDo = new UserDO();
     userDo.setName(name);
     userDo.setNickname(nickname);
     userDo.setAccount(account);

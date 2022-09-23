@@ -12,9 +12,9 @@ import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.iam.common.password.PasswordEncoder
 import com.zzs.iam.common.pojo.User
 import com.zzs.iam.server.configure.IamUpmsProperties
-import com.zzs.iam.server.domain.model.user.HistPasswordDo
+import com.zzs.iam.server.domain.model.user.HistPasswordDO
 import com.zzs.iam.server.domain.model.user.HistPasswordRepository
-import com.zzs.iam.server.domain.model.user.UserDo
+import com.zzs.iam.server.domain.model.user.UserDO
 import com.zzs.iam.server.domain.model.user.UserRepository
 import com.zzs.iam.server.dto.args.RegisterUserArgs
 import com.zzs.iam.server.dto.args.UpdateUserArgs
@@ -56,7 +56,7 @@ class UserService(
   /**
    * 注册账号
    */
-  suspend fun register(args: RegisterUserArgs): UserDo {
+  suspend fun register(args: RegisterUserArgs): UserDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val name = args.name
     val nickname = args.nickname
@@ -82,7 +82,7 @@ class UserService(
       CheckUtils.checkPassword(it, account)
       passwordEncoder.encode(it)
     }
-    val tuple = UserDo.create(
+    val tuple = UserDO.create(
       name, nickname, account, phone, email
     )
     val userDo = tuple.value
@@ -96,7 +96,7 @@ class UserService(
   /**
    * 冻结用户
    */
-  suspend fun freeze(id: Long): UserDo {
+  suspend fun freeze(id: Long): UserDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(id) ?: let {
       log.info("{}用户: {} 不存在", logPrefix, id)
@@ -111,7 +111,7 @@ class UserService(
   /**
    * 解除冻结
    */
-  suspend fun unfreeze(id: Long): UserDo {
+  suspend fun unfreeze(id: Long): UserDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(id) ?: let {
       log.info("{}用户: {} 不存在", logPrefix, id)
@@ -171,7 +171,7 @@ class UserService(
     }
     val encode = passwordEncoder.encode(newPassword)
     val suppliers = userDo.setupPassword(encode)
-    val histPasswordDo = HistPasswordDo.create(userId, oldEncodedPassword)
+    val histPasswordDo = HistPasswordDO.create(userId, oldEncodedPassword)
     userRepository.save(userDo)
     histPasswordRepository.save(histPasswordDo)
     transactionalEventPublisher.publishAndAwait(suppliers)
@@ -256,7 +256,7 @@ class UserService(
   }
 
   /** 选择性更新用户信息 */
-  suspend fun selectivityUpdate(userId: Long, args: UpdateUserArgs): UserDo {
+  suspend fun selectivityUpdate(userId: Long, args: UpdateUserArgs): UserDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(userId) ?: let {
       log.info("{}用户信息不存在: {}", logPrefix, userId)
@@ -269,7 +269,7 @@ class UserService(
   }
 
   @Transactional(propagation = Propagation.NOT_SUPPORTED)
-  suspend fun authenticate(uniqueIdent: String, password: String): UserDo {
+  suspend fun authenticate(uniqueIdent: String, password: String): UserDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findByUniqueIdent(uniqueIdent) ?: let {
       log.info("{}认证失败, 用户: {} 不存在", logPrefix, uniqueIdent)

@@ -1,7 +1,7 @@
 package com.zzs.iam.server.infrastructure.repository
 
 import com.zzs.framework.core.spring.toPageable
-import com.zzs.iam.server.domain.model.org.TenantDo
+import com.zzs.iam.server.domain.model.org.TenantDO
 import com.zzs.iam.server.domain.model.org.TenantRepository
 import com.zzs.iam.server.dto.args.QueryTenantArgs
 import com.zzs.iam.server.infrastructure.IamIDGenerator
@@ -22,9 +22,9 @@ class TenantRepositoryImpl(
   private val idGenerator: IamIDGenerator,
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : TenantRepository {
-  private val clazz = TenantDo::class.java
+  private val clazz = TenantDO::class.java
 
-  override suspend fun save(tenantDo: TenantDo): TenantDo {
+  override suspend fun save(tenantDo: TenantDO): TenantDO {
     if (tenantDo.id < 1) {
       tenantDo.id = idGenerator.generate()
       return mongoTemplate.insert(tenantDo).awaitSingle()
@@ -32,23 +32,23 @@ class TenantRepositoryImpl(
     return mongoTemplate.save(tenantDo).awaitSingle()
   }
 
-  override suspend fun delete(tenantDo: TenantDo) {
+  override suspend fun delete(tenantDo: TenantDO) {
     mongoTemplate.remove(tenantDo).awaitSingle()
   }
 
-  override suspend fun findById(id: Long): TenantDo? {
+  override suspend fun findById(id: Long): TenantDO? {
     val criteria = Criteria.where("id").`is`(id)
     val query = Query.query(criteria)
     return mongoTemplate.findOne(query, clazz).awaitSingleOrNull()
   }
 
-  override suspend fun findAllById(ids: Collection<Long>): List<TenantDo> {
+  override suspend fun findAllById(ids: Collection<Long>): List<TenantDO> {
     val criteria = Criteria.where("id").`in`(ids)
     val query = Query.query(criteria)
     return mongoTemplate.find(query, clazz).collectList().awaitSingle()
   }
 
-  override suspend fun findAllChild(parentRouter: String): List<TenantDo> {
+  override suspend fun findAllChild(parentRouter: String): List<TenantDO> {
     val criteria = Criteria.where("parentRouter").regex("^$parentRouter.*$")
     val query = Query.query(criteria)
     return mongoTemplate.find(query, clazz).collectList().awaitSingle()
@@ -60,7 +60,7 @@ class TenantRepositoryImpl(
     return mongoTemplate.exists(query, clazz).awaitSingle()
   }
 
-  override suspend fun query(platform: String, args: QueryTenantArgs): Page<TenantDo> {
+  override suspend fun query(platform: String, args: QueryTenantArgs): Page<TenantDO> {
     val paging = args.paging.descBy("id")
     val name = args.name?.ifBlank { null }
 

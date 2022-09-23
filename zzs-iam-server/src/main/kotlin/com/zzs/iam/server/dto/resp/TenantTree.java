@@ -2,7 +2,7 @@ package com.zzs.iam.server.dto.resp;
 
 import com.zzs.framework.core.lang.TreeNode;
 import com.zzs.iam.common.pojo.Tenant;
-import com.zzs.iam.server.domain.model.org.TenantDo;
+import com.zzs.iam.server.domain.model.org.TenantDO;
 import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
@@ -17,7 +17,7 @@ public class TenantTree extends Tenant implements TreeNode {
   private List<TenantTree> child = new ArrayList<>();
 
   @Nonnull
-  public static TenantTree of(@Nonnull TenantDo tenantDo) {
+  public static TenantTree of(@Nonnull TenantDO tenantDo) {
     TenantTree tenantTree = new TenantTree();
     tenantTree.setId(tenantDo.getId());
     tenantTree.setParentId(tenantDo.getParentId());

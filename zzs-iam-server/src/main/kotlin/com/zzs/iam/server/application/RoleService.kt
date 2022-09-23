@@ -12,12 +12,12 @@ import com.zzs.iam.common.constants.RoleType
 import com.zzs.iam.common.pojo.SimpleMenu
 import com.zzs.iam.server.domain.model.front.MenuRepository
 import com.zzs.iam.server.domain.model.front.TerminalRepository
-import com.zzs.iam.server.domain.model.org.PlatformDo
+import com.zzs.iam.server.domain.model.org.PlatformDO
 import com.zzs.iam.server.domain.model.org.PlatformRepository
-import com.zzs.iam.server.domain.model.org.TenantDo
+import com.zzs.iam.server.domain.model.org.TenantDO
 import com.zzs.iam.server.domain.model.org.TenantRepository
-import com.zzs.iam.server.domain.model.role.RoleDo
-import com.zzs.iam.server.domain.model.role.RoleMenuRelDo
+import com.zzs.iam.server.domain.model.role.RoleDO
+import com.zzs.iam.server.domain.model.role.RoleMenuRelDO
 import com.zzs.iam.server.domain.model.role.RoleMenuRelRepository
 import com.zzs.iam.server.domain.model.role.RoleRepository
 import com.zzs.iam.server.dto.args.AssignMenuArgs
@@ -47,11 +47,11 @@ class RoleService(
 
   /** 创建超管角色 (新增平台或者租户时调用此方法) */
   suspend fun createAdmin(
-    platform: PlatformDo,
+    platform: PlatformDO,
     tenantId: Long?,
     name: String,
     note: String?
-  ): RoleDo {
+  ): RoleDO {
     return create(platform, tenantId, RoleType.ADMIN, name, note)
   }
 
@@ -61,7 +61,7 @@ class RoleService(
     tenantId: Long?,
     name: String,
     note: String?
-  ): RoleDo {
+  ): RoleDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     Operations.log()?.also {
       it.details = "新增角色[$name]"
@@ -76,14 +76,14 @@ class RoleService(
 
   /** 创建角色 */
   private suspend fun create(
-    platformDo: PlatformDo,
+    platformDo: PlatformDO,
     tenantId: Long?,
     type: RoleType,
     name: String,
     note: String?
-  ): RoleDo {
+  ): RoleDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
-    var tenant: TenantDo? = null
+    var tenant: TenantDO? = null
     if (platformDo.isMultiTenant) {
       tenantId.requireNonnull { "租户ID为空" }
       tenant = tenantRepository.findById(tenantId) ?: let {
@@ -91,7 +91,7 @@ class RoleService(
         throw ResourceNotFoundException("租户不存在")
       }
     }
-    val roleDo = RoleDo.create(platformDo, tenant, type, name, note)
+    val roleDo = RoleDO.create(platformDo, tenant, type, name, note)
     roleRepository.save(roleDo)
     return roleDo
   }
@@ -103,7 +103,7 @@ class RoleService(
     note: String?,
     platform: String? = null,
     tenantId: Long? = null
-  ): RoleDo {
+  ): RoleDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val roleDo = checkAndGetRole(id, platform, tenantId)
     val curName = roleDo.name
@@ -229,7 +229,7 @@ class RoleService(
       log.info("{}分配菜单失败, 因为没有部分菜单的操作权限", logPrefix)
       throw ForbiddenException("缺少部分菜单的操作权限")
     }
-    val menuRelDos = menus.map { RoleMenuRelDo.create(roleId, terminal, it) }
+    val menuRelDos = menus.map { RoleMenuRelDO.create(roleId, terminal, it) }
     roleMenuRelRepository.insertAll(menuRelDos)
     log.info(
       "{}分配角色: {} 在终端: {} 下菜单关系 {}条", logPrefix, roleId, terminal, menuRelDos.size
@@ -240,7 +240,7 @@ class RoleService(
     roleId: Long,
     platform: String?,
     tenantId: Long?
-  ): RoleDo {
+  ): RoleDO {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     return roleRepository.findById(roleId)?.also {
       if (platform != null && platform != it.platform) {

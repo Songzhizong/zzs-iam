@@ -5,9 +5,9 @@ package com.zzs.iam.server.domain.model.user
  */
 interface OtherPlatAuthRepository {
 
-  suspend fun save(otherPlatAuthDo: OtherPlatAuthDo): OtherPlatAuthDo
+  suspend fun save(otherPlatAuthDo: OtherPlatAuthDO): OtherPlatAuthDO
 
-  suspend fun delete(otherPlatAuthDo: OtherPlatAuthDo)
+  suspend fun delete(otherPlatAuthDo: OtherPlatAuthDO)
 
   suspend fun deleteAllByUserId(userId: Long)
 
@@ -16,7 +16,7 @@ interface OtherPlatAuthRepository {
   suspend fun findByPlatCodeAndOtherPlatUserId(
     platCode: String,
     otherPlatUserId: String
-  ): OtherPlatAuthDo?
+  ): OtherPlatAuthDO?
 
-  suspend fun findByUserIdAndPlatCode(userId: Long, platCode: String): OtherPlatAuthDo?
+  suspend fun findByUserIdAndPlatCode(userId: Long, platCode: String): OtherPlatAuthDO?
 }

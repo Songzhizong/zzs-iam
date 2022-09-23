@@ -18,7 +18,7 @@ import java.util.Set;
  * @author 宋志宗 on 2022/8/25
  */
 @Document("iam_twostep_action")
-public class ActionDo {
+public class ActionDO {
 
   @Id
   private long id;
@@ -51,7 +51,7 @@ public class ActionDo {
     return id;
   }
 
-  public ActionDo setId(long id) {
+  public ActionDO setId(long id) {
     this.id = id;
     return this;
   }
@@ -61,7 +61,7 @@ public class ActionDo {
     return platform;
   }
 
-  public ActionDo setPlatform(@Nonnull String platform) {
+  public ActionDO setPlatform(@Nonnull String platform) {
     this.platform = platform;
     return this;
   }
@@ -71,7 +71,7 @@ public class ActionDo {
     return name;
   }
 
-  public ActionDo setName(@Nonnull String name) {
+  public ActionDO setName(@Nonnull String name) {
     this.name = name;
     return this;
   }
@@ -81,7 +81,7 @@ public class ActionDo {
     return apis;
   }
 
-  public ActionDo setApis(@Nonnull Set<String> apis) {
+  public ActionDO setApis(@Nonnull Set<String> apis) {
     this.apis = apis;
     return this;
   }
@@ -90,7 +90,7 @@ public class ActionDo {
     return enabled;
   }
 
-  public ActionDo setEnabled(boolean enabled) {
+  public ActionDO setEnabled(boolean enabled) {
     this.enabled = enabled;
     return this;
   }
@@ -99,7 +99,7 @@ public class ActionDo {
     return version;
   }
 
-  public ActionDo setVersion(long version) {
+  public ActionDO setVersion(long version) {
     this.version = version;
     return this;
   }
@@ -108,7 +108,7 @@ public class ActionDo {
     return createdTime;
   }
 
-  public ActionDo setCreatedTime(LocalDateTime createdTime) {
+  public ActionDO setCreatedTime(LocalDateTime createdTime) {
     this.createdTime = createdTime;
     return this;
   }
@@ -117,7 +117,7 @@ public class ActionDo {
     return updatedTime;
   }
 
-  public ActionDo setUpdatedTime(LocalDateTime updatedTime) {
+  public ActionDO setUpdatedTime(LocalDateTime updatedTime) {
     this.updatedTime = updatedTime;
     return this;
   }

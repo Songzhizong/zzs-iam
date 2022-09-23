@@ -5,13 +5,13 @@ package com.zzs.iam.server.domain.model.org
  */
 interface AuthClientRepository {
 
-  suspend fun save(authClientDo: AuthClientDo): AuthClientDo
+  suspend fun save(authClientDo: AuthClientDO): AuthClientDO
 
-  suspend fun delete(authClientDo: AuthClientDo)
+  suspend fun delete(authClientDo: AuthClientDO)
 
-  suspend fun findByClientId(clientId: String): AuthClientDo?
+  suspend fun findByClientId(clientId: String): AuthClientDO?
 
-  suspend fun findAllByPlatform(platform: String): List<AuthClientDo>
+  suspend fun findAllByPlatform(platform: String): List<AuthClientDO>
 
-  suspend fun findAllByPlatformIn(platforms: Collection<String>): List<AuthClientDo>
+  suspend fun findAllByPlatformIn(platforms: Collection<String>): List<AuthClientDO>
 }
