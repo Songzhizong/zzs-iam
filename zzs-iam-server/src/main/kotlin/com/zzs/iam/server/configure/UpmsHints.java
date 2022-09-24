@@ -5,6 +5,7 @@ import com.zzs.iam.server.domain.model.authorization.token.AccessTokenDO;
 import com.zzs.iam.server.domain.model.authorization.token.RefreshTokenDO;
 import com.zzs.iam.server.domain.model.front.MenuDO;
 import com.zzs.iam.server.domain.model.front.TerminalDO;
+import com.zzs.iam.server.domain.model.log.LoginLogDO;
 import com.zzs.iam.server.domain.model.log.OperationLogDO;
 import com.zzs.iam.server.domain.model.org.*;
 import com.zzs.iam.server.domain.model.role.RoleDO;
@@ -41,6 +42,7 @@ import org.springframework.nativex.type.NativeConfiguration;
     @TypeHint(types = TwoStepConfig.class, access = {TypeAccess.PUBLIC_FIELDS, TypeAccess.DECLARED_FIELDS, TypeAccess.PUBLIC_CONSTRUCTORS, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.PUBLIC_METHODS, TypeAccess.DECLARED_METHODS}),
     @TypeHint(types = UserDO.class, access = {TypeAccess.PUBLIC_FIELDS, TypeAccess.DECLARED_FIELDS, TypeAccess.PUBLIC_CONSTRUCTORS, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.PUBLIC_METHODS, TypeAccess.DECLARED_METHODS}),
     @TypeHint(types = HistPasswordDO.class, access = {TypeAccess.PUBLIC_FIELDS, TypeAccess.DECLARED_FIELDS, TypeAccess.PUBLIC_CONSTRUCTORS, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.PUBLIC_METHODS, TypeAccess.DECLARED_METHODS}),
+    @TypeHint(types = LoginLogDO.class, access = {TypeAccess.PUBLIC_FIELDS, TypeAccess.DECLARED_FIELDS, TypeAccess.PUBLIC_CONSTRUCTORS, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.PUBLIC_METHODS, TypeAccess.DECLARED_METHODS}),
     @TypeHint(types = OperationLogDO.class, access = {TypeAccess.PUBLIC_FIELDS, TypeAccess.DECLARED_FIELDS, TypeAccess.PUBLIC_CONSTRUCTORS, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.PUBLIC_METHODS, TypeAccess.DECLARED_METHODS}),
   }
 )

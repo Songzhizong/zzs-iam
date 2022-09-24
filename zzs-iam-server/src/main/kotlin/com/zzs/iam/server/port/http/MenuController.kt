@@ -1,5 +1,6 @@
 package com.zzs.iam.server.port.http
 
+import com.zzs.framework.core.trace.Operation
 import com.zzs.framework.core.transmission.ListResult
 import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNonnull
@@ -72,6 +73,7 @@ class MenuController(
    *   }
    * </pre>
    */
+  @Operation("新增菜单")
   @PostMapping("/create_menu")
   suspend fun create(@RequestBody args: CreateMenuArgs): Result<Menu> {
     val menuDo = menuService.create(args)
@@ -123,6 +125,7 @@ class MenuController(
    *
    * @param id 菜单ID
    */
+  @Operation("更新菜单")
   @PostMapping("/update_menu")
   suspend fun update(id: Long?, @RequestBody args: UpdateMenuArgs): Result<Menu> {
     id.requireNonnull { "菜单ID为空" }
@@ -165,6 +168,7 @@ class MenuController(
    * @param id       菜单id
    * @param parentId 父菜单id
    */
+  @Operation("变更父菜单")
   @PostMapping("/change_parent")
   suspend fun changeParent(id: Long?, parentId: Long?): Result<Menu> {
     id.requireNonnull { "菜单ID不能为空" }
@@ -188,6 +192,7 @@ class MenuController(
    *
    * @param id 菜单id
    */
+  @Operation("删除菜单")
   @PostMapping("/delete_menu")
   suspend fun delete(id: Long?): Result<Void> {
     id.requireNonnull { "菜单id为空" }

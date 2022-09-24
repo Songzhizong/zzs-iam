@@ -1,5 +1,6 @@
 package com.zzs.iam.server.port.http
 
+import com.zzs.framework.core.trace.Operation
 import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNonnull
 import com.zzs.framework.core.utils.requireNotBlank
@@ -78,6 +79,7 @@ class UserController(
    *   }
    * </pre>
    */
+  @Operation("冻结用户")
   @PostMapping("/freeze")
   suspend fun freeze(id: Long?): Result<Void> {
     id.requireNonnull { "用户id为空" }
@@ -98,6 +100,7 @@ class UserController(
    *   }
    * </pre>
    */
+  @Operation("解冻用户")
   @PostMapping("/unfreeze")
   suspend fun unfreeze(id: Long?): Result<Void> {
     id.requireNonnull { "用户id为空" }
@@ -175,6 +178,7 @@ class UserController(
    *   }
    * </pre>
    */
+  @Operation("更新用户信息")
   @PostMapping("/selectivity_update")
   suspend fun selectivityUpdate(id: Long?, @RequestBody args: UpdateUserArgs): Result<User> {
     id.requireNonnull { "用户id为空" }

@@ -1,6 +1,7 @@
 package com.zzs.iam.server.port.http
 
 import com.zzs.framework.core.spring.toPageResult
+import com.zzs.framework.core.trace.Operation
 import com.zzs.framework.core.transmission.ListResult
 import com.zzs.framework.core.transmission.PageResult
 import com.zzs.framework.core.transmission.Result
@@ -37,6 +38,7 @@ class TenantController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("新增租户")
   @PostMapping("/create_tenant")
   suspend fun create(platform: String?, args: CreateTenantArgs): Result<Tenant> {
     platform.requireNotBlank { "平台编码为空" }
@@ -52,6 +54,7 @@ class TenantController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("冻结租户")
   @PostMapping("/freeze_tenant")
   suspend fun freeze(id: Long?): Result<Void> {
     id.requireNonnull { "租户id为空" }
@@ -66,6 +69,7 @@ class TenantController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("解冻租户")
   @PostMapping("/unfreeze_tenant")
   suspend fun unfreeze(id: Long?): Result<Void> {
     id.requireNonnull { "租户id为空" }
@@ -80,6 +84,7 @@ class TenantController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("删除租户")
   @PostMapping("/delete")
   suspend fun delete(id: Long?): Result<Void> {
     id.requireNonnull { "租户id为空" }

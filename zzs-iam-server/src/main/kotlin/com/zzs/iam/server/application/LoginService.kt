@@ -10,6 +10,8 @@ import com.zzs.iam.server.domain.model.authorization.Authentication
 import com.zzs.iam.server.domain.model.authorization.token.AccessToken
 import com.zzs.iam.server.domain.model.authorization.token.AccessTokenDO
 import com.zzs.iam.server.domain.model.authorization.token.AccessTokenStore
+import com.zzs.iam.server.domain.model.log.LoginLogDO
+import com.zzs.iam.server.domain.model.log.LoginLogRepository
 import com.zzs.iam.server.domain.model.org.AuthClientDO
 import com.zzs.iam.server.domain.model.org.PlatformUserRepository
 import com.zzs.iam.server.domain.model.user.AuthUser
@@ -28,6 +30,7 @@ class LoginService(
   private val userProvider: UserProvider,
   private val tokenStore: AccessTokenStore,
   private val properties: IamUpmsProperties,
+  private val loginLogRepository: LoginLogRepository,
   private val reactiveEventPublisher: ReactiveEventPublisher,
   private val platformUserRepository: PlatformUserRepository,
 ) {
@@ -40,16 +43,18 @@ class LoginService(
     authClient: AuthClientDO,
     username: String,
     password: String,
-    rememberMe: Boolean
+    rememberMe: Boolean,
+    originalIp: String
   ): AccessToken {
     val user = userProvider.authenticate(username, password)
-    return login(authClient, user, rememberMe)
+    return login(authClient, user, rememberMe, originalIp)
   }
 
   private suspend fun login(
     authClient: AuthClientDO,
     user: AuthUser,
-    rememberMe: Boolean
+    rememberMe: Boolean,
+    originalIp: String
   ): AccessToken {
     val logPrefix = TraceContextHolder.awaitLogPrefix()
     val platform = authClient.platform
@@ -82,6 +87,8 @@ class LoginService(
     val event = UserLogined()
       .also { it.platform = platform;it.userId = userId }
     reactiveEventPublisher.publishAndAwait(event)
+    val loginLog = LoginLogDO.create(userId, platform, clientId, originalIp)
+    loginLogRepository.save(loginLog)
     return accessTokenDo.toAccessToken()
   }
 }

@@ -14,5 +14,4 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @EntityScan("com.zzs.iam.server.domain.model")
 @EnableReactiveMongoRepositories("com.zzs.iam.server")
 @EnableConfigurationProperties(IamUpmsProperties::class)
-class IamServerAutoConfigure {
-}
+class IamServerAutoConfigure

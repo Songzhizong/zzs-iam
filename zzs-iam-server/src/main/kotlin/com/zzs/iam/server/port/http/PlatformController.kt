@@ -1,5 +1,6 @@
 package com.zzs.iam.server.port.http
 
+import com.zzs.framework.core.trace.Operation
 import com.zzs.framework.core.transmission.ListResult
 import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNotBlank
@@ -53,6 +54,7 @@ class PlatformController(
    *   }
    * </pre>
    */
+  @Operation("新增平台")
   @PostMapping("/create_platform")
   suspend fun create(@RequestBody args: CreatePlatformArgs): Result<Platform> {
     val platformDo = platformService.create(args)
@@ -75,6 +77,7 @@ class PlatformController(
    *
    * @param code 平台编码
    */
+  @Operation("删除平台")
   @PostMapping("/delete_platform")
   suspend fun delete(code: String?): Result<Void> {
     code.requireNotBlank { "平台编码为空" }
