@@ -169,12 +169,17 @@ class UserService(
         }
       }
     }
+    // 修改密码
     val encode = passwordEncoder.encode(newPassword)
     val suppliers = userDo.setupPassword(encode)
     val histPasswordDo = HistPasswordDO.create(userId, oldEncodedPassword)
     userRepository.save(userDo)
     histPasswordRepository.save(histPasswordDo)
     transactionalEventPublisher.publishAndAwait(suppliers)
+  }
+
+  suspend fun resetPassword(userId: Long) {
+
   }
 
   /**
