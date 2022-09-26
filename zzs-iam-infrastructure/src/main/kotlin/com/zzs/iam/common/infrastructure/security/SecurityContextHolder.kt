@@ -2,6 +2,7 @@ package com.zzs.iam.common.infrastructure.security
 
 import com.zzs.framework.core.exception.InternalServerException
 import com.zzs.framework.core.exception.UnauthorizedException
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -29,9 +30,10 @@ object SecurityContextHolder {
   }
 
   suspend fun current(): SecurityContext {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val securityContext = optional()
     if (securityContext == null) {
-      log.info("获取securityContext返回null")
+      log.info("{}获取securityContext返回null", logPrefix)
       throw UnauthorizedException()
     }
     return securityContext

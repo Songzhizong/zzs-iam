@@ -1,5 +1,6 @@
 package com.zzs.iam.server.port.http
 
+import com.zzs.framework.core.trace.Operation
 import com.zzs.framework.core.transmission.ListResult
 import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNotBlank
@@ -51,6 +52,7 @@ class TerminalController(
    *   }
    * </pre>
    */
+  @Operation("新增终端")
   @PostMapping("/create_terminal")
   suspend fun create(@RequestBody args: CreateTerminalArgs): Result<Terminal> {
     val terminalDo = terminalService.create(args)
@@ -73,6 +75,7 @@ class TerminalController(
    *
    * @param code 终端编码
    */
+  @Operation("删除终端")
   @PostMapping("/delete_terminal")
   suspend fun delete(code: String): Result<Void> {
     terminalService.delete(code)
@@ -106,6 +109,7 @@ class TerminalController(
    *   }
    * </pre>
    */
+  @Operation("修改终端信息")
   @PostMapping("/update_terminal")
   suspend fun update(code: String?, @RequestBody args: UpdateTerminalArgs): Result<Terminal> {
     code.requireNotBlank { "终端编码为空" }

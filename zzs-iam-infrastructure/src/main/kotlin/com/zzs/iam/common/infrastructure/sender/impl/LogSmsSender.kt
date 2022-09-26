@@ -1,5 +1,6 @@
 package com.zzs.iam.common.infrastructure.sender.impl
 
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.infrastructure.sender.SmsSender
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -13,7 +14,8 @@ class LogSmsSender : SmsSender {
   }
 
   override suspend fun sendCode(phone: String, code: String) {
-    log.info("向手机号: {} 发送短信验证码: {}", phone, code)
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
+    log.info("{}向手机号: {} 发送短信验证码: {}", logPrefix, phone, code)
   }
 
 }

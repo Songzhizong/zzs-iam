@@ -8,17 +8,17 @@ import org.springframework.data.domain.Page
  */
 interface TenantRepository {
 
-  suspend fun save(tenantDo: TenantDo): TenantDo
+  suspend fun save(tenantDo: TenantDO): TenantDO
 
-  suspend fun delete(tenantDo: TenantDo)
+  suspend fun delete(tenantDo: TenantDO)
 
-  suspend fun findById(id: Long): TenantDo?
+  suspend fun findById(id: Long): TenantDO?
 
-  suspend fun findAllById(ids: Collection<Long>): List<TenantDo>
+  suspend fun findAllById(ids: Collection<Long>): List<TenantDO>
 
-  suspend fun findAllChild(parentRouter: String): List<TenantDo>
+  suspend fun findAllChild(parentRouter: String): List<TenantDO>
 
   suspend fun existsByParentId(parentId: Long): Boolean
 
-  suspend fun query(platform: String, args: QueryTenantArgs): Page<TenantDo>
+  suspend fun query(platform: String, args: QueryTenantArgs): Page<TenantDO>
 }

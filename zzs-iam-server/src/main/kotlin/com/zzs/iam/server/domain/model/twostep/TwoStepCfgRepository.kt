@@ -5,7 +5,7 @@ package com.zzs.iam.server.domain.model.twostep
  */
 interface TwoStepCfgRepository {
 
-  suspend fun save(twoStepCfgDo: TwoStepCfgDo): TwoStepCfgDo
+  suspend fun save(twoStepCfgDo: TwoStepCfgDO): TwoStepCfgDO
 
-  suspend fun findByPlatformAndTenantId(platform: String, tenantId: Long): TwoStepCfgDo?
+  suspend fun findByPlatformAndTenantId(platform: String, tenantId: Long): TwoStepCfgDO?
 }

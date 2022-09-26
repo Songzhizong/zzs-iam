@@ -5,13 +5,13 @@ package com.zzs.iam.server.domain.model.user
  */
 interface UserRepository {
 
-  suspend fun save(userDo: UserDo): UserDo
+  suspend fun save(userDo: UserDO): UserDO
 
-  suspend fun findById(id: Long): UserDo?
+  suspend fun findById(id: Long): UserDO?
 
-  suspend fun findAllById(ids: Collection<Long>): List<UserDo>
+  suspend fun findAllById(ids: Collection<Long>): List<UserDO>
 
-  suspend fun findByPhone(phone: String): UserDo?
+  suspend fun findByPhone(phone: String): UserDO?
 
-  suspend fun findByUniqueIdent(uniqueIdent: String): UserDo?
+  suspend fun findByUniqueIdent(uniqueIdent: String): UserDO?
 }

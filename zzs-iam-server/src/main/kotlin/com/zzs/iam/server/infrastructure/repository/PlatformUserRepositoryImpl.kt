@@ -1,7 +1,7 @@
 package com.zzs.iam.server.infrastructure.repository
 
 import com.zzs.framework.core.spring.toPageable
-import com.zzs.iam.server.domain.model.org.PlatformUserDo
+import com.zzs.iam.server.domain.model.org.PlatformUserDO
 import com.zzs.iam.server.domain.model.org.PlatformUserRepository
 import com.zzs.iam.server.dto.args.QueryUserArgs
 import com.zzs.iam.server.infrastructure.IamIDGenerator
@@ -25,9 +25,9 @@ class PlatformUserRepositoryImpl(
   private val idGenerator: IamIDGenerator,
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : PlatformUserRepository {
-  private val clazz = PlatformUserDo::class.java
+  private val clazz = PlatformUserDO::class.java
 
-  override suspend fun save(platformUserDo: PlatformUserDo): PlatformUserDo {
+  override suspend fun save(platformUserDo: PlatformUserDO): PlatformUserDO {
     if (platformUserDo.id < 1) {
       platformUserDo.id = idGenerator.generate()
       return mongoTemplate.insert(platformUserDo).awaitSingle()
@@ -35,7 +35,7 @@ class PlatformUserRepositoryImpl(
     return mongoTemplate.save(platformUserDo).awaitSingle()
   }
 
-  override suspend fun saveAll(platformUsers: Collection<PlatformUserDo>) {
+  override suspend fun saveAll(platformUsers: Collection<PlatformUserDO>) {
     platformUsers.forEach {
       if (it.id < 1) {
         it.id = idGenerator.generate()
@@ -44,24 +44,24 @@ class PlatformUserRepositoryImpl(
     Flux.fromIterable(platformUsers).flatMap { mongoTemplate.save(it) }.awaitLast()
   }
 
-  override suspend fun delete(platformUserDo: PlatformUserDo) {
+  override suspend fun delete(platformUserDo: PlatformUserDO) {
     mongoTemplate.remove(platformUserDo).awaitSingle()
   }
 
-  override suspend fun deleteAll(platformUsers: Collection<PlatformUserDo>) {
+  override suspend fun deleteAll(platformUsers: Collection<PlatformUserDO>) {
     val ids = platformUsers.map { it.id }.toTypedArray()
     val criteria = Criteria.where("id").`in`(*ids)
     val query = Query.query(criteria)
     mongoTemplate.remove(query, clazz).awaitSingle()
   }
 
-  override suspend fun findById(id: Long): PlatformUserDo? {
+  override suspend fun findById(id: Long): PlatformUserDO? {
     val criteria = Criteria.where("id").`is`(id)
     val query = Query.query(criteria)
     return mongoTemplate.findOne(query, clazz).awaitSingleOrNull()
   }
 
-  override suspend fun findByPlatformAndUserId(platform: String, userId: String): PlatformUserDo? {
+  override suspend fun findByPlatformAndUserId(platform: String, userId: String): PlatformUserDO? {
     val criteria = Criteria.where("platform").`is`(platform).and("userId").`is`(userId)
     val query = Query.query(criteria)
     return mongoTemplate.findOne(query, clazz).awaitSingleOrNull()
@@ -70,25 +70,25 @@ class PlatformUserRepositoryImpl(
   override suspend fun findByPlatformAndUserIdIn(
     platform: String,
     userIds: Collection<String>
-  ): List<PlatformUserDo> {
+  ): List<PlatformUserDO> {
     val criteria = Criteria.where("platform").`is`(platform).and("userId").`in`(userIds)
     val query = Query.query(criteria)
     return mongoTemplate.find(query, clazz).collectList().awaitSingle()
   }
 
-  override suspend fun findAllByUserId(userId: String): List<PlatformUserDo> {
+  override suspend fun findAllByUserId(userId: String): List<PlatformUserDO> {
     val criteria = Criteria.where("userId").`is`(userId)
     val query = Query.query(criteria)
     return mongoTemplate.find(query, clazz).collectList().awaitSingle()
   }
 
   @Suppress("DuplicatedCode")
-  override suspend fun query(platform: String, args: QueryUserArgs): Page<PlatformUserDo> {
+  override suspend fun query(platform: String, args: QueryUserArgs): Page<PlatformUserDO> {
     val paging = args.paging.descBy("id")
     val uniqueIdent = args.uniqueIdent?.ifBlank { null }
     val criteria = Criteria.where("platform").`is`(platform)
     uniqueIdent?.also {
-      val encrypt = PlatformUserDo.encrypt(it)
+      val encrypt = PlatformUserDO.encrypt(it)
       val c1 = Criteria.where("account").`is`(it)
       val c2 = Criteria.where("phone").`is`(encrypt)
       val c3 = Criteria.where("email").`is`(encrypt)
@@ -120,7 +120,7 @@ class PlatformUserRepositoryImpl(
     val criteria = Criteria.where("userId").`is`(userId)
     val query = Query.query(criteria)
     val update = Update()
-    update.set("phone", PlatformUserDo.encrypt(phone))
+    update.set("phone", PlatformUserDO.encrypt(phone))
     return mongoTemplate.updateMulti(query, update, clazz).awaitSingle().modifiedCount
   }
 
@@ -129,7 +129,7 @@ class PlatformUserRepositoryImpl(
     val criteria = Criteria.where("userId").`is`(userId)
     val query = Query.query(criteria)
     val update = Update()
-    update.set("email", PlatformUserDo.encrypt(email))
+    update.set("email", PlatformUserDO.encrypt(email))
     return mongoTemplate.updateMulti(query, update, clazz).awaitSingle().modifiedCount
   }
 }

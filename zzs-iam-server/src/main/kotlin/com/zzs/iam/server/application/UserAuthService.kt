@@ -8,6 +8,7 @@ import com.zzs.framework.core.cache.serialize.StringValueSerializer
 import com.zzs.framework.core.exception.ForbiddenException
 import com.zzs.framework.core.exception.UnauthorizedException
 import com.zzs.framework.core.lang.Sets
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.constants.IamHeaders
 import com.zzs.iam.common.constants.RoleType
 import com.zzs.iam.common.exception.MissTenantIdException
@@ -139,19 +140,21 @@ class UserAuthService(
 
   /** 通过授权信息获取用户的认证信息 */
   suspend fun loadAuthentication(authorization: Authorization): Authentication {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     if (authorization is BearerAuthorization) {
       return getAuthentication(authorization)
     }
     val name: String = authorization.javaClass.name
-    log.error("未知的Authorization类型: {}", name)
+    log.error("{}未知的Authorization类型: {}", logPrefix, name)
     throw UnauthorizedException("Invalid authorization type: $name")
   }
 
   private suspend fun getAuthentication(authorization: BearerAuthorization): Authentication {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val token = authorization.token
     val accessTokenDo = tokenStore.readAccessToken(token)
     if (accessTokenDo == null) {
-      log.info("accessToken: {} 获取认证信息失败, 可能是token已过期", token)
+      log.info("{}accessToken: {} 获取认证信息失败, 可能是token已过期", logPrefix, token)
       throw UnauthorizedException()
     }
     return accessTokenDo.authentication
@@ -163,8 +166,9 @@ class UserAuthService(
     requestPath: String?,
     apiAuthenticate: Boolean
   ): LinkedMultiValueMap<String, String> {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     if (authorizationHeader.isNullOrBlank()) {
-      log.info("缺少 Authorization 请求头")
+      log.info("{}缺少 Authorization 请求头", logPrefix)
       throw UnauthorizedException("Authorization is blank")
     }
     val responseHeaders = LinkedMultiValueMap<String, String>()
@@ -184,7 +188,10 @@ class UserAuthService(
       // 验证用户是否该租户下
       val available = userAffService.isAvailableInTenant(userId, tenantId)
       if (!available) {
-        log.info("认证失败: 用户 [{} {}] 没有租户: {} 的访问权限", platform, userId, tenantId)
+        log.info(
+          "{}认证失败: 用户 [{} {}] 没有租户: {} 的访问权限",
+          logPrefix, platform, userId, tenantId
+        )
         throw NoTenantAccessException()
       }
       responseHeaders.set(IamHeaders.TENANT_ID, tenantId.toString())
@@ -195,14 +202,14 @@ class UserAuthService(
       if (apiAuthenticate && apiAuthCache[platform] == true) {
         // api鉴权时, 多租户平台的租户ID不能为空
         if (multiTenant && tenantId == null) {
-          log.info("认证失败: 未在请求头中携带租户id")
+          log.info("{}认证失败: 未在请求头中携带租户id", logPrefix)
           throw MissTenantIdException()
         }
         val hasApiAuth = hasApiAuth(platform, tenantId, userId, requestPath)
         if (!hasApiAuth) {
           log.info(
-            "认证失败: 用户 [{} {} {}] 没有此接口的访问权限: {}",
-            platform, tenantId, userId, requestPath
+            "{}认证失败: 用户 [{} {} {}] 没有此接口的访问权限: {}",
+            logPrefix, platform, tenantId, userId, requestPath
           )
           throw ForbiddenException()
         }
@@ -237,6 +244,7 @@ class UserAuthService(
 
   /** 刷新用户接口权限缓存 */
   suspend fun refreshApiCache(userId: String, platform: String, tenantId: Long?) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val empty = "::$$::empty::$$::"
     val timeout = Duration.ofMinutes(30)
     val key = genUserApiRedisCacheKey(userId, platform, tenantId)
@@ -245,15 +253,18 @@ class UserAuthService(
     if (hasAllMenu) {
       val apis = menuRepository.findApisByPlatform(platform)
       if (apis.isEmpty()) {
-        log.info("用户: [{} {} {}] 从平台下没有任何API权限数据", platform, tenantId, userId)
+        log.info(
+          "{}用户: [{} {} {}] 从平台下没有任何API权限数据",
+          logPrefix, platform, tenantId, userId
+        )
         redisTemplate.delete(key).awaitSingle()
         redisTemplate.opsForSet().add(key, empty).awaitSingle()
         redisTemplate.expire(key, timeout).awaitSingle()
         return
       }
       log.info(
-        "用户: [{} {} {}]从平台下获取到 {}条API权限数据",
-        platform, tenantId, userId, apis.size
+        "{}用户: [{} {} {}]从平台下获取到 {}条API权限数据",
+        logPrefix, platform, tenantId, userId, apis.size
       )
       redisTemplate.delete(key).awaitSingle()
       redisTemplate.opsForSet().add(key, *apis.toTypedArray()).awaitSingle()
@@ -263,7 +274,10 @@ class UserAuthService(
     // 获取用户拥有的角色id列表
     val roles = getUserRoleIds(platform, tenantId, userId)
     if (roles.isEmpty()) {
-      log.info("refreshApiCache: 用户 [{} {} {}] 没有绑定任何角色", platform, tenantId, userId)
+      log.info(
+        "{}refreshApiCache: 用户 [{} {} {}] 没有绑定任何角色",
+        logPrefix, platform, tenantId, userId
+      )
       redisTemplate.delete(key).awaitSingle()
       redisTemplate.opsForSet().add(key, empty).awaitSingle()
       redisTemplate.expire(key, timeout).awaitSingle()
@@ -273,7 +287,10 @@ class UserAuthService(
     val menuIds = roleMenuRelRepository
       .findAllByRoleIdIn(roles).mapTo(HashSet()) { it.menuId }
     if (menuIds.isEmpty()) {
-      log.info("用户 [{} {} {}] 关联的菜单列表为空", platform, tenantId, userId)
+      log.info(
+        "{}用户 [{} {} {}] 关联的菜单列表为空",
+        logPrefix, platform, tenantId, userId
+      )
       redisTemplate.delete(key).awaitSingle()
       redisTemplate.opsForSet().add(key, empty).awaitSingle()
       redisTemplate.expire(key, timeout).awaitSingle()
@@ -284,7 +301,10 @@ class UserAuthService(
     redisTemplate.delete(key).awaitSingle()
     redisTemplate.opsForSet().add(key, *apis.toTypedArray()).awaitSingle()
     redisTemplate.expire(key, timeout).awaitSingle()
-    log.info("用户 [{} {} {}] 拥有api权限 {}条", platform, tenantId, userId, apis.size)
+    log.info(
+      "{}用户 [{} {} {}] 拥有api权限 {}条",
+      logPrefix, platform, tenantId, userId, apis.size
+    )
   }
 
   suspend fun menus(
@@ -293,6 +313,7 @@ class UserAuthService(
     tenantId: Long?,
     terminal: String
   ): List<SimpleMenu> {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val key = genUserAuthCacheKey(userId, platform, tenantId)
     val menus = userMenuCache.get(key) {
       // 判断用户是否拥有平台内所有菜单的权限, 如果是则将所有菜单刷入缓存
@@ -300,27 +321,30 @@ class UserAuthService(
       if (hasAllMenu) {
         val menus = menuRepository.findSimpleMenusByPlatform(platform)
         log.info(
-          "用户: [{} {} {}] 拥有平台下所有菜单的访问权限 {}条",
-          platform, tenantId, userId, menus.size
+          "{}用户: [{} {} {}] 拥有平台下所有菜单的访问权限 {}条",
+          logPrefix, platform, tenantId, userId, menus.size
         )
         return@get menus
       }
       // 获取用户拥有的角色ID列表, 如果为空则代表用户没有任何菜单的权限
       val roles = getUserRoleIds(platform, tenantId, userId)
       if (roles.isEmpty()) {
-        log.info("menus: 用户 [{} {} {}] 没有绑定任何角色", platform, tenantId, userId)
+        log.info("{}menus: 用户 [{} {} {}] 没有绑定任何角色", logPrefix, platform, tenantId, userId)
         return@get emptyList<SimpleMenu>()
       }
       // 获取这些角色下的菜单ID列表, 如果为空则代表用户没有任何菜单的权限
       val menuIds = roleMenuRelRepository
         .findAllByRoleIdIn(roles).mapTo(HashSet()) { it.menuId }
       if (menuIds.isEmpty()) {
-        log.info("用户 [{} {} {}] 关联的菜单列表为空", platform, tenantId, userId)
+        log.info("{}用户 [{} {} {}] 关联的菜单列表为空", logPrefix, platform, tenantId, userId)
         return@get emptyList()
       }
       // 获取用户拥有权限的菜单列表并刷入缓存
       val menus = menuRepository.findSimpleMenusById(menuIds)
-      log.info("用户 [{} {} {}] 拥有 {}条菜单权限", platform, tenantId, userId, menus.size)
+      log.info(
+        "{}用户 [{} {} {}] 拥有 {}条菜单权限",
+        logPrefix, platform, tenantId, userId, menus.size
+      )
       return@get menus
     } ?: emptyList()
     if (menus.isEmpty()) {
@@ -332,14 +356,15 @@ class UserAuthService(
 
   /** 刷新用户菜单缓存 */
   suspend fun refreshMenuCache(userId: String, platform: String, tenantId: Long?) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val key = genUserAuthCacheKey(userId, platform, tenantId)
     // 判断用户是否拥有平台内所有菜单的权限, 如果是则将所有菜单刷入缓存
     val hasAllMenu = hasAllMenu(platform, tenantId, userId)
     if (hasAllMenu) {
       val menus = menuRepository.findSimpleMenusByPlatform(platform)
       log.info(
-        "用户: [{} {} {}] 拥有平台下所有菜单的访问权限 {}条",
-        platform, tenantId, userId, menus.size
+        "{}用户: [{} {} {}] 拥有平台下所有菜单的访问权限 {}条",
+        logPrefix, platform, tenantId, userId, menus.size
       )
       userMenuCache.put(key, menus)
       return
@@ -347,7 +372,10 @@ class UserAuthService(
     // 获取用户拥有的角色ID列表, 如果为空则将空集合刷入缓存
     val roles = getUserRoleIds(platform, tenantId, userId)
     if (roles.isEmpty()) {
-      log.info("refreshMenuCache: 用户 [{} {} {}] 没有绑定任何角色", platform, tenantId, userId)
+      log.info(
+        "{}refreshMenuCache: 用户 [{} {} {}] 没有绑定任何角色",
+        logPrefix, platform, tenantId, userId
+      )
       userMenuCache.put(key, emptyList())
       return
     }
@@ -355,13 +383,16 @@ class UserAuthService(
     val menuIds = roleMenuRelRepository
       .findAllByRoleIdIn(roles).mapTo(HashSet()) { it.menuId }
     if (menuIds.isEmpty()) {
-      log.info("用户 [{} {} {}] 关联的菜单列表为空", platform, tenantId, userId)
+      log.info("{}用户 [{} {} {}] 关联的菜单列表为空", logPrefix, platform, tenantId, userId)
       userMenuCache.put(key, emptyList())
       return
     }
     // 获取用户拥有权限的菜单列表并刷入缓存
     val menus = menuRepository.findSimpleMenusById(menuIds)
-    log.info("用户 [{} {} {}] 拥有 {}条菜单权限", platform, tenantId, userId, menus.size)
+    log.info(
+      "{}用户 [{} {} {}] 拥有 {}条菜单权限",
+      logPrefix, platform, tenantId, userId, menus.size
+    )
     userMenuCache.put(key, menus)
   }
 

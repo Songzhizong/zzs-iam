@@ -1,8 +1,8 @@
 package com.zzs.iam.server.domain.model.twostep;
 
 import javax.annotation.Nonnull;
-import java.util.Collections;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 宋志宗 on 2022/8/26
@@ -14,7 +14,7 @@ public class TwoStepConfig {
 
   /** 需要进行两步验证的API列表 */
   @Nonnull
-  private Set<String> apis = Collections.emptySet();
+  private List<String> apis = new ArrayList<>();
 
 
   public boolean needVerify(@Nonnull String path) {
@@ -31,11 +31,11 @@ public class TwoStepConfig {
   }
 
   @Nonnull
-  public Set<String> getApis() {
+  public List<String> getApis() {
     return apis;
   }
 
-  public TwoStepConfig setApis(@Nonnull Set<String> apis) {
+  public TwoStepConfig setApis(@Nonnull List<String> apis) {
     this.apis = apis;
     return this;
   }

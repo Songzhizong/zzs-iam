@@ -5,11 +5,11 @@ package com.zzs.iam.server.domain.model.front
  */
 interface TerminalRepository {
 
-  suspend fun save(terminalDo: TerminalDo): TerminalDo
+  suspend fun save(terminalDo: TerminalDO): TerminalDO
 
-  suspend fun delete(terminalDo: TerminalDo)
+  suspend fun delete(terminalDo: TerminalDO)
 
-  suspend fun findByCode(code: String): TerminalDo?
+  suspend fun findByCode(code: String): TerminalDO?
 
-  suspend fun findAllByPlatform(platform: String): List<TerminalDo>
+  suspend fun findAllByPlatform(platform: String): List<TerminalDO>
 }

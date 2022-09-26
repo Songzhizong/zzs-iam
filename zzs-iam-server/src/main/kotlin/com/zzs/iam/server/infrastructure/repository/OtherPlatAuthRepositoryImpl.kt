@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.iam.server.domain.model.user.OtherPlatAuthDo
+import com.zzs.iam.server.domain.model.user.OtherPlatAuthDO
 import com.zzs.iam.server.domain.model.user.OtherPlatAuthRepository
 import com.zzs.iam.server.infrastructure.IamIDGenerator
 import kotlinx.coroutines.reactor.awaitSingle
@@ -17,9 +17,9 @@ class OtherPlatAuthRepositoryImpl(
   private val idGenerator: IamIDGenerator,
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : OtherPlatAuthRepository {
-  private val clazz = OtherPlatAuthDo::class.java
+  private val clazz = OtherPlatAuthDO::class.java
 
-  override suspend fun save(otherPlatAuthDo: OtherPlatAuthDo): OtherPlatAuthDo {
+  override suspend fun save(otherPlatAuthDo: OtherPlatAuthDO): OtherPlatAuthDO {
     if (otherPlatAuthDo.id < 1) {
       otherPlatAuthDo.id = idGenerator.generate()
       return mongoTemplate.insert(otherPlatAuthDo).awaitSingle()
@@ -27,7 +27,7 @@ class OtherPlatAuthRepositoryImpl(
     return mongoTemplate.save(otherPlatAuthDo).awaitSingle()
   }
 
-  override suspend fun delete(otherPlatAuthDo: OtherPlatAuthDo) {
+  override suspend fun delete(otherPlatAuthDo: OtherPlatAuthDO) {
     mongoTemplate.remove(otherPlatAuthDo).awaitSingle()
   }
 
@@ -47,14 +47,14 @@ class OtherPlatAuthRepositoryImpl(
   override suspend fun findByPlatCodeAndOtherPlatUserId(
     platCode: String,
     otherPlatUserId: String
-  ): OtherPlatAuthDo? {
+  ): OtherPlatAuthDO? {
     val criteria = Criteria.where("platCode").`is`(platCode)
       .and("otherPlatUserId").`is`(otherPlatUserId)
     val query = Query.query(criteria)
     return mongoTemplate.findOne(query, clazz).awaitSingle()
   }
 
-  override suspend fun findByUserIdAndPlatCode(userId: Long, platCode: String): OtherPlatAuthDo? {
+  override suspend fun findByUserIdAndPlatCode(userId: Long, platCode: String): OtherPlatAuthDO? {
     val criteria = Criteria.where("userId").`is`(userId)
       .and("platCode").`is`(platCode)
     val query = Query.query(criteria)

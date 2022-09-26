@@ -1,5 +1,6 @@
 package com.zzs.iam.server.port.http
 
+import com.zzs.framework.core.spring.ExchangeUtils
 import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.iam.server.application.AuthClientService
@@ -80,7 +81,7 @@ class LoginController(
         }
     val rememberMe1 = formData?.getFirst("rememberMe")?.ifBlank { null }?.toBoolean() ?: false
     val accessToken = loginService.passwordLogin(
-      authClient, username1, password1, rememberMe1
+      authClient, username1, password1, rememberMe1, ExchangeUtils.getRemoteAddress(exchange)
     )
     return Result.success(accessToken)
   }

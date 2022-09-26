@@ -6,10 +6,12 @@ import com.zzs.framework.core.cache.serialize.JsonValueSerializer
 import com.zzs.framework.core.cache.serialize.StringValueSerializer
 import com.zzs.framework.core.exception.BadRequestException
 import com.zzs.framework.core.lang.RandomStringUtils
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.exception.TwoStepVerifyException
 import com.zzs.iam.common.infrastructure.sender.EmailSender
 import com.zzs.iam.common.infrastructure.sender.SmsSender
 import com.zzs.iam.server.domain.model.twostep.ActionRepository
+import com.zzs.iam.server.domain.model.twostep.TwoStepCfgDO
 import com.zzs.iam.server.domain.model.twostep.TwoStepCfgRepository
 import com.zzs.iam.server.domain.model.twostep.TwoStepConfig
 import com.zzs.iam.server.domain.model.user.UserProvider
@@ -57,9 +59,10 @@ class TwoStepService(
 
   /** 发送两步验证的邮箱验证码 */
   suspend fun sendEmailCode(userId: String) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val user = userProvider.getById(userId)
     val email = user.email ?: let {
-      log.info("发送邮箱验证码失败, 用户 {} 未设置邮箱地址", userId)
+      log.info("{}发送邮箱验证码失败, 用户 {} 未设置邮箱地址", logPrefix, userId)
       throw BadRequestException("未设置邮箱地址")
     }
     val code = RandomStringUtils.randomNumeric(6)
@@ -69,9 +72,10 @@ class TwoStepService(
 
   /** 发送短信验证码 */
   suspend fun sendSmsCode(userId: String) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val user = userProvider.getById(userId)
     val phone = user.phone ?: let {
-      log.info("发送短信验证码失败, 用户 {} 未设置手机号码", userId)
+      log.info("{}发送短信验证码失败, 用户 {} 未设置手机号码", logPrefix, userId)
       throw BadRequestException("未设置手机号码")
     }
     val code = RandomStringUtils.randomNumeric(6)
@@ -81,12 +85,13 @@ class TwoStepService(
 
   /** 验证码认证 */
   suspend fun codeAuthenticate(platform: String, tenantId: Long?, userId: String, code: String) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val get = twoStepCodeCache.getIfPresent(userId) ?: let {
-      log.info("两步验证失败, 未生成验证码")
+      log.info("{}两步验证失败, 未生成验证码", logPrefix)
       throw BadRequestException("未生成验证码")
     }
     if (get != code) {
-      log.info("两步验证失败, 验证码错误")
+      log.info("{}两步验证失败, 验证码错误", logPrefix)
       throw BadRequestException("验证码错误")
     }
     val verifiedKey = genVerifiedKey(platform, tenantId, userId)
@@ -131,7 +136,7 @@ class TwoStepService(
         twoStepCfgRepository.findByPlatformAndTenantId(platform, tenantId ?: -1L)
       }
       val actions = async1.await()
-      val cfg = async2.await() ?: com.zzs.iam.server.domain.model.twostep.TwoStepCfgDo()
+      val cfg = async2.await() ?: TwoStepCfgDO()
       TwoStepConfig().also { config ->
         config.expireMinutes = cfg.expireMinutes
         val enabled = cfg.isEnabled
@@ -139,7 +144,7 @@ class TwoStepService(
           val map = actions.associateByTo(HashMap()) { it.id }
           cfg.disableActions.forEach { map.remove(it) }
           val apis = map.values.map { it.apis }.flatMapTo(HashSet()) { it }
-          config.apis = apis
+          config.apis = ArrayList(apis)
         }
       }
     }!!

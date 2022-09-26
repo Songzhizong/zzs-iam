@@ -1,6 +1,7 @@
 package com.zzs.iam.server.port.http
 
 import com.zzs.framework.core.spring.toPageResult
+import com.zzs.framework.core.trace.Operation
 import com.zzs.framework.core.transmission.ListResult
 import com.zzs.framework.core.transmission.PageResult
 import com.zzs.framework.core.transmission.Result
@@ -70,6 +71,7 @@ class UserAffController(
    *
    * @param platform 平台编码
    */
+  @Operation("添加用户")
   @Suppress("DuplicatedCode")
   @PostMapping("/platform/add_user")
   suspend fun platformAddUser(
@@ -106,6 +108,7 @@ class UserAffController(
    *
    * @param platform 平台编码
    */
+  @Operation("移除用户")
   @Suppress("DuplicatedCode")
   @PostMapping("/platform/remove_user")
   suspend fun platformRemoveUser(
@@ -139,6 +142,7 @@ class UserAffController(
    *   }
    * </pre>
    */
+  @Operation("冻结用户")
   @PostMapping("/platform/freeze_user")
   suspend fun platformFreezeUser(platform: String?, @RequestBody args: UserIdsArgs): Result<Void> {
     platform.requireNotBlank { "平台编码为空" }
@@ -168,6 +172,7 @@ class UserAffController(
    *   }
    * </pre>
    */
+  @Operation("解冻用户")
   @PostMapping("/platform/unfreeze_user")
   suspend fun platformUnfreezeUser(
     platform: String?,
@@ -239,6 +244,7 @@ class UserAffController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("添加用户用户")
   @PostMapping("/tenant/add_user")
   suspend fun tenantAddUser(
     tenantId: Long?,
@@ -259,6 +265,7 @@ class UserAffController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("移除用户")
   @PostMapping("/tenant/remove_user")
   suspend fun tenantRemoveUser(tenantId: Long?, @RequestBody args: UserIdsArgs): Result<Void> {
     tenantId.requireNonnull { "租户ID为空" }
@@ -274,6 +281,7 @@ class UserAffController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("冻结用户")
   @PostMapping("/tenant/freeze_user")
   suspend fun tenantFreezeUser(tenantId: Long?, @RequestBody args: UserIdsArgs): Result<Void> {
     tenantId.requireNonnull { "租户ID为空" }
@@ -289,6 +297,7 @@ class UserAffController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("解冻用户")
   @PostMapping("/tenant/unfreeze_user")
   suspend fun tenantUnfreezeUser(tenantId: Long?, @RequestBody args: UserIdsArgs): Result<Void> {
     tenantId.requireNonnull { "租户ID为空" }
@@ -306,6 +315,7 @@ class UserAffController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("添加用户")
   @PostMapping("/cur/add_user")
   suspend fun addUser(@RequestBody args: AddUserArgs): ListResult<JoinedUser> {
     val context = SecurityContextHolder.current()
@@ -327,6 +337,7 @@ class UserAffController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("移除用户")
   @PostMapping("/cur/remove_user")
   suspend fun removeUser(@RequestBody args: UserIdsArgs): Result<Void> {
     val context = SecurityContextHolder.current()
@@ -348,6 +359,7 @@ class UserAffController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("冻结用户")
   @PostMapping("/cur/freeze_user")
   suspend fun freezeUser(@RequestBody args: UserIdsArgs): Result<Void> {
     val context = SecurityContextHolder.current()
@@ -369,6 +381,7 @@ class UserAffController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("解冻用户")
   @PostMapping("/cur/unfreeze_user")
   suspend fun unfreezeUser(@RequestBody args: UserIdsArgs): Result<Void> {
     val context = SecurityContextHolder.current()
@@ -390,6 +403,7 @@ class UserAffController(
    *   <p><b>响应示例</b></p>
    * </pre>
    */
+  @Operation("变更用户角色")
   @PostMapping("/cur/change_roles")
   suspend fun changeRoles(@RequestBody args: ChangeUserRoleArgs): Result<Void> {
     val userIds = args.userIds.requireNotEmpty { "用户ID为空" }

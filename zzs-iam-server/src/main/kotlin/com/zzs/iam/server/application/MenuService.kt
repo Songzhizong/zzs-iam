@@ -4,9 +4,10 @@ import com.zzs.framework.autoconfigure.cache.CacheProperties
 import com.zzs.framework.core.exception.BadRequestException
 import com.zzs.framework.core.exception.ResourceNotFoundException
 import com.zzs.framework.core.spring.RedisTemplateUtils
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNonnull
 import com.zzs.framework.core.utils.requireNotBlank
-import com.zzs.iam.server.domain.model.front.MenuDo
+import com.zzs.iam.server.domain.model.front.MenuDO
 import com.zzs.iam.server.domain.model.front.MenuRepository
 import com.zzs.iam.server.domain.model.front.TerminalRepository
 import com.zzs.iam.server.dto.args.CreateMenuArgs
@@ -39,20 +40,23 @@ class MenuService(
     private val lockValue = UUID.randomUUID().toString().replace("-", "")
   }
 
-  suspend fun create(args: CreateMenuArgs): MenuDo {
+  suspend fun create(args: CreateMenuArgs): MenuDO {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
+    // 校验终端
     val terminal = args.terminal.requireNonnull { "终端编码为空" }.let {
       terminalRepository.findByCode(it) ?: run {
-        log.info("终端: {} 不存在", it)
+        log.info("{}终端: {} 不存在", logPrefix, it)
         throw ResourceNotFoundException("终端不存在")
       }
     }
+    // 校验父菜单
     val parent = args.parentId?.let {
       menuRepository.findById(it)?.apply {
         if (terminal.platform != this.platform) {
           throw BadRequestException("终端与父菜单不属于同一平台")
         }
       } ?: run {
-        log.info("父菜单: {} 不存在", it)
+        log.info("{}父菜单: {} 不存在", logPrefix, it)
         throw ResourceNotFoundException("父菜单不存在")
       }
     }
@@ -64,7 +68,7 @@ class MenuService(
     val url = args.url
     val path = args.path
     val apis = args.apis?.toSet()
-    val menuDo = MenuDo.create(
+    val menuDo = MenuDO.create(
       parent, terminal, name, type, order, icon, selectedIcon, url, path, apis
     )
     menuRepository.save(menuDo)
@@ -72,9 +76,10 @@ class MenuService(
   }
 
   /** 修改菜单信息 */
-  suspend fun update(id: Long, args: UpdateMenuArgs): MenuDo {
+  suspend fun update(id: Long, args: UpdateMenuArgs): MenuDO {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val menuDo = menuRepository.findById(id) ?: let {
-      log.info("修改菜单信息失败, 菜单 {} 不存在", id)
+      log.info("{}修改菜单信息失败, 菜单 {} 不存在", logPrefix, id)
       throw ResourceNotFoundException("菜单信息不存在")
     }
     menuDo.updated(args)
@@ -83,9 +88,10 @@ class MenuService(
   }
 
   /** 变更父菜单 */
-  suspend fun changeParent(id: Long, parentId: Long?): MenuDo {
+  suspend fun changeParent(id: Long, parentId: Long?): MenuDO {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val menuDo = menuRepository.findById(id) ?: let {
-      log.info("修改菜单信息失败, 菜单 {} 不存在", id)
+      log.info("{}修改菜单信息失败, 菜单 {} 不存在", logPrefix, id)
       throw ResourceNotFoundException("菜单信息不存在")
     }
     // 防止并发修改父菜单
@@ -104,13 +110,13 @@ class MenuService(
 
     try {
       if (menuDo.parentId == parentId) {
-        log.info("父菜单未发生变更")
+        log.info("{}父菜单未发生变更", logPrefix)
         return menuDo
       }
-      var parent: MenuDo? = null
+      var parent: MenuDO? = null
       if (parentId != null) {
         parent = menuRepository.findById(parentId) ?: let {
-          log.info("变更父菜单失败, 所选的菜单: {} 不存在", parentId)
+          log.info("{}变更父菜单失败, 所选的菜单: {} 不存在", logPrefix, parentId)
           throw ResourceNotFoundException("所选的父菜单不存在")
         }
       }
@@ -129,7 +135,7 @@ class MenuService(
   }
 
   /** 递归修改父菜单 */
-  private fun changeParent(menuDo: MenuDo, childMap: Map<Long, List<MenuDo>>) {
+  private fun changeParent(menuDo: MenuDO, childMap: Map<Long, List<MenuDO>>) {
     val childList = childMap[menuDo.id]
     if (childList.isNullOrEmpty()) {
       return
@@ -141,21 +147,22 @@ class MenuService(
   }
 
   suspend fun delete(id: Long, force: Boolean = false) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val existsChild = menuRepository.existsByParentId(id)
     if (!force && existsChild) {
-      log.info("删除菜单: {} 失败, 该菜单下存在子菜单", id)
+      log.info("{}删除菜单: {} 失败, 该菜单下存在子菜单", logPrefix, id)
       throw BadRequestException("删除失败, 该菜单下存在子菜单")
     }
     menuRepository.findById(id)?.also {
       menuRepository.delete(it)
       if (force && existsChild) {
         val count = menuRepository.deleteAllChildByRouter(it.generateRouter())
-        log.info("成功删除菜单: [{} {}] 以及其子菜单 {}条", id, it.name, count)
+        log.info("{}成功删除菜单: [{} {}] 以及其子菜单 {}条", logPrefix, id, it.name, count)
       } else {
-        log.info("成功删除菜单: [{} {}]", id, it.name)
+        log.info("{}成功删除菜单: [{} {}]", logPrefix, id, it.name)
       }
     } ?: let {
-      log.info("菜单: {} 不存在", id)
+      log.info("{}菜单: {} 不存在", logPrefix, id)
     }
   }
 }

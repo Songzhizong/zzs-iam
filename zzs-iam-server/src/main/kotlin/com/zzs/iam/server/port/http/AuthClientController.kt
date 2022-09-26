@@ -1,5 +1,6 @@
 package com.zzs.iam.server.port.http
 
+import com.zzs.framework.core.trace.Operation
 import com.zzs.framework.core.transmission.ListResult
 import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNotBlank
@@ -57,6 +58,7 @@ class AuthClientController(
    *   }
    * </pre>
    */
+  @Operation("新增授权客户端")
   @PostMapping("/create_client")
   suspend fun create(@RequestBody args: CreateAuthClientArgs): Result<AuthClient> {
     val clientDo = authClientService.create(args)
@@ -79,6 +81,7 @@ class AuthClientController(
    *
    * @param clientId 客户端唯一ID
    */
+  @Operation("删除授权客户端")
   @PostMapping("/delete_client")
   suspend fun delete(clientId: String?): Result<Void> {
     clientId.requireNotBlank { "客户端ID为空" }

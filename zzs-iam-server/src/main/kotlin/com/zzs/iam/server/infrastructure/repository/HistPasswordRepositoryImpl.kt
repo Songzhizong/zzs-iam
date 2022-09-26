@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.iam.server.domain.model.user.HistPasswordDo
+import com.zzs.iam.server.domain.model.user.HistPasswordDO
 import com.zzs.iam.server.domain.model.user.HistPasswordRepository
 import com.zzs.iam.server.infrastructure.IamIDGenerator
 import kotlinx.coroutines.reactor.awaitSingle
@@ -19,9 +19,9 @@ class HistPasswordRepositoryImpl(
   private val idGenerator: IamIDGenerator,
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : HistPasswordRepository {
-  private val clazz = HistPasswordDo::class.java
+  private val clazz = HistPasswordDO::class.java
 
-  override suspend fun save(histPasswordDo: HistPasswordDo): HistPasswordDo {
+  override suspend fun save(histPasswordDo: HistPasswordDO): HistPasswordDO {
     if (histPasswordDo.id < 1) {
       histPasswordDo.id = idGenerator.generate()
       return mongoTemplate.insert(histPasswordDo).awaitSingle()
@@ -29,7 +29,7 @@ class HistPasswordRepositoryImpl(
     return mongoTemplate.save(histPasswordDo).awaitSingle()
   }
 
-  override suspend fun findUserLatest(userId: Long, count: Int): List<HistPasswordDo> {
+  override suspend fun findUserLatest(userId: Long, count: Int): List<HistPasswordDO> {
     val pageable = PageRequest.of(0, count, Sort.Direction.DESC, "id")
     val criteria = Criteria.where("userId").`is`(userId)
     val query = Query.query(criteria).with(pageable)

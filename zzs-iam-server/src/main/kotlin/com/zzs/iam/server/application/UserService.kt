@@ -7,13 +7,14 @@ import com.zzs.framework.core.event.publishAndAwait
 import com.zzs.framework.core.exception.BadRequestException
 import com.zzs.framework.core.exception.ForbiddenException
 import com.zzs.framework.core.exception.ResourceNotFoundException
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.iam.common.password.PasswordEncoder
 import com.zzs.iam.common.pojo.User
 import com.zzs.iam.server.configure.IamUpmsProperties
-import com.zzs.iam.server.domain.model.user.HistPasswordDo
+import com.zzs.iam.server.domain.model.user.HistPasswordDO
 import com.zzs.iam.server.domain.model.user.HistPasswordRepository
-import com.zzs.iam.server.domain.model.user.UserDo
+import com.zzs.iam.server.domain.model.user.UserDO
 import com.zzs.iam.server.domain.model.user.UserRepository
 import com.zzs.iam.server.dto.args.RegisterUserArgs
 import com.zzs.iam.server.dto.args.UpdateUserArgs
@@ -55,24 +56,25 @@ class UserService(
   /**
    * 注册账号
    */
-  suspend fun register(args: RegisterUserArgs): UserDo {
+  suspend fun register(args: RegisterUserArgs): UserDO {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val name = args.name
     val nickname = args.nickname
     val account = args.account?.also {
       userRepository.findByUniqueIdent(it)?.apply {
-        log.info("注册失败,账号已被使用: {}", it)
+        log.info("{}注册失败,账号已被使用: {}", logPrefix, it)
         throw BadRequestException("该账号已被使用")
       }
     }
     val phone = args.phone?.also {
       userRepository.findByUniqueIdent(it)?.apply {
-        log.info("注册失败,手机号已被使用: {}", it)
+        log.info("{}注册失败,手机号已被使用: {}", logPrefix, it)
         throw BadRequestException("该手机号已被使用")
       }
     }
     val email = args.email?.also {
       userRepository.findByUniqueIdent(it)?.apply {
-        log.info("注册失败,邮箱已被使用: {}", it)
+        log.info("{}注册失败,邮箱已被使用: {}", logPrefix, it)
         throw BadRequestException("该邮箱已被使用")
       }
     }
@@ -80,7 +82,7 @@ class UserService(
       CheckUtils.checkPassword(it, account)
       passwordEncoder.encode(it)
     }
-    val tuple = UserDo.create(
+    val tuple = UserDO.create(
       name, nickname, account, phone, email
     )
     val userDo = tuple.value
@@ -94,9 +96,10 @@ class UserService(
   /**
    * 冻结用户
    */
-  suspend fun freeze(id: Long): UserDo {
+  suspend fun freeze(id: Long): UserDO {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(id) ?: let {
-      log.info("用户: {} 不存在", id)
+      log.info("{}用户: {} 不存在", logPrefix, id)
       throw ResourceNotFoundException("用户不存在")
     }
     val suppliers = userDo.freeze()
@@ -108,9 +111,10 @@ class UserService(
   /**
    * 解除冻结
    */
-  suspend fun unfreeze(id: Long): UserDo {
+  suspend fun unfreeze(id: Long): UserDO {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(id) ?: let {
-      log.info("用户: {} 不存在", id)
+      log.info("{}用户: {} 不存在", logPrefix, id)
       throw ResourceNotFoundException("用户不存在")
     }
     val suppliers = userDo.unfreeze()
@@ -135,8 +139,9 @@ class UserService(
    * @param oldPassword 用于验证身份的原密码
    */
   suspend fun changePassword(userId: Long, newPassword: String, oldPassword: String? = null) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(userId) ?: let {
-      log.info("修改密码失败, 用户: {} 不存在", userId)
+      log.info("{}修改密码失败, 用户: {} 不存在", logPrefix, userId)
       throw ResourceNotFoundException("用户信息不存在")
     }
     val oldEncodedPassword = userDo.password
@@ -144,7 +149,7 @@ class UserService(
     if (oldPassword != null) {
       val matches = passwordEncoder.matches(oldPassword, oldEncodedPassword)
       if (!matches) {
-        log.info("用户 [{} {}] 修改密码失败, 原密码输入错误", userId, userDo.name)
+        log.info("{}用户 [{} {}] 修改密码失败, 原密码输入错误", logPrefix, userId, userDo.name)
         throw ForbiddenException("原密码输入错误")
       }
     }
@@ -156,17 +161,25 @@ class UserService(
       for (histPassword in histPasswords) {
         val histEncodedPassword = histPassword.password
         if (passwordEncoder.matches(newPassword, histEncodedPassword)) {
-          log.info("用户: [{} {}] 修改密码失败, 新输入的密码最近已经使用过", userId, userDo.name)
+          log.info(
+            "{}用户: [{} {}] 修改密码失败, 新输入的密码最近已经使用过",
+            logPrefix, userId, userDo.name
+          )
           throw BadRequestException("该密码最近已经使用过")
         }
       }
     }
+    // 修改密码
     val encode = passwordEncoder.encode(newPassword)
     val suppliers = userDo.setupPassword(encode)
-    val histPasswordDo = HistPasswordDo.create(userId, oldEncodedPassword)
+    val histPasswordDo = HistPasswordDO.create(userId, oldEncodedPassword)
     userRepository.save(userDo)
     histPasswordRepository.save(histPasswordDo)
     transactionalEventPublisher.publishAndAwait(suppliers)
+  }
+
+  suspend fun resetPassword(userId: Long) {
+
   }
 
   /**
@@ -177,15 +190,16 @@ class UserService(
    * @param password   用于验证身份的用户密码
    */
   suspend fun changeAccount(userId: Long, newAccount: String, password: String? = null) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(userId) ?: let {
-      log.info("修改账号失败, 用户: {} 不存在", userId)
+      log.info("{}修改账号失败, 用户: {} 不存在", logPrefix, userId)
       throw ResourceNotFoundException("用户信息不存在")
     }
     if (password != null) {
       val encodedPassword = userDo.password
       val matches = passwordEncoder.matches(password, encodedPassword)
       if (!matches) {
-        log.info("用户 [{} {}] 修改账号码失败, 密码输入错误", userId, userDo.name)
+        log.info("{}用户 [{} {}] 修改账号码失败, 密码输入错误", logPrefix, userId, userDo.name)
         throw ForbiddenException("密码输入错误")
       }
     }
@@ -202,15 +216,16 @@ class UserService(
    * @param password 用于验证身份的用户密码
    */
   suspend fun changePhone(userId: Long, newPhone: String, password: String? = null) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(userId) ?: let {
-      log.info("修改手机号失败, 用户: {} 不存在", userId)
+      log.info("{}修改手机号失败, 用户: {} 不存在", logPrefix, userId)
       throw ResourceNotFoundException("用户信息不存在")
     }
     if (password != null) {
       val encodedPassword = userDo.password
       val matches = passwordEncoder.matches(password, encodedPassword)
       if (!matches) {
-        log.info("用户 [{} {}] 修改手机号码失败, 密码输入错误", userId, userDo.name)
+        log.info("{}用户 [{} {}] 修改手机号码失败, 密码输入错误", logPrefix, userId, userDo.name)
         throw ForbiddenException("密码输入错误")
       }
     }
@@ -227,15 +242,16 @@ class UserService(
    * @param password 用于验证身份的个人密码
    */
   suspend fun changeEmail(userId: Long, newEmail: String, password: String? = null) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(userId) ?: let {
-      log.info("修改邮箱失败, 用户: {} 不存在", userId)
+      log.info("{}修改邮箱失败, 用户: {} 不存在", logPrefix, userId)
       throw ResourceNotFoundException("用户信息不存在")
     }
     if (password != null) {
       val encodedPassword = userDo.password
       val matches = passwordEncoder.matches(password, encodedPassword)
       if (!matches) {
-        log.info("用户 [{} {}] 修改邮箱失败, 密码输入错误", userId, userDo.name)
+        log.info("{}用户 [{} {}] 修改邮箱失败, 密码输入错误", logPrefix, userId, userDo.name)
         throw ForbiddenException("密码输入错误")
       }
     }
@@ -245,9 +261,10 @@ class UserService(
   }
 
   /** 选择性更新用户信息 */
-  suspend fun selectivityUpdate(userId: Long, args: UpdateUserArgs): UserDo {
+  suspend fun selectivityUpdate(userId: Long, args: UpdateUserArgs): UserDO {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findById(userId) ?: let {
-      log.info("用户信息不存在: {}", userId)
+      log.info("{}用户信息不存在: {}", logPrefix, userId)
       throw ResourceNotFoundException("用户信息不存在")
     }
     val suppliers = userDo.selectivityUpdate(args)
@@ -257,19 +274,20 @@ class UserService(
   }
 
   @Transactional(propagation = Propagation.NOT_SUPPORTED)
-  suspend fun authenticate(uniqueIdent: String, password: String): UserDo {
+  suspend fun authenticate(uniqueIdent: String, password: String): UserDO {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val userDo = userRepository.findByUniqueIdent(uniqueIdent) ?: let {
-      log.info("认证失败, 用户: {} 不存在", uniqueIdent)
+      log.info("{}认证失败, 用户: {} 不存在", logPrefix, uniqueIdent)
       throw BadRequestException("用户名或密码错误")
     }
     val encodedPassword = userDo.password
     val matches = passwordEncoder.matches(password, encodedPassword)
     if (!matches) {
-      log.info("认证失败, 用户: {} 输入密码错误", uniqueIdent)
+      log.info("{}认证失败, 用户: {} 输入密码错误", logPrefix, uniqueIdent)
       throw BadRequestException("用户名或密码错误")
     }
     if (userDo.isFrozen) {
-      log.info("用户: [{} {}] 已被冻结", userDo.id, userDo.name)
+      log.info("{}用户: [{} {}] 已被冻结", logPrefix, userDo.id, userDo.name)
       throw ForbiddenException("用户已被冻结")
     }
     return userDo

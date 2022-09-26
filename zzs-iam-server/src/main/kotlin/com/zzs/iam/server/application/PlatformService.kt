@@ -3,8 +3,9 @@ package com.zzs.iam.server.application
 import com.zzs.framework.core.event.ReactiveTransactionalEventPublisher
 import com.zzs.framework.core.event.publishAndAwait
 import com.zzs.framework.core.exception.BadRequestException
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNotBlank
-import com.zzs.iam.server.domain.model.org.PlatformDo
+import com.zzs.iam.server.domain.model.org.PlatformDO
 import com.zzs.iam.server.domain.model.org.PlatformRepository
 import com.zzs.iam.server.dto.args.CreatePlatformArgs
 import org.slf4j.Logger
@@ -29,10 +30,11 @@ class PlatformService(
   }
 
   /** 新增平台 */
-  suspend fun create(args: CreatePlatformArgs): PlatformDo {
+  suspend fun create(args: CreatePlatformArgs): PlatformDO {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val code = args.code.requireNotBlank { "平台编码为空" }.also {
       platformRepository.findByCode(it)?.apply {
-        log.info("新增平台失败, 编码已被使用: {}", it)
+        log.info("{}新增平台失败, 编码已被使用: {}", logPrefix, it)
         throw BadRequestException("平台编码已被使用")
       }
     }
@@ -40,7 +42,7 @@ class PlatformService(
     val multiTenant = args.isMultiTenant
     val tenantHasAllMenus = args.isTenantHasAllMenus
     val enableApiAuthenticate = args.isEnableApiAuthenticate
-    val tuple = PlatformDo.create(
+    val tuple = PlatformDO.create(
       code, name, multiTenant, tenantHasAllMenus, enableApiAuthenticate
     )
     val platformDo = tuple.value
@@ -56,10 +58,11 @@ class PlatformService(
 
   /** 删除平台 */
   suspend fun delete(code: String) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     platformRepository.findByCode(code)?.also {
       platformRepository.delete(it)
     } ?: let {
-      log.info("平台: {} 不存在", code)
+      log.info("{}平台: {} 不存在", logPrefix, code)
     }
   }
 }

@@ -1,5 +1,6 @@
 package com.zzs.iam.common.infrastructure.sender.impl
 
+import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.CommonPool
 import com.zzs.iam.common.infrastructure.sender.EmailSender
 import kotlinx.coroutines.reactor.awaitSingleOrNull
@@ -51,6 +52,7 @@ class SpringEmailSender(
   }
 
   override suspend fun sendMailCode(email: String, operation: String, code: String) {
+    val logPrefix = TraceContextHolder.awaitLogPrefix()
     val start = System.currentTimeMillis()
     if (codeTemplate.isNullOrBlank()) {
       return
@@ -69,6 +71,6 @@ class SpringEmailSender(
         CommonPool.INSTANCE
       )
     ).awaitSingleOrNull()
-    log.debug("邮件发送耗时: {}", System.currentTimeMillis() - start)
+    log.debug("{}邮件发送耗时: {}", logPrefix, System.currentTimeMillis() - start)
   }
 }

@@ -2,7 +2,7 @@ package com.zzs.iam.server.dto.resp;
 
 import com.zzs.framework.core.lang.TreeNode;
 import com.zzs.iam.common.pojo.Menu;
-import com.zzs.iam.server.domain.model.front.MenuDo;
+import com.zzs.iam.server.domain.model.front.MenuDO;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -19,7 +19,7 @@ public class MenuTree extends Menu implements TreeNode {
 
   @SuppressWarnings("DuplicatedCode")
   @Nonnull
-  public static MenuTree of(@Nonnull MenuDo menuDo) {
+  public static MenuTree of(@Nonnull MenuDO menuDo) {
     MenuTree menuTree = new MenuTree();
     menuTree.setId(menuDo.getId());
     menuTree.setParentId(menuDo.getParentId());

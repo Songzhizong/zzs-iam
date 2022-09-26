@@ -1,7 +1,7 @@
 package com.zzs.iam.server.infrastructure.repository
 
 import com.zzs.iam.common.pojo.SimpleMenu
-import com.zzs.iam.server.domain.model.front.MenuDo
+import com.zzs.iam.server.domain.model.front.MenuDO
 import com.zzs.iam.server.domain.model.front.MenuRepository
 import com.zzs.iam.server.infrastructure.IamIDGenerator
 import kotlinx.coroutines.reactor.awaitSingle
@@ -20,13 +20,13 @@ class MenuRepositoryImpl(
   private val idGenerator: IamIDGenerator,
   private val mongoTemplate: ReactiveMongoTemplate,
 ) : MenuRepository {
-  private val menuDoClass = MenuDo::class.java
+  private val menuDoClass = MenuDO::class.java
   private val simpleMenuClass = SimpleMenu::class.java
   private val simpleMenuFields = listOf(
     "id", "parentId", "terminal", "name", "type", "order", "icon", "selectedIcon", "url", "path"
   )
 
-  override suspend fun save(menuDo: MenuDo): MenuDo {
+  override suspend fun save(menuDo: MenuDO): MenuDO {
     if (menuDo.id < 1) {
       menuDo.id = idGenerator.generate()
       return mongoTemplate.insert(menuDo).awaitSingle()
@@ -34,7 +34,7 @@ class MenuRepositoryImpl(
     return mongoTemplate.save(menuDo).awaitSingle()
   }
 
-  override suspend fun saveAll(menus: Collection<MenuDo>): List<MenuDo> {
+  override suspend fun saveAll(menus: Collection<MenuDO>): List<MenuDO> {
     return Flux.fromIterable(menus).flatMap {
       if (it.id < 1) {
         it.id = idGenerator.generate()
@@ -44,7 +44,7 @@ class MenuRepositoryImpl(
     }.collectList().awaitSingle()
   }
 
-  override suspend fun delete(menuDo: MenuDo) {
+  override suspend fun delete(menuDo: MenuDO) {
     mongoTemplate.remove(menuDo).awaitSingle()
   }
 
@@ -54,25 +54,25 @@ class MenuRepositoryImpl(
     return mongoTemplate.remove(query, menuDoClass).awaitSingle().deletedCount
   }
 
-  override suspend fun findById(id: Long): MenuDo? {
+  override suspend fun findById(id: Long): MenuDO? {
     val criteria = Criteria.where("id").`is`(id)
     val query = Query.query(criteria)
     return mongoTemplate.findOne(query, menuDoClass).awaitSingleOrNull()
   }
 
-  override suspend fun findAllById(ids: Collection<Long>): List<MenuDo> {
+  override suspend fun findAllById(ids: Collection<Long>): List<MenuDO> {
     val criteria = Criteria.where("ids").`in`(ids)
     val query = Query.query(criteria)
     return mongoTemplate.find(query, menuDoClass).collectList().awaitSingle()
   }
 
-  override suspend fun findAllByTerminal(terminal: String): List<MenuDo> {
+  override suspend fun findAllByTerminal(terminal: String): List<MenuDO> {
     val criteria = Criteria.where("terminal").`is`(terminal)
     val query = Query.query(criteria)
     return mongoTemplate.find(query, menuDoClass).collectList().awaitSingle()
   }
 
-  override suspend fun findAllChild(parentRouter: String): List<MenuDo> {
+  override suspend fun findAllChild(parentRouter: String): List<MenuDO> {
     val criteria = Criteria.where("parentRouter").regex("^$parentRouter.*$")
     val query = Query.query(criteria)
     return mongoTemplate.find(query, menuDoClass).collectList().awaitSingle()
