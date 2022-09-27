@@ -8,7 +8,6 @@ import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNonnull
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.framework.core.utils.requireNotEmpty
-import com.zzs.iam.common.infrastructure.security.SecurityContextHolder
 import com.zzs.iam.common.pojo.JoinedUser
 import com.zzs.iam.server.application.UserAffService
 import com.zzs.iam.server.domain.model.org.PlatformUserRepository
@@ -16,6 +15,7 @@ import com.zzs.iam.server.dto.args.AddUserArgs
 import com.zzs.iam.server.dto.args.ChangeUserRoleArgs
 import com.zzs.iam.server.dto.args.QueryUserArgs
 import com.zzs.iam.server.dto.args.UserIdsArgs
+import com.zzs.iam.server.infrastructure.security.SecurityContextHolder
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping

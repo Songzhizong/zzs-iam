@@ -6,7 +6,6 @@ import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNonnull
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.framework.core.utils.toTreeList
-import com.zzs.iam.common.infrastructure.security.SecurityContextHolder
 import com.zzs.iam.common.pojo.Role
 import com.zzs.iam.common.pojo.SimpleMenu
 import com.zzs.iam.server.application.RoleService
@@ -14,6 +13,7 @@ import com.zzs.iam.server.domain.model.role.RoleRepository
 import com.zzs.iam.server.dto.args.AssignMenuArgs
 import com.zzs.iam.server.dto.args.RoleArgs
 import com.zzs.iam.server.dto.resp.SimpleMenuTree
+import com.zzs.iam.server.infrastructure.security.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
 
 /**

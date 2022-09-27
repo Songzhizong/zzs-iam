@@ -5,7 +5,7 @@ import com.zzs.framework.core.event.publishAndAwait
 import com.zzs.framework.core.exception.ForbiddenException
 import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.event.user.UserLogined
-import com.zzs.iam.server.configure.IamUpmsProperties
+import com.zzs.iam.server.configure.IamServerProperties
 import com.zzs.iam.server.domain.model.authorization.Authentication
 import com.zzs.iam.server.domain.model.authorization.token.AccessToken
 import com.zzs.iam.server.domain.model.authorization.token.AccessTokenDO
@@ -29,7 +29,7 @@ import org.springframework.transaction.annotation.Transactional
 class LoginService(
   private val userProvider: UserProvider,
   private val tokenStore: AccessTokenStore,
-  private val properties: IamUpmsProperties,
+  private val properties: IamServerProperties,
   private val loginLogRepository: LoginLogRepository,
   private val reactiveEventPublisher: ReactiveEventPublisher,
   private val platformUserRepository: PlatformUserRepository,

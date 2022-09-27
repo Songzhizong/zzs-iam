@@ -3,13 +3,13 @@ package com.zzs.iam.server.port.http
 import com.zzs.framework.core.exception.BadRequestException
 import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNotBlank
-import com.zzs.iam.common.infrastructure.security.SecurityContextHolder
 import com.zzs.iam.common.pojo.User
 import com.zzs.iam.server.application.UserService
 import com.zzs.iam.server.dto.args.ChangeAccountArgs
 import com.zzs.iam.server.dto.args.ChangeEmailArgs
 import com.zzs.iam.server.dto.args.ChangePasswordArgs
 import com.zzs.iam.server.dto.args.ChangePhoneArgs
+import com.zzs.iam.server.infrastructure.security.SecurityContextHolder
 import org.springframework.web.bind.annotation.*
 
 /**
