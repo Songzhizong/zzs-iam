@@ -9,10 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.config.EnableReactiveMongoAuditing;
-import org.springframework.nativex.hint.JdkProxyHint;
-import org.springframework.nativex.hint.NativeHint;
-import org.springframework.nativex.hint.TypeAccess;
-import org.springframework.nativex.hint.TypeHint;
+import org.springframework.nativex.hint.*;
 
 /**
  * @author 宋志宗 on 2022/9/5
@@ -42,6 +39,9 @@ import org.springframework.nativex.hint.TypeHint;
   },
   types = {
     @TypeHint(types = WebMessageConverterAutoConfigure.class, access = {TypeAccess.PUBLIC_FIELDS, TypeAccess.DECLARED_FIELDS, TypeAccess.PUBLIC_CONSTRUCTORS, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.PUBLIC_METHODS, TypeAccess.DECLARED_METHODS})
+  },
+  resources = {
+    @ResourceHint(patterns = {"logback-spring-dev.xml", "logback-spring-prd.xml"})
   }
 )
 @EnableReactiveMongoAuditing

@@ -32,7 +32,7 @@ import org.springframework.core.Ordered;
  * +-----------------------------+--------------+-----------+
  * | RateLimitFilter             |        11003 | c-gateway |
  * +-----------------------------+--------------+-----------+
- * | ReplayAttacksFilter         |        11004 |  c-global |
+ * | ReplayAttackFilter         |        11004 |  c-global |
  * +-----------------------------+--------------+-----------+
  * | AuthenticationGatewayFilter |        20000 | c-gateway |
  * +-----------------------------+--------------+-----------+
@@ -55,22 +55,19 @@ public interface FilterOrders {
   int TRACE_FILTER_ORDER = Ordered.HIGHEST_PRECEDENCE + 1;
 
   /** 白名单过滤器 */
-  int WHITELIST_FILTER_ORDER = 11001;
+  int WHITELIST_FILTER_ORDER = 10000;
 
   /** 黑名单过滤器 */
-  int BLACKLIST_FILTER_ORDER = 11002;
+  int BLACKLIST_FILTER_ORDER = 10100;
 
   /** 限流过滤器 */
-  int RATE_LIMIT_FILTER_ORDER = 11003;
+  int RATE_LIMIT_FILTER_ORDER = 10200;
 
   /** 重放攻击过滤器 */
-  int REPLAY_ATTACKS_FILTER_ORDER = 11004;
+  int REPLAY_ATTACK_FILTER_ORDER = 10300;
 
   /** 认证过滤器 */
   int AUTH_FILTER_ORDER = 20000;
-
-  /** IAM与夜莺集成过滤器, 需要放在认证过滤器之后 */
-  int IAM_N9E_FILTER_ORDER = 30000;
 
   /** 转发链路追踪信息过滤器 */
   int FORWARD_TRACE_FILTER_ORDER = Ordered.LOWEST_PRECEDENCE - 2;

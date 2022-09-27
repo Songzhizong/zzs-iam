@@ -254,7 +254,7 @@ class UserAuthService(
       val apis = menuRepository.findApisByPlatform(platform)
       if (apis.isEmpty()) {
         log.info(
-          "{}用户: [{} {} {}] 从平台下没有任何API权限数据",
+          "{}用户: [{} {} {}] 在平台下没有任何API权限数据",
           logPrefix, platform, tenantId, userId
         )
         redisTemplate.delete(key).awaitSingle()
@@ -321,7 +321,7 @@ class UserAuthService(
       if (hasAllMenu) {
         val menus = menuRepository.findSimpleMenusByPlatform(platform)
         log.info(
-          "{}用户: [{} {} {}] 拥有平台下所有菜单的访问权限 {}条",
+          "{}用户: [{} {} {}] 拥有平台下所有菜单的访问权限, 共 {}条",
           logPrefix, platform, tenantId, userId, menus.size
         )
         return@get menus
@@ -363,7 +363,7 @@ class UserAuthService(
     if (hasAllMenu) {
       val menus = menuRepository.findSimpleMenusByPlatform(platform)
       log.info(
-        "{}用户: [{} {} {}] 拥有平台下所有菜单的访问权限 {}条",
+        "{}用户: [{} {} {}] 拥有平台下所有菜单的访问权限, 共 {}条",
         logPrefix, platform, tenantId, userId, menus.size
       )
       userMenuCache.put(key, menus)

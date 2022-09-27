@@ -39,7 +39,7 @@
           <collectionProp name="HeaderManager.headers">
             <elementProp name="" elementType="Header">
               <stringProp name="Header.name">Authorization</stringProp>
-              <stringProp name="Header.value">Bearer 10a62400a4bf49d2af12c76010c595a8</stringProp>
+              <stringProp name="Header.value">Bearer d7bf03eee9294916886386089a8b574e</stringProp>
             </elementProp>
           </collectionProp>
         </HeaderManager>

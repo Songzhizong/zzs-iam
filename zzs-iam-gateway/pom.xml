@@ -21,6 +21,10 @@
       <artifactId>zzs-kotlin</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.zzs.framework</groupId>
+      <artifactId>zzs-autoconfigure</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>

@@ -16,6 +16,7 @@ import com.zzs.iam.server.domain.model.user.OtherPlatAuthDO;
 import com.zzs.iam.server.domain.model.user.UserDO;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.nativex.hint.NativeHint;
+import org.springframework.nativex.hint.ResourceHint;
 import org.springframework.nativex.hint.TypeAccess;
 import org.springframework.nativex.hint.TypeHint;
 import org.springframework.nativex.type.NativeConfiguration;
@@ -44,6 +45,9 @@ import org.springframework.nativex.type.NativeConfiguration;
     @TypeHint(types = HistPasswordDO.class, access = {TypeAccess.PUBLIC_FIELDS, TypeAccess.DECLARED_FIELDS, TypeAccess.PUBLIC_CONSTRUCTORS, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.PUBLIC_METHODS, TypeAccess.DECLARED_METHODS}),
     @TypeHint(types = LoginLogDO.class, access = {TypeAccess.PUBLIC_FIELDS, TypeAccess.DECLARED_FIELDS, TypeAccess.PUBLIC_CONSTRUCTORS, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.PUBLIC_METHODS, TypeAccess.DECLARED_METHODS}),
     @TypeHint(types = OperationLogDO.class, access = {TypeAccess.PUBLIC_FIELDS, TypeAccess.DECLARED_FIELDS, TypeAccess.PUBLIC_CONSTRUCTORS, TypeAccess.DECLARED_CONSTRUCTORS, TypeAccess.PUBLIC_METHODS, TypeAccess.DECLARED_METHODS}),
+  },
+  resources = {
+    @ResourceHint(patterns = "template/mail_code.html")
   }
 )
 @Configuration

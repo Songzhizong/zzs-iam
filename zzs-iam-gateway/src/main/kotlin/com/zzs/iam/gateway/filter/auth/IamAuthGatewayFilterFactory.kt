@@ -7,10 +7,10 @@ import com.zzs.framework.core.trace.reactive.TraceContextHolder
 import com.zzs.framework.core.transmission.Result
 import com.zzs.iam.common.constants.IamHeaders
 import com.zzs.iam.gateway.common.FilterOrders
+import com.zzs.iam.gateway.common.PathMatchers
 import kotlinx.coroutines.reactor.mono
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.cloud.gateway.filter.GatewayFilter
 import org.springframework.cloud.gateway.filter.GatewayFilterChain
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory
@@ -19,7 +19,6 @@ import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.MediaType
 import org.springframework.stereotype.Component
-import org.springframework.util.AntPathMatcher
 import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
 
@@ -28,8 +27,6 @@ import reactor.core.publisher.Mono
  */
 @Component
 class IamAuthGatewayFilterFactory(
-  @Qualifier("iamGatewayAntPathMatcher")
-  private val antPathMatcher: AntPathMatcher,
   @Suppress("SpringJavaInjectionPointsAutowiringInspection")
   private val iamAuthenticateService: IamAuthenticateService
 ) : AbstractGatewayFilterFactory<IamAuthGatewayFilterFactory.Config>(Config::class.java) {
@@ -41,12 +38,11 @@ class IamAuthGatewayFilterFactory(
 
 
   override fun apply(config: Config): GatewayFilter {
-    return IamAuthGatewayFilter(config, antPathMatcher, iamAuthenticateService)
+    return IamAuthGatewayFilter(config, iamAuthenticateService)
   }
 
   class IamAuthGatewayFilter(
     private val config: Config,
-    private val antPathMatcher: AntPathMatcher,
     private val iamAuthenticateService: IamAuthenticateService
   ) : GatewayFilter, Ordered {
 
@@ -81,7 +77,8 @@ class IamAuthGatewayFilterFactory(
               forwardHeaderMap[v] = remove
             }
           }
-          val serverHttpRequest = request.mutate().headers { it.putAll(forwardHeaderMap) }.build()
+          val serverHttpRequest = request.mutate()
+            .headers { it.putAll(forwardHeaderMap) }.build()
           chain.filter(exchange.mutate().request(serverHttpRequest).build())
         }.onErrorResume { exception ->
           if (exception is VisibleException) {
@@ -113,14 +110,14 @@ class IamAuthGatewayFilterFactory(
     private fun apiAuthenticate(path: String, logPrefix: String): Boolean {
       val excludeApiAuthMatchers = config.permitApiAuthMatchers
       for (matcher in excludeApiAuthMatchers) {
-        if (antPathMatcher.match(matcher, path)) {
+        if (PathMatchers.match(matcher, path)) {
           log.debug("{}不需要API认证: {}", logPrefix, path)
           return false
         }
       }
       val apiAuthMatchers = config.apiAuthMatchers
       for (matcher in apiAuthMatchers) {
-        if (antPathMatcher.match(matcher, path)) {
+        if (PathMatchers.match(matcher, path)) {
           log.debug("{}需要API认证: {}", logPrefix, path)
           return true
         }
@@ -129,11 +126,10 @@ class IamAuthGatewayFilterFactory(
       return false
     }
 
-
     private fun permitMatch(path: String): Boolean {
       val permitMatchers = config.permitMatchers
       for (permitMatcher in permitMatchers) {
-        if (antPathMatcher.match(permitMatcher, path)) {
+        if (PathMatchers.match(permitMatcher, path)) {
           return true
         }
       }
@@ -144,6 +140,9 @@ class IamAuthGatewayFilterFactory(
 
   class Config {
 
+    /** 对转发头进行重命名 */
+    var renameForwardHeaders = HashMap<String, String>()
+
     /** 放行策略 */
     var permitMatchers = HashSet<String>()
 
@@ -152,8 +151,5 @@ class IamAuthGatewayFilterFactory(
 
     /** 不需要通过api鉴权的接口清单, 覆盖上面的配置 */
     var permitApiAuthMatchers = HashSet<String>()
-
-    /** 对转发头进行重命名 */
-    var renameForwardHeaders = HashMap<String, String>()
   }
 }
