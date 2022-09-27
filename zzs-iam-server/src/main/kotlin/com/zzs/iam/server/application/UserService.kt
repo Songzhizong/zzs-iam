@@ -11,7 +11,7 @@ import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.iam.common.password.PasswordEncoder
 import com.zzs.iam.common.pojo.User
-import com.zzs.iam.server.configure.IamUpmsProperties
+import com.zzs.iam.server.configure.IamServerProperties
 import com.zzs.iam.server.domain.model.user.HistPasswordDO
 import com.zzs.iam.server.domain.model.user.HistPasswordRepository
 import com.zzs.iam.server.domain.model.user.UserDO
@@ -39,7 +39,7 @@ class UserService(
   @Suppress("SpringJavaInjectionPointsAutowiringInspection")
   private val passwordEncoder: PasswordEncoder,
   cacheBuilderFactory: RedisCacheBuilderFactory,
-  private val userProperties: IamUpmsProperties,
+  private val userProperties: IamServerProperties,
   private val histPasswordRepository: HistPasswordRepository,
   private val transactionalEventPublisher: ReactiveTransactionalEventPublisher,
 ) {

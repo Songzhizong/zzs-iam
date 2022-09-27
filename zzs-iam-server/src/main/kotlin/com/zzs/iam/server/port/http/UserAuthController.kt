@@ -4,13 +4,13 @@ import com.zzs.framework.core.transmission.ListResult
 import com.zzs.framework.core.transmission.Result
 import com.zzs.framework.core.utils.requireNotBlank
 import com.zzs.iam.common.constants.IamHeaders
-import com.zzs.iam.common.infrastructure.security.SecurityContextHolder
 import com.zzs.iam.common.pojo.SimpleMenu
 import com.zzs.iam.server.application.UserAffService
 import com.zzs.iam.server.application.UserAuthService
 import com.zzs.iam.server.domain.model.authorization.Authorization
 import com.zzs.iam.server.domain.model.user.AuthUser
 import com.zzs.iam.server.dto.resp.UserTenantInfo
+import com.zzs.iam.server.infrastructure.security.SecurityContextHolder
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
