@@ -1,6 +1,6 @@
 package com.zzs.iam.server.dto.args;
 
-import com.zzs.framework.core.transmission.Paging;
+import cn.idealframework2.transmission.Paging;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

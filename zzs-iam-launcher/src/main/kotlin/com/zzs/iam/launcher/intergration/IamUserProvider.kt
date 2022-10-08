@@ -1,7 +1,7 @@
 package com.zzs.iam.launcher.intergration
 
-import com.zzs.framework.core.exception.ResourceNotFoundException
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
+import cn.idealframework2.exception.ResourceNotFoundException
+import cn.idealframework2.trace.coroutine.TraceContextHolder
 import com.zzs.iam.server.application.UserService
 import com.zzs.iam.server.domain.model.user.AuthUser
 import com.zzs.iam.server.domain.model.user.UserDO

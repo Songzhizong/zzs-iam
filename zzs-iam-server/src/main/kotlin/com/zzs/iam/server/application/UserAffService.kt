@@ -1,13 +1,13 @@
 package com.zzs.iam.server.application
 
-import com.zzs.framework.core.cache.coroutine.RedisCacheBuilderFactory
-import com.zzs.framework.core.cache.serialize.StringValueSerializer
-import com.zzs.framework.core.event.EventSuppliers
-import com.zzs.framework.core.event.ReactiveTransactionalEventPublisher
-import com.zzs.framework.core.event.publishAndAwait
-import com.zzs.framework.core.exception.ForbiddenException
-import com.zzs.framework.core.exception.ResourceNotFoundException
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
+import cn.idealframework2.cache.coroutine.RedisCacheBuilderFactory
+import cn.idealframework2.cache.serialize.StringValueSerializer
+import cn.idealframework2.event.EventSuppliers
+import cn.idealframework2.event.ReactiveTransactionalEventPublisher
+import cn.idealframework2.event.coroutine.publishAndAwait
+import cn.idealframework2.exception.ForbiddenException
+import cn.idealframework2.exception.ResourceNotFoundException
+import cn.idealframework2.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.exception.MissTenantIdException
 import com.zzs.iam.common.pojo.User
 import com.zzs.iam.server.domain.model.org.*

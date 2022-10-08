@@ -1,12 +1,12 @@
 package com.zzs.iam.server.application
 
-import com.zzs.framework.autoconfigure.cache.CacheProperties
-import com.zzs.framework.core.cache.coroutine.RedisCacheBuilderFactory
-import com.zzs.framework.core.cache.serialize.JsonValueSerializer
-import com.zzs.framework.core.cache.serialize.StringValueSerializer
-import com.zzs.framework.core.exception.BadRequestException
-import com.zzs.framework.core.lang.RandomStringUtils
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
+import cn.idealframework2.autoconfigure.cache.CacheProperties
+import cn.idealframework2.cache.coroutine.RedisCacheBuilderFactory
+import cn.idealframework2.cache.serialize.JsonValueSerializer
+import cn.idealframework2.cache.serialize.StringValueSerializer
+import cn.idealframework2.exception.BadRequestException
+import cn.idealframework2.lang.RandomStringUtils
+import cn.idealframework2.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.exception.TwoStepVerifyException
 import com.zzs.iam.server.domain.model.twostep.ActionRepository
 import com.zzs.iam.server.domain.model.twostep.TwoStepCfgDO

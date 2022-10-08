@@ -1,7 +1,7 @@
 package com.zzs.iam.server.domain.model.front;
 
-import com.zzs.framework.core.lang.StringUtils;
-import com.zzs.framework.core.utils.Asserts;
+import cn.idealframework2.lang.StringUtils;
+import cn.idealframework2.utils.Asserts;
 import com.zzs.iam.common.constants.MenuType;
 import com.zzs.iam.common.pojo.Menu;
 import com.zzs.iam.server.dto.args.UpdateMenuArgs;

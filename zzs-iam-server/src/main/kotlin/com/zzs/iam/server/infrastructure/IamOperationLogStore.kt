@@ -1,7 +1,7 @@
 package com.zzs.iam.server.infrastructure
 
-import com.zzs.framework.core.trace.OperationLog
-import com.zzs.framework.core.trace.reactive.OperationLogStore
+import cn.idealframework2.trace.OperationLog
+import cn.idealframework2.trace.reactive.OperationLogStore
 import com.zzs.iam.server.domain.model.log.OperationLogDO
 import com.zzs.iam.server.domain.model.log.OperationLogRepository
 import kotlinx.coroutines.reactor.mono

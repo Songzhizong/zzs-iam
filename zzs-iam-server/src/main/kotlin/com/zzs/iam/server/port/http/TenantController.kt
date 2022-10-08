@@ -1,13 +1,13 @@
 package com.zzs.iam.server.port.http
 
-import com.zzs.framework.core.spring.toPageResult
-import com.zzs.framework.core.trace.Operation
-import com.zzs.framework.core.transmission.ListResult
-import com.zzs.framework.core.transmission.PageResult
-import com.zzs.framework.core.transmission.Result
-import com.zzs.framework.core.utils.requireNonnull
-import com.zzs.framework.core.utils.requireNotBlank
-import com.zzs.framework.core.utils.toTreeList
+import cn.idealframework2.spring.toPageResult
+import cn.idealframework2.trace.Operation
+import cn.idealframework2.transmission.ListResult
+import cn.idealframework2.transmission.PageResult
+import cn.idealframework2.transmission.Result
+import cn.idealframework2.utils.requireNonnull
+import cn.idealframework2.utils.requireNotBlank
+import cn.idealframework2.utils.toTreeList
 import com.zzs.iam.common.pojo.Tenant
 import com.zzs.iam.server.application.TenantService
 import com.zzs.iam.server.domain.model.org.TenantRepository

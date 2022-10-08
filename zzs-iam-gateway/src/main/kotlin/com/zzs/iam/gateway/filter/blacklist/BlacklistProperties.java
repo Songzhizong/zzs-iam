@@ -1,6 +1,6 @@
 package com.zzs.iam.gateway.filter.blacklist;
 
-import com.zzs.framework.core.lang.StringUtils;
+import cn.idealframework2.lang.StringUtils;
 
 import java.util.HashSet;
 import java.util.Set;

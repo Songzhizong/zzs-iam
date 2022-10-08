@@ -1,9 +1,9 @@
 package com.zzs.iam.server.application
 
-import com.zzs.framework.core.exception.BadRequestException
-import com.zzs.framework.core.exception.ResourceNotFoundException
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
-import com.zzs.framework.core.utils.requireNotBlank
+import cn.idealframework2.exception.BadRequestException
+import cn.idealframework2.exception.ResourceNotFoundException
+import cn.idealframework2.trace.coroutine.TraceContextHolder
+import cn.idealframework2.utils.requireNotBlank
 import com.zzs.iam.server.domain.model.org.TenantDO
 import com.zzs.iam.server.domain.model.org.TenantRepository
 import com.zzs.iam.server.domain.model.org.TenantUserRepository

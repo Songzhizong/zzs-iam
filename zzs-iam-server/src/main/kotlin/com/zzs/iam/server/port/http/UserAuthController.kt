@@ -1,8 +1,8 @@
 package com.zzs.iam.server.port.http
 
-import com.zzs.framework.core.transmission.ListResult
-import com.zzs.framework.core.transmission.Result
-import com.zzs.framework.core.utils.requireNotBlank
+import cn.idealframework2.transmission.ListResult
+import cn.idealframework2.transmission.Result
+import cn.idealframework2.utils.requireNotBlank
 import com.zzs.iam.common.constants.IamHeaders
 import com.zzs.iam.common.pojo.SimpleMenu
 import com.zzs.iam.server.application.UserAffService

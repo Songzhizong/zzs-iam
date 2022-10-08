@@ -1,7 +1,7 @@
 package com.zzs.iam.server.domain.model.captcha
 
-import com.zzs.framework.core.exception.BadRequestException
-import com.zzs.framework.core.exception.ResourceNotFoundException
+import cn.idealframework2.exception.BadRequestException
+import cn.idealframework2.exception.ResourceNotFoundException
 import com.zzs.iam.common.constants.UserAuthStrategy
 import org.springframework.stereotype.Service
 import java.time.Duration

@@ -1,19 +1,19 @@
 package com.zzs.iam.launcher.configure;
 
+import cn.idealframework2.exception.VisibleException;
+import cn.idealframework2.json.JsonFormatException;
+import cn.idealframework2.json.JsonParseException;
+import cn.idealframework2.json.JsonUtils;
+import cn.idealframework2.lang.StringUtils;
+import cn.idealframework2.spring.ExchangeUtils;
+import cn.idealframework2.trace.TraceContext;
+import cn.idealframework2.trace.reactive.TraceExchangeUtils;
+import cn.idealframework2.transmission.Result;
+import cn.idealframework2.utils.ExceptionUtils;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.mongodb.MongoCommandException;
 import com.mongodb.MongoWriteException;
 import com.mongodb.WriteError;
-import com.zzs.framework.core.exception.VisibleException;
-import com.zzs.framework.core.json.JsonFormatException;
-import com.zzs.framework.core.json.JsonParseException;
-import com.zzs.framework.core.json.JsonUtils;
-import com.zzs.framework.core.lang.StringUtils;
-import com.zzs.framework.core.spring.ExchangeUtils;
-import com.zzs.framework.core.trace.TraceContext;
-import com.zzs.framework.core.trace.reactive.TraceExchangeUtils;
-import com.zzs.framework.core.transmission.Result;
-import com.zzs.framework.core.utils.ExceptionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
@@ -23,6 +23,7 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.mongodb.UncategorizedMongoDbException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
@@ -53,7 +54,7 @@ public class FilterExceptionHandler implements ErrorWebExceptionHandler, Ordered
   @Nonnull
   @Override
   public Mono<Void> handle(@Nonnull ServerWebExchange exchange, @Nonnull Throwable throwable) {
-    HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+    HttpStatusCode httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
     Result<Object> res = null;
     String logPrefix = "";
     String traceId = null;
@@ -191,7 +192,7 @@ public class FilterExceptionHandler implements ErrorWebExceptionHandler, Ordered
     }
 
     if (throwable instanceof org.springframework.web.server.ResponseStatusException exception) {
-      httpStatus = exception.getStatus();
+      httpStatus = exception.getStatusCode();
       String message = exception.getMessage();
       res = Result.failure(message);
       String uri = exchange.getRequest().getURI().getPath();

@@ -1,6 +1,6 @@
 package com.zzs.iam.server.dto.resp;
 
-import com.zzs.framework.core.lang.TreeNode;
+import cn.idealframework2.lang.TreeNode;
 import com.zzs.iam.common.pojo.Menu;
 import com.zzs.iam.server.domain.model.front.MenuDO;
 

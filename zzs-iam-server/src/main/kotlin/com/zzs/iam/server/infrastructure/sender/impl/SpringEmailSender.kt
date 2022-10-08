@@ -1,7 +1,7 @@
 package com.zzs.iam.server.infrastructure.sender.impl
 
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
-import com.zzs.framework.core.utils.CommonPool
+import cn.idealframework2.trace.coroutine.TraceContextHolder
+import cn.idealframework2.utils.CommonPool
 import com.zzs.iam.server.infrastructure.sender.EmailSender
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.slf4j.Logger

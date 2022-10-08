@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>zzs-parent</artifactId>
-    <groupId>com.zzs.framework</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>ideal-parent</artifactId>
+    <groupId>cn.idealframework2</groupId>
+    <version>3.0-SNAPSHOT</version>
   </parent>
   <groupId>com.zzs</groupId>
   <artifactId>zzs-iam</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>2.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <modules>

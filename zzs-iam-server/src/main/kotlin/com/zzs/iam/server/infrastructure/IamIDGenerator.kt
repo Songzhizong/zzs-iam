@@ -1,7 +1,7 @@
 package com.zzs.iam.server.infrastructure
 
-import com.zzs.framework.core.id.IDGenerator
-import com.zzs.framework.core.id.IDGeneratorFactory
+import cn.idealframework2.id.IDGenerator
+import cn.idealframework2.id.IDGeneratorFactory
 import org.springframework.stereotype.Component
 
 /**

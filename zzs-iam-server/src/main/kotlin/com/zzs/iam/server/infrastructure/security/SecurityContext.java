@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.security;
 
-import com.zzs.framework.core.exception.ForbiddenException;
+import cn.idealframework2.exception.ForbiddenException;
 import com.zzs.iam.common.exception.MissTenantIdException;
 
 import javax.annotation.Nonnull;

@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.security;
 
-import com.zzs.framework.core.lang.StringUtils;
+import cn.idealframework2.lang.StringUtils;
 import com.zzs.iam.common.constants.IamHeaders;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;

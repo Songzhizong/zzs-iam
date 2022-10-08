@@ -1,6 +1,6 @@
 package com.zzs.iam.common.event.platform;
 
-import com.zzs.framework.core.event.BaseEvent;
+import cn.idealframework2.event.BaseEvent;
 import com.zzs.iam.common.pojo.Platform;
 
 import javax.annotation.Nonnull;

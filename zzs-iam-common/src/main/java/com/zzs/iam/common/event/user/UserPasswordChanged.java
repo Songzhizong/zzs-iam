@@ -1,6 +1,6 @@
 package com.zzs.iam.common.event.user;
 
-import com.zzs.framework.core.event.BaseEvent;
+import cn.idealframework2.event.BaseEvent;
 
 import javax.annotation.Nonnull;
 

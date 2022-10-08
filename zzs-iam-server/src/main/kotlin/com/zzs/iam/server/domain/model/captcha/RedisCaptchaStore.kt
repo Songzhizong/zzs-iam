@@ -1,8 +1,8 @@
 package com.zzs.iam.server.domain.model.captcha
 
-import com.zzs.framework.autoconfigure.cache.CacheProperties
-import com.zzs.framework.core.json.JsonUtils
-import com.zzs.framework.core.json.parseJson
+import cn.idealframework2.autoconfigure.cache.CacheProperties
+import cn.idealframework2.json.JsonUtils
+import cn.idealframework2.json.parseJson
 import kotlinx.coroutines.reactor.awaitSingle
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.springframework.data.redis.core.ReactiveStringRedisTemplate

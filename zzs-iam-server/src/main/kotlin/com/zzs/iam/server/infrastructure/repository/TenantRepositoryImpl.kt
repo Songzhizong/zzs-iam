@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.framework.core.spring.toPageable
+import cn.idealframework2.spring.toPageable
 import com.zzs.iam.server.domain.model.org.TenantDO
 import com.zzs.iam.server.domain.model.org.TenantRepository
 import com.zzs.iam.server.dto.args.QueryTenantArgs
@@ -60,6 +60,7 @@ class TenantRepositoryImpl(
     return mongoTemplate.exists(query, clazz).awaitSingle()
   }
 
+  @Suppress("DuplicatedCode")
   override suspend fun query(platform: String, args: QueryTenantArgs): Page<TenantDO> {
     val paging = args.paging.descBy("id")
     val name = args.name?.ifBlank { null }

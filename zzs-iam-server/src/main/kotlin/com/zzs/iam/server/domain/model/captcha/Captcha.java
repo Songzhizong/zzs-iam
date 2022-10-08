@@ -1,6 +1,6 @@
 package com.zzs.iam.server.domain.model.captcha;
 
-import com.zzs.framework.core.lang.RandomStringUtils;
+import cn.idealframework2.lang.RandomStringUtils;
 
 import javax.annotation.Nonnull;
 

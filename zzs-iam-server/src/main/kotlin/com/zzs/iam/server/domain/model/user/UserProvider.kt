@@ -1,7 +1,7 @@
 package com.zzs.iam.server.domain.model.user
 
-import com.zzs.framework.core.exception.BadRequestException
-import com.zzs.framework.core.exception.ResourceNotFoundException
+import cn.idealframework2.exception.BadRequestException
+import cn.idealframework2.exception.ResourceNotFoundException
 
 /**
  * @author 宋志宗 on 2022/8/16

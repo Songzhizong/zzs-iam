@@ -1,6 +1,6 @@
 package com.zzs.iam.server.domain.model.log
 
-import com.zzs.framework.core.transmission.Paging
+import cn.idealframework2.transmission.Paging
 import org.springframework.data.domain.Page
 
 /**

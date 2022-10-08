@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.sender.impl
 
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
+import cn.idealframework2.trace.coroutine.TraceContextHolder
 import com.zzs.iam.server.infrastructure.sender.SmsSender
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

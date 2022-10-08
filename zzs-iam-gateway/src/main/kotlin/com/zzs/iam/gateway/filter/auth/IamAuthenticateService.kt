@@ -1,7 +1,7 @@
 package com.zzs.iam.gateway.filter.auth
 
-import com.zzs.framework.core.exception.ForbiddenException
-import com.zzs.framework.core.exception.UnauthorizedException
+import cn.idealframework2.exception.ForbiddenException
+import cn.idealframework2.exception.UnauthorizedException
 import org.springframework.util.LinkedMultiValueMap
 
 /**

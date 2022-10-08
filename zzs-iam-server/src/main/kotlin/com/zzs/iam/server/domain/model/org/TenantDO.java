@@ -1,6 +1,6 @@
 package com.zzs.iam.server.domain.model.org;
 
-import com.zzs.framework.core.lang.StringUtils;
+import cn.idealframework2.lang.StringUtils;
 import com.zzs.iam.common.pojo.Tenant;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;

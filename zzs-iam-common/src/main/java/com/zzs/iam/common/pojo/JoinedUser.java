@@ -1,6 +1,6 @@
 package com.zzs.iam.common.pojo;
 
-import com.zzs.framework.core.utils.DesensitizeUtils;
+import cn.idealframework2.utils.DesensitizeUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

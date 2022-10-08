@@ -1,7 +1,7 @@
 package com.zzs.iam.server.port.event
 
-import com.zzs.framework.core.event.coroutine.EventListenerManager
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
+import cn.idealframework2.event.coroutine.EventListenerManager
+import cn.idealframework2.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.event.user.*
 import com.zzs.iam.server.application.UserAffService
 import com.zzs.iam.server.application.UserAuthService

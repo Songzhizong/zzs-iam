@@ -15,9 +15,9 @@
  */
 package com.zzs.iam.server.infrastructure;
 
-import com.zzs.framework.core.exception.BadRequestException;
-import com.zzs.framework.core.lang.StringUtils;
-import com.zzs.framework.core.utils.Asserts;
+import cn.idealframework2.exception.BadRequestException;
+import cn.idealframework2.lang.StringUtils;
+import cn.idealframework2.utils.Asserts;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;

@@ -1,9 +1,9 @@
 package com.zzs.iam.server.domain.model.org;
 
-import com.zzs.framework.core.crypto.AES;
-import com.zzs.framework.core.event.EventSuppliers;
-import com.zzs.framework.core.lang.Sets;
-import com.zzs.framework.core.lang.StringUtils;
+import cn.idealframework2.crypto.AES;
+import cn.idealframework2.event.EventSuppliers;
+import cn.idealframework2.lang.Sets;
+import cn.idealframework2.lang.StringUtils;
 import com.zzs.iam.common.event.user.PlatformUserFrozen;
 import com.zzs.iam.common.pojo.JoinedUser;
 import com.zzs.iam.common.pojo.User;

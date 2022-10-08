@@ -1,7 +1,7 @@
 package com.zzs.iam.gateway.filter.trace
 
-import com.zzs.framework.core.trace.TraceConstants
-import com.zzs.framework.core.trace.reactive.TraceContextHolder
+import cn.idealframework2.trace.TraceConstants
+import cn.idealframework2.trace.reactive.TraceContextHolder
 import com.zzs.iam.gateway.common.FilterOrders
 import org.springframework.cloud.gateway.filter.GatewayFilterChain
 import org.springframework.cloud.gateway.filter.GlobalFilter

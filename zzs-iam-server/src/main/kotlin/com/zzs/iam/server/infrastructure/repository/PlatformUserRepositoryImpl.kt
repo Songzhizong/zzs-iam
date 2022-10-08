@@ -1,6 +1,6 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.framework.core.spring.toPageable
+import cn.idealframework2.spring.toPageable
 import com.zzs.iam.server.domain.model.org.PlatformUserDO
 import com.zzs.iam.server.domain.model.org.PlatformUserRepository
 import com.zzs.iam.server.dto.args.QueryUserArgs

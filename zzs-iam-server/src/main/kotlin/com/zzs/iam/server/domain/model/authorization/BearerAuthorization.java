@@ -1,7 +1,7 @@
 package com.zzs.iam.server.domain.model.authorization;
 
-import com.zzs.framework.core.exception.UnauthorizedException;
-import com.zzs.framework.core.lang.StringUtils;
+import cn.idealframework2.exception.UnauthorizedException;
+import cn.idealframework2.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 

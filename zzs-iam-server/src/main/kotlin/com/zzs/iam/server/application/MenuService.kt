@@ -1,12 +1,12 @@
 package com.zzs.iam.server.application
 
-import com.zzs.framework.autoconfigure.cache.CacheProperties
-import com.zzs.framework.core.exception.BadRequestException
-import com.zzs.framework.core.exception.ResourceNotFoundException
-import com.zzs.framework.core.spring.RedisTemplateUtils
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
-import com.zzs.framework.core.utils.requireNonnull
-import com.zzs.framework.core.utils.requireNotBlank
+import cn.idealframework2.autoconfigure.cache.CacheProperties
+import cn.idealframework2.exception.BadRequestException
+import cn.idealframework2.exception.ResourceNotFoundException
+import cn.idealframework2.spring.RedisTemplateUtils
+import cn.idealframework2.trace.coroutine.TraceContextHolder
+import cn.idealframework2.utils.requireNonnull
+import cn.idealframework2.utils.requireNotBlank
 import com.zzs.iam.server.domain.model.front.MenuDO
 import com.zzs.iam.server.domain.model.front.MenuRepository
 import com.zzs.iam.server.domain.model.front.TerminalRepository

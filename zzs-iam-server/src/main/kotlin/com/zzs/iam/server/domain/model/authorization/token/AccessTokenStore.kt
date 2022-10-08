@@ -1,9 +1,9 @@
 package com.zzs.iam.server.domain.model.authorization.token
 
-import com.zzs.framework.autoconfigure.cache.CacheProperties
-import com.zzs.framework.core.date.DateTimes
-import com.zzs.framework.core.json.parseJson
-import com.zzs.framework.core.json.toJsonString
+import cn.idealframework2.autoconfigure.cache.CacheProperties
+import cn.idealframework2.date.DateTimes
+import cn.idealframework2.json.parseJson
+import cn.idealframework2.json.toJsonString
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope

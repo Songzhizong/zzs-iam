@@ -1,6 +1,6 @@
 package com.zzs.iam.gateway.filter.blacklist
 
-import com.zzs.framework.core.spring.ExchangeUtils
+import cn.idealframework2.spring.ExchangeUtils
 import com.zzs.iam.gateway.common.FilterOrders
 import org.springframework.cloud.gateway.filter.GatewayFilterChain
 import org.springframework.cloud.gateway.filter.GlobalFilter

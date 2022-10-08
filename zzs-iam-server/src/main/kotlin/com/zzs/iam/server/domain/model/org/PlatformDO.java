@@ -1,6 +1,6 @@
 package com.zzs.iam.server.domain.model.org;
 
-import com.zzs.framework.core.event.EventTuple;
+import cn.idealframework2.event.EventTuple;
 import com.zzs.iam.common.pojo.Platform;
 import com.zzs.iam.server.domain.model.org.event.builder.PlatformCreatedBuilder;
 import org.springframework.data.annotation.CreatedDate;

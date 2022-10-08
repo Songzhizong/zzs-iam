@@ -1,10 +1,10 @@
 package com.zzs.iam.server.infrastructure.wechat
 
-import com.zzs.framework.core.exception.BadRequestException
-import com.zzs.framework.core.exception.InternalServerException
-import com.zzs.framework.core.json.parseJson
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
-import com.zzs.framework.core.utils.requireNotBlank
+import cn.idealframework2.exception.BadRequestException
+import cn.idealframework2.exception.InternalServerException
+import cn.idealframework2.json.parseJson
+import cn.idealframework2.trace.coroutine.TraceContextHolder
+import cn.idealframework2.utils.requireNotBlank
 import com.zzs.iam.server.infrastructure.wechat.resp.AccessTokenResp
 import com.zzs.iam.server.infrastructure.wechat.resp.Code2SessionResp
 import com.zzs.iam.server.infrastructure.wechat.resp.PhoneNumberResp

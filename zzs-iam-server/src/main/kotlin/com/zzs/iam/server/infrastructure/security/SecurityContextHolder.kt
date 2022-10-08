@@ -1,8 +1,8 @@
 package com.zzs.iam.server.infrastructure.security
 
-import com.zzs.framework.core.exception.InternalServerException
-import com.zzs.framework.core.exception.UnauthorizedException
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
+import cn.idealframework2.exception.InternalServerException
+import cn.idealframework2.exception.UnauthorizedException
+import cn.idealframework2.trace.coroutine.TraceContextHolder
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

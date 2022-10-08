@@ -1,14 +1,14 @@
 package com.zzs.iam.server.application
 
-import com.zzs.framework.core.cache.coroutine.RedisCacheBuilderFactory
-import com.zzs.framework.core.cache.serialize.JsonValueSerializer
-import com.zzs.framework.core.event.ReactiveTransactionalEventPublisher
-import com.zzs.framework.core.event.publishAndAwait
-import com.zzs.framework.core.exception.BadRequestException
-import com.zzs.framework.core.exception.ForbiddenException
-import com.zzs.framework.core.exception.ResourceNotFoundException
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
-import com.zzs.framework.core.utils.requireNotBlank
+import cn.idealframework2.cache.coroutine.RedisCacheBuilderFactory
+import cn.idealframework2.cache.serialize.JsonValueSerializer
+import cn.idealframework2.event.ReactiveTransactionalEventPublisher
+import cn.idealframework2.event.coroutine.publishAndAwait
+import cn.idealframework2.exception.BadRequestException
+import cn.idealframework2.exception.ForbiddenException
+import cn.idealframework2.exception.ResourceNotFoundException
+import cn.idealframework2.trace.coroutine.TraceContextHolder
+import cn.idealframework2.utils.requireNotBlank
 import com.zzs.iam.common.password.PasswordEncoder
 import com.zzs.iam.common.pojo.User
 import com.zzs.iam.server.configure.IamServerProperties

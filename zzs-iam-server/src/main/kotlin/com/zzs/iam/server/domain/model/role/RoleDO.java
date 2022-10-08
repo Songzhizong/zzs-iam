@@ -1,6 +1,6 @@
 package com.zzs.iam.server.domain.model.role;
 
-import com.zzs.framework.core.exception.BadRequestException;
+import cn.idealframework2.exception.BadRequestException;
 import com.zzs.iam.common.constants.RoleType;
 import com.zzs.iam.common.pojo.Role;
 import com.zzs.iam.server.domain.model.org.PlatformDO;

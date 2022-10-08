@@ -1,11 +1,11 @@
 package com.zzs.iam.server.application
 
-import com.zzs.framework.core.exception.BadRequestException
-import com.zzs.framework.core.exception.ForbiddenException
-import com.zzs.framework.core.exception.ResourceNotFoundException
-import com.zzs.framework.core.lang.StringUtils
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
-import com.zzs.framework.core.utils.requireNotBlank
+import cn.idealframework2.exception.BadRequestException
+import cn.idealframework2.exception.ForbiddenException
+import cn.idealframework2.exception.ResourceNotFoundException
+import cn.idealframework2.lang.StringUtils
+import cn.idealframework2.trace.coroutine.TraceContextHolder
+import cn.idealframework2.utils.requireNotBlank
 import com.zzs.iam.common.password.PasswordEncoder
 import com.zzs.iam.server.domain.model.org.AuthClientDO
 import com.zzs.iam.server.domain.model.org.AuthClientRepository
@@ -25,7 +25,7 @@ import java.util.*
 class AuthClientService(
   private val passwordEncoder: PasswordEncoder,
   private val platformRepository: PlatformRepository,
-  private val authClientRepository: AuthClientRepository
+  private val authClientRepository: AuthClientRepository,
 ) {
   companion object {
     private val log: Logger = LoggerFactory.getLogger(AuthClientService::class.java)

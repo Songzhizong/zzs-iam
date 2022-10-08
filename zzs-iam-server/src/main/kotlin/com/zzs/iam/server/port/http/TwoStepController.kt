@@ -1,7 +1,7 @@
 package com.zzs.iam.server.port.http
 
-import com.zzs.framework.core.transmission.Result
-import com.zzs.framework.core.utils.requireNotBlank
+import cn.idealframework2.transmission.Result
+import cn.idealframework2.utils.requireNotBlank
 import com.zzs.iam.server.application.TwoStepService
 import com.zzs.iam.server.infrastructure.security.SecurityContextHolder
 import org.springframework.web.bind.annotation.PostMapping

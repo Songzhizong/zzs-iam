@@ -1,6 +1,6 @@
 package com.zzs.iam.common.exception;
 
-import com.zzs.framework.core.exception.ForbiddenException;
+import cn.idealframework2.exception.ForbiddenException;
 
 /**
  * @author 宋志宗 on 2022/8/16

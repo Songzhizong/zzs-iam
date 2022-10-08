@@ -1,10 +1,10 @@
 package com.zzs.iam.server.domain.model.user;
 
-import com.zzs.framework.core.crypto.AES;
-import com.zzs.framework.core.event.EventSuppliers;
-import com.zzs.framework.core.event.EventTuple;
-import com.zzs.framework.core.exception.BadRequestException;
-import com.zzs.framework.core.lang.StringUtils;
+import cn.idealframework2.crypto.AES;
+import cn.idealframework2.event.EventSuppliers;
+import cn.idealframework2.event.EventTuple;
+import cn.idealframework2.exception.BadRequestException;
+import cn.idealframework2.lang.StringUtils;
 import com.zzs.iam.common.event.user.*;
 import com.zzs.iam.common.pojo.User;
 import com.zzs.iam.server.domain.model.user.event.builder.UserCreatedBuilder;

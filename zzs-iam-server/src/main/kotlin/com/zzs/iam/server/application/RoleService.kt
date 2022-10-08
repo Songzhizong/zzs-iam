@@ -1,13 +1,13 @@
 package com.zzs.iam.server.application
 
-import com.zzs.framework.core.exception.BadRequestException
-import com.zzs.framework.core.exception.ForbiddenException
-import com.zzs.framework.core.exception.ResourceNotFoundException
-import com.zzs.framework.core.json.toJsonString
-import com.zzs.framework.core.trace.coroutine.Operations
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
-import com.zzs.framework.core.utils.requireNonnull
-import com.zzs.framework.core.utils.requireNotBlank
+import cn.idealframework2.exception.BadRequestException
+import cn.idealframework2.exception.ForbiddenException
+import cn.idealframework2.exception.ResourceNotFoundException
+import cn.idealframework2.json.toJsonString
+import cn.idealframework2.trace.coroutine.Operations
+import cn.idealframework2.trace.coroutine.TraceContextHolder
+import cn.idealframework2.utils.requireNonnull
+import cn.idealframework2.utils.requireNotBlank
 import com.zzs.iam.common.constants.RoleType
 import com.zzs.iam.common.pojo.SimpleMenu
 import com.zzs.iam.server.domain.model.front.MenuRepository

@@ -1,7 +1,7 @@
 package com.zzs.iam.server.infrastructure.repository
 
-import com.zzs.framework.core.spring.toPageable
-import com.zzs.framework.core.transmission.Paging
+import cn.idealframework2.spring.toPageable
+import cn.idealframework2.transmission.Paging
 import com.zzs.iam.server.domain.model.log.LoginLogDO
 import com.zzs.iam.server.domain.model.log.LoginLogRepository
 import com.zzs.iam.server.infrastructure.IamIDGenerator

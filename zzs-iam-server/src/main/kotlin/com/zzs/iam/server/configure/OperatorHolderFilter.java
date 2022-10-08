@@ -1,8 +1,8 @@
 package com.zzs.iam.server.configure;
 
-import com.zzs.framework.core.lang.StringUtils;
-import com.zzs.framework.core.trace.Operator;
-import com.zzs.framework.core.trace.reactive.OperatorHolder;
+import cn.idealframework2.lang.StringUtils;
+import cn.idealframework2.trace.Operator;
+import cn.idealframework2.trace.reactive.OperatorHolder;
 import com.zzs.iam.common.constants.IamHeaders;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;

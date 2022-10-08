@@ -1,10 +1,10 @@
 package com.zzs.iam.gateway.filter.auth
 
-import com.zzs.framework.core.exception.VisibleException
-import com.zzs.framework.core.json.toJsonString
-import com.zzs.framework.core.spring.ExchangeUtils
-import com.zzs.framework.core.trace.reactive.TraceContextHolder
-import com.zzs.framework.core.transmission.Result
+import cn.idealframework2.exception.VisibleException
+import cn.idealframework2.json.toJsonString
+import cn.idealframework2.spring.ExchangeUtils
+import cn.idealframework2.trace.reactive.TraceContextHolder
+import cn.idealframework2.transmission.Result
 import com.zzs.iam.common.constants.IamHeaders
 import com.zzs.iam.gateway.common.FilterOrders
 import com.zzs.iam.gateway.common.PathMatchers

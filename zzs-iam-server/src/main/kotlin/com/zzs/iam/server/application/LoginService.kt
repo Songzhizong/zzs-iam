@@ -1,9 +1,9 @@
 package com.zzs.iam.server.application
 
-import com.zzs.framework.core.event.ReactiveEventPublisher
-import com.zzs.framework.core.event.publishAndAwait
-import com.zzs.framework.core.exception.ForbiddenException
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
+import cn.idealframework2.event.ReactiveEventPublisher
+import cn.idealframework2.event.coroutine.publishAndAwait
+import cn.idealframework2.exception.ForbiddenException
+import cn.idealframework2.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.event.user.UserLogined
 import com.zzs.iam.server.configure.IamServerProperties
 import com.zzs.iam.server.domain.model.authorization.Authentication

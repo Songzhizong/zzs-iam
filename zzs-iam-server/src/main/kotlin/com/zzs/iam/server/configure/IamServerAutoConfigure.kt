@@ -1,6 +1,6 @@
 package com.zzs.iam.server.configure
 
-import com.zzs.framework.core.spring.WebClients
+import cn.idealframework2.spring.WebClients
 import com.zzs.iam.server.infrastructure.sender.SmsSender
 import com.zzs.iam.server.infrastructure.sender.impl.LogSmsSender
 import com.zzs.iam.server.infrastructure.wechat.MockWechatClient

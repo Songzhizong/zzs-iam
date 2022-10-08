@@ -1,14 +1,14 @@
 package com.zzs.iam.server.application
 
+import cn.idealframework2.autoconfigure.cache.CacheProperties
+import cn.idealframework2.cache.coroutine.RedisCacheBuilderFactory
+import cn.idealframework2.cache.serialize.JsonValueSerializer
+import cn.idealframework2.cache.serialize.StringValueSerializer
+import cn.idealframework2.exception.ForbiddenException
+import cn.idealframework2.exception.UnauthorizedException
+import cn.idealframework2.lang.Sets
+import cn.idealframework2.trace.coroutine.TraceContextHolder
 import com.github.benmanes.caffeine.cache.Caffeine
-import com.zzs.framework.autoconfigure.cache.CacheProperties
-import com.zzs.framework.core.cache.coroutine.RedisCacheBuilderFactory
-import com.zzs.framework.core.cache.serialize.JsonValueSerializer
-import com.zzs.framework.core.cache.serialize.StringValueSerializer
-import com.zzs.framework.core.exception.ForbiddenException
-import com.zzs.framework.core.exception.UnauthorizedException
-import com.zzs.framework.core.lang.Sets
-import com.zzs.framework.core.trace.coroutine.TraceContextHolder
 import com.zzs.iam.common.constants.IamHeaders
 import com.zzs.iam.common.constants.RoleType
 import com.zzs.iam.common.exception.MissTenantIdException

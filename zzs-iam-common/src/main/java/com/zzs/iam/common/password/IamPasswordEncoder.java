@@ -1,9 +1,9 @@
 package com.zzs.iam.common.password;
 
-import com.zzs.framework.core.crypto.HmacSHA1;
-import com.zzs.framework.core.crypto.MD5;
-import com.zzs.framework.core.crypto.SHA256;
-import com.zzs.framework.core.lang.StringUtils;
+import cn.idealframework2.crypto.HmacSHA1;
+import cn.idealframework2.crypto.MD5;
+import cn.idealframework2.crypto.SHA256;
+import cn.idealframework2.lang.StringUtils;
 
 import javax.annotation.Nonnull;
 import java.nio.charset.StandardCharsets;

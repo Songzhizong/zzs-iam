@@ -1,11 +1,11 @@
 package com.zzs.iam.gateway.filter.replay
 
-import com.zzs.framework.autoconfigure.cache.CacheProperties
-import com.zzs.framework.core.json.JsonUtils
-import com.zzs.framework.core.spring.ExchangeUtils
-import com.zzs.framework.core.trace.TraceContext
-import com.zzs.framework.core.trace.reactive.TraceExchangeUtils
-import com.zzs.framework.core.transmission.Result
+import cn.idealframework2.autoconfigure.cache.CacheProperties
+import cn.idealframework2.json.JsonUtils
+import cn.idealframework2.spring.ExchangeUtils
+import cn.idealframework2.trace.TraceContext
+import cn.idealframework2.trace.reactive.TraceExchangeUtils
+import cn.idealframework2.transmission.Result
 import com.zzs.iam.gateway.common.FilterOrders
 import com.zzs.iam.gateway.common.PathMatchers
 import org.slf4j.Logger

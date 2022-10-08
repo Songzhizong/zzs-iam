@@ -1,7 +1,7 @@
 package com.zzs.iam.server.domain.model.user.event.builder
 
-import com.zzs.framework.core.event.Event
-import com.zzs.framework.core.event.EventBuilder
+import cn.idealframework2.event.Event
+import cn.idealframework2.event.EventBuilder
 import com.zzs.iam.common.event.user.UserCreated
 import com.zzs.iam.server.domain.model.user.UserDO
 

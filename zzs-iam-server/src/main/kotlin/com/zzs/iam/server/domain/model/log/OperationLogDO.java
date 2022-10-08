@@ -1,6 +1,6 @@
 package com.zzs.iam.server.domain.model.log;
 
-import com.zzs.framework.core.trace.OperationLog;
+import cn.idealframework2.trace.OperationLog;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
