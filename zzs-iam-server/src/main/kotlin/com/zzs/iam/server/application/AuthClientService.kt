@@ -41,7 +41,8 @@ class AuthClientService(
       }
     }
     val clientId = args.clientId.requireNotBlank { "客户端ID为空" }.also {
-      authClientRepository.findByClientId(it)?.also {
+      authClientRepository.findByClientId(it)?.apply {
+        log.info("客户端id: [{}] 已被使用", it)
         throw BadRequestException("客户端ID已被使用")
       }
     }

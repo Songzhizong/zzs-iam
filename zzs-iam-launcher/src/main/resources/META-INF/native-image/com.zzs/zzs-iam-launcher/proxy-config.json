@@ -1,0 +1,16 @@
+[
+  [
+    "org.springframework.data.mongodb.core.mapping.Document",
+    "org.springframework.core.annotation.SynthesizedAnnotation"
+  ],
+  [
+    "com.mongodb.reactivestreams.client.MongoDatabase",
+    "org.springframework.aop.SpringProxy",
+    "org.springframework.core.DecoratingProxy"
+  ],
+  [
+    "com.mongodb.reactivestreams.client.MongoCollection",
+    "org.springframework.aop.SpringProxy",
+    "org.springframework.core.DecoratingProxy"
+  ]
+]

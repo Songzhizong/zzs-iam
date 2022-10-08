@@ -6,7 +6,10 @@ import com.zzs.iam.server.infrastructure.sender.EmailSender
 import kotlinx.coroutines.reactor.awaitSingleOrNull
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.aot.hint.RuntimeHints
+import org.springframework.aot.hint.RuntimeHintsRegistrar
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.context.annotation.ImportRuntimeHints
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.MimeMessageHelper
 import org.springframework.stereotype.Component
@@ -20,6 +23,7 @@ import java.util.concurrent.CompletableFuture
  * @author 宋志宗 on 2022/8/26
  */
 @Component
+@ImportRuntimeHints(SpringEmailSender.SpringEmailSenderRuntimeHints::class)
 class SpringEmailSender(
   private val javaMailSender: JavaMailSender
 ) : EmailSender {
@@ -72,5 +76,12 @@ class SpringEmailSender(
       )
     ).awaitSingleOrNull()
     log.debug("{}邮件发送耗时: {}", logPrefix, System.currentTimeMillis() - start)
+  }
+
+  class SpringEmailSenderRuntimeHints : RuntimeHintsRegistrar {
+
+    override fun registerHints(hints: RuntimeHints, classLoader: ClassLoader?) {
+      hints.resources().registerPattern("template/mail_code.html")
+    }
   }
 }

@@ -9,5 +9,16 @@
         "parameterTypes": []
       }
     ]
+  },
+  {
+    "name": "io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider",
+    "allDeclaredMethods": true,
+    "allPublicMethods": true,
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": []
+      }
+    ]
   }
 ]
