@@ -3,11 +3,12 @@ package com.zzs.iam.gateway.filter.auth
 import cn.idealframework2.exception.VisibleException
 import cn.idealframework2.json.toJsonString
 import cn.idealframework2.spring.ExchangeUtils
+import cn.idealframework2.trace.TraceConstants
 import cn.idealframework2.trace.reactive.TraceContextHolder
 import cn.idealframework2.transmission.Result
+import cn.idealframework2.utils.PathMatchers
 import com.zzs.iam.common.constants.IamHeaders
 import com.zzs.iam.gateway.common.FilterOrders
-import com.zzs.iam.gateway.common.PathMatchers
 import kotlinx.coroutines.reactor.mono
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -84,22 +85,30 @@ class IamAuthGatewayFilterFactory(
           if (exception is VisibleException) {
             val httpStatus = exception.httpStatus
             val result = Result.exception<Void>(exception)
-            result.traceId = traceId
             val bytes = result.toJsonString().toByteArray(Charsets.UTF_8)
             ExchangeUtils.writeResponse(
               exchange,
               HttpStatus.valueOf(httpStatus),
-              HttpHeaders().also { it.contentType = MediaType.APPLICATION_JSON },
+              HttpHeaders().also {
+                it.contentType = MediaType.APPLICATION_JSON
+                if (!traceId.isNullOrBlank()) {
+                  it.set(TraceConstants.TRACE_ID_HEADER_NAME, traceId)
+                }
+              },
               bytes
             )
           } else {
             val result = Result.exception<Void>(exception)
-            result.traceId = traceId
             val bytes = result.toJsonString().toByteArray(Charsets.UTF_8)
             ExchangeUtils.writeResponse(
               exchange,
               HttpStatus.INTERNAL_SERVER_ERROR,
-              HttpHeaders().also { it.contentType = MediaType.APPLICATION_JSON },
+              HttpHeaders().also {
+                it.contentType = MediaType.APPLICATION_JSON
+                if (!traceId.isNullOrBlank()) {
+                  it.set(TraceConstants.TRACE_ID_HEADER_NAME, traceId)
+                }
+              },
               bytes
             )
           }
