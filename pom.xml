@@ -15,8 +15,8 @@
   <packaging>pom</packaging>
 
   <modules>
+    <module>zzs-iam-upms</module>
     <module>zzs-iam-common</module>
-    <module>zzs-iam-server</module>
     <module>zzs-iam-gateway</module>
     <module>zzs-iam-launcher</module>
   </modules>

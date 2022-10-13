@@ -1539,7 +1539,7 @@
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.front.MenuDO",
+    "name": "com.zzs.iam.server.domain.model.web.MenuDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1547,7 +1547,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.front.MenuRepository",
+    "name": "com.zzs.iam.server.domain.model.web.MenuRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1556,7 +1556,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.front.TerminalDO",
+    "name": "com.zzs.iam.server.domain.model.web.TerminalDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1564,7 +1564,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.front.TerminalRepository",
+    "name": "com.zzs.iam.server.domain.model.web.TerminalRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,

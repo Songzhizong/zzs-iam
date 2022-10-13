@@ -8,7 +8,7 @@
     <version>2.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>zzs-iam-launcher</artifactId>
+  <artifactId>zzs-iam-upms</artifactId>
 
   <dependencies>
     <dependency>
@@ -17,38 +17,32 @@
       <version>2.0-SNAPSHOT</version>
     </dependency>
     <dependency>
-      <groupId>com.zzs</groupId>
-      <artifactId>zzs-iam-upms</artifactId>
-      <version>2.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>com.zzs</groupId>
-      <artifactId>zzs-iam-gateway</artifactId>
-      <version>2.0-SNAPSHOT</version>
+      <groupId>cn.idealframework2</groupId>
+      <artifactId>ideal-kotlin</artifactId>
     </dependency>
     <dependency>
       <groupId>cn.idealframework2</groupId>
-      <artifactId>ideal-starter-event-coroutine</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>cn.idealframework2</groupId>
-      <artifactId>ideal-starter-cache-coroutine</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>cn.idealframework2</groupId>
-      <artifactId>ideal-starter-trace-coroutine</artifactId>
+      <artifactId>ideal-starter</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-registry-prometheus</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-mail</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-all</artifactId>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.github.ben-manes.caffeine</groupId>
+      <artifactId>caffeine</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -60,29 +54,6 @@
   <build>
     <sourceDirectory>src/main/kotlin</sourceDirectory>
     <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring.boot.version}</version>
-        <configuration>
-          <mainClass>com.zzs.iam.launcher.IamApplication</mainClass>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>${maven-deploy-plugin.version}</version>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
