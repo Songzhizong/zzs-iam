@@ -1133,7 +1133,7 @@
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.application.UserAuthService"
+          "com.zzs.iam.upms.application.UserAuthService"
         ]
       }
     ]
@@ -1145,14 +1145,14 @@
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.application.UserService",
-          "com.zzs.iam.server.domain.model.user.UserRepository"
+          "com.zzs.iam.upms.application.UserService",
+          "com.zzs.iam.upms.domain.model.user.UserRepository"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.application.AuthClientService",
+    "name": "com.zzs.iam.upms.application.AuthClientService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1161,12 +1161,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.AuthClientService$$SpringProxy$f7435d12",
+    "name": "com.zzs.iam.upms.application.AuthClientService$$SpringProxy$f7435d12",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.AuthClientService$Companion",
+    "name": "com.zzs.iam.upms.application.AuthClientService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1175,7 +1175,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.LoginService",
+    "name": "com.zzs.iam.upms.application.LoginService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1184,12 +1184,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.LoginService$$SpringProxy$27a3fedc",
+    "name": "com.zzs.iam.upms.application.LoginService$$SpringProxy$27a3fedc",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.LoginService$Companion",
+    "name": "com.zzs.iam.upms.application.LoginService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1198,7 +1198,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.MenuService",
+    "name": "com.zzs.iam.upms.application.MenuService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1207,12 +1207,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.MenuService$$SpringProxy$9467a066",
+    "name": "com.zzs.iam.upms.application.MenuService$$SpringProxy$9467a066",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.MenuService$Companion",
+    "name": "com.zzs.iam.upms.application.MenuService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1221,7 +1221,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.PlatformService",
+    "name": "com.zzs.iam.upms.application.PlatformService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1230,12 +1230,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.PlatformService$$SpringProxy$91cf1732",
+    "name": "com.zzs.iam.upms.application.PlatformService$$SpringProxy$91cf1732",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.PlatformService$Companion",
+    "name": "com.zzs.iam.upms.application.PlatformService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1244,7 +1244,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.RoleService",
+    "name": "com.zzs.iam.upms.application.RoleService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1253,12 +1253,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.RoleService$$SpringProxy$215e6c77",
+    "name": "com.zzs.iam.upms.application.RoleService$$SpringProxy$215e6c77",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.RoleService$Companion",
+    "name": "com.zzs.iam.upms.application.RoleService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1267,7 +1267,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.TenantService",
+    "name": "com.zzs.iam.upms.application.TenantService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1276,12 +1276,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.TenantService$$SpringProxy$ecea7723",
+    "name": "com.zzs.iam.upms.application.TenantService$$SpringProxy$ecea7723",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.TenantService$Companion",
+    "name": "com.zzs.iam.upms.application.TenantService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1290,7 +1290,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.TerminalService",
+    "name": "com.zzs.iam.upms.application.TerminalService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1299,12 +1299,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.TerminalService$$SpringProxy$eaec1101",
+    "name": "com.zzs.iam.upms.application.TerminalService$$SpringProxy$eaec1101",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.TerminalService$Companion",
+    "name": "com.zzs.iam.upms.application.TerminalService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1313,7 +1313,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.TwoStepService",
+    "name": "com.zzs.iam.upms.application.TwoStepService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1322,7 +1322,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.TwoStepService$Companion",
+    "name": "com.zzs.iam.upms.application.TwoStepService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1331,7 +1331,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.UserAffService",
+    "name": "com.zzs.iam.upms.application.UserAffService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1340,12 +1340,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.UserAffService$$SpringProxy$7ff24667",
+    "name": "com.zzs.iam.upms.application.UserAffService$$SpringProxy$7ff24667",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.UserAffService$Companion",
+    "name": "com.zzs.iam.upms.application.UserAffService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1354,7 +1354,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.UserAuthService",
+    "name": "com.zzs.iam.upms.application.UserAuthService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1363,12 +1363,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.UserAuthService$$SpringProxy$bdfc3692",
+    "name": "com.zzs.iam.upms.application.UserAuthService$$SpringProxy$bdfc3692",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.UserAuthService$Companion",
+    "name": "com.zzs.iam.upms.application.UserAuthService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1377,7 +1377,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.UserService",
+    "name": "com.zzs.iam.upms.application.UserService",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1386,12 +1386,12 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.UserService$$SpringProxy$a0d0481a",
+    "name": "com.zzs.iam.upms.application.UserService$$SpringProxy$a0d0481a",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.application.UserService$Companion",
+    "name": "com.zzs.iam.upms.application.UserService$Companion",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1400,7 +1400,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.configure.IamServerAutoConfigure",
+    "name": "com.zzs.iam.upms.configure.IamServerAutoConfigure",
     "methods": [
       {
         "name": "<init>",
@@ -1413,7 +1413,7 @@
       {
         "name": "wechatClient",
         "parameterTypes": [
-          "com.zzs.iam.server.configure.IamServerProperties",
+          "com.zzs.iam.upms.configure.IamServerProperties",
           "org.springframework.web.reactive.function.client.WebClient"
         ]
       },
@@ -1424,7 +1424,7 @@
     ]
   },
   {
-    "name": "com.zzs.iam.server.configure.IamServerProperties",
+    "name": "com.zzs.iam.upms.configure.IamServerProperties",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1433,7 +1433,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.configure.OperatorHolderFilter",
+    "name": "com.zzs.iam.upms.configure.OperatorHolderFilter",
     "allDeclaredMethods": true,
     "methods": [
       {
@@ -1443,7 +1443,7 @@
     ]
   },
   {
-    "name": "com.zzs.iam.server.configure.UpmsHints",
+    "name": "com.zzs.iam.upms.configure.UpmsHints",
     "methods": [
       {
         "name": "<init>",
@@ -1452,7 +1452,7 @@
     ]
   },
   {
-    "name": "com.zzs.iam.server.domain.model.authorization.Authentication",
+    "name": "com.zzs.iam.upms.domain.model.authorization.Authentication",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1460,7 +1460,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.authorization.token.AccessToken",
+    "name": "com.zzs.iam.upms.domain.model.authorization.token.AccessToken",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1469,7 +1469,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.authorization.token.AccessTokenDO",
+    "name": "com.zzs.iam.upms.domain.model.authorization.token.AccessTokenDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1477,7 +1477,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.authorization.token.AccessTokenStore",
+    "name": "com.zzs.iam.upms.domain.model.authorization.token.AccessTokenStore",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1486,7 +1486,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.authorization.token.RefreshTokenDO",
+    "name": "com.zzs.iam.upms.domain.model.authorization.token.RefreshTokenDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1494,7 +1494,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.captcha.Captcha",
+    "name": "com.zzs.iam.upms.domain.model.captcha.Captcha",
     "allDeclaredConstructors": true,
     "allPublicMethods": true,
     "fields": [
@@ -1505,23 +1505,23 @@
     ]
   },
   {
-    "name": "com.zzs.iam.server.domain.model.captcha.CaptchaService",
+    "name": "com.zzs.iam.upms.domain.model.captcha.CaptchaService",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.domain.model.captcha.CaptchaStore"
+          "com.zzs.iam.upms.domain.model.captcha.CaptchaStore"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.domain.model.captcha.CaptchaStore",
+    "name": "com.zzs.iam.upms.domain.model.captcha.CaptchaStore",
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.captcha.RedisCaptchaStore",
+    "name": "com.zzs.iam.upms.domain.model.captcha.RedisCaptchaStore",
     "allDeclaredMethods": true,
     "methods": [
       {
@@ -1534,12 +1534,12 @@
     ]
   },
   {
-    "name": "com.zzs.iam.server.domain.model.captcha.RedisCaptchaStore$$SpringProxy$52728619",
+    "name": "com.zzs.iam.upms.domain.model.captcha.RedisCaptchaStore$$SpringProxy$52728619",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.web.MenuDO",
+    "name": "com.zzs.iam.upms.domain.model.web.MenuDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1547,7 +1547,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.web.MenuRepository",
+    "name": "com.zzs.iam.upms.domain.model.web.MenuRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1556,7 +1556,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.web.TerminalDO",
+    "name": "com.zzs.iam.upms.domain.model.web.TerminalDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1564,7 +1564,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.web.TerminalRepository",
+    "name": "com.zzs.iam.upms.domain.model.web.TerminalRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1573,7 +1573,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.log.LoginLogDO",
+    "name": "com.zzs.iam.upms.domain.model.log.LoginLogDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1581,7 +1581,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.log.LoginLogRepository",
+    "name": "com.zzs.iam.upms.domain.model.log.LoginLogRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1590,7 +1590,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.log.OperationLogDO",
+    "name": "com.zzs.iam.upms.domain.model.log.OperationLogDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1598,11 +1598,11 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.log.OperationLogRepository",
+    "name": "com.zzs.iam.upms.domain.model.log.OperationLogRepository",
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.AuthClientDO",
+    "name": "com.zzs.iam.upms.domain.model.org.AuthClientDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1610,7 +1610,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.AuthClientRepository",
+    "name": "com.zzs.iam.upms.domain.model.org.AuthClientRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1619,7 +1619,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.PlatformDO",
+    "name": "com.zzs.iam.upms.domain.model.org.PlatformDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1627,7 +1627,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.PlatformRepository",
+    "name": "com.zzs.iam.upms.domain.model.org.PlatformRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1636,7 +1636,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.PlatformUserDO",
+    "name": "com.zzs.iam.upms.domain.model.org.PlatformUserDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1644,7 +1644,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.PlatformUserRepository",
+    "name": "com.zzs.iam.upms.domain.model.org.PlatformUserRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1653,7 +1653,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.TenantDO",
+    "name": "com.zzs.iam.upms.domain.model.org.TenantDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1661,7 +1661,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.TenantRepository",
+    "name": "com.zzs.iam.upms.domain.model.org.TenantRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1670,7 +1670,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.TenantUserDO",
+    "name": "com.zzs.iam.upms.domain.model.org.TenantUserDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1678,7 +1678,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.org.TenantUserRepository",
+    "name": "com.zzs.iam.upms.domain.model.org.TenantUserRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1687,7 +1687,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.role.RoleDO",
+    "name": "com.zzs.iam.upms.domain.model.role.RoleDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1695,7 +1695,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.role.RoleMenuRelDO",
+    "name": "com.zzs.iam.upms.domain.model.role.RoleMenuRelDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1703,7 +1703,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.role.RoleMenuRelRepository",
+    "name": "com.zzs.iam.upms.domain.model.role.RoleMenuRelRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1712,7 +1712,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.role.RoleRepository",
+    "name": "com.zzs.iam.upms.domain.model.role.RoleRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1721,7 +1721,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.twostep.ActionRepository",
+    "name": "com.zzs.iam.upms.domain.model.twostep.ActionRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1730,7 +1730,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.twostep.TwoStepCfgRepository",
+    "name": "com.zzs.iam.upms.domain.model.twostep.TwoStepCfgRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1739,7 +1739,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.twostep.TwoStepConfig",
+    "name": "com.zzs.iam.upms.domain.model.twostep.TwoStepConfig",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1748,7 +1748,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.user.AuthUser",
+    "name": "com.zzs.iam.upms.domain.model.user.AuthUser",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1757,7 +1757,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.user.HistPasswordDO",
+    "name": "com.zzs.iam.upms.domain.model.user.HistPasswordDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1765,7 +1765,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.user.HistPasswordRepository",
+    "name": "com.zzs.iam.upms.domain.model.user.HistPasswordRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1774,7 +1774,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.user.OtherPlatAuthDO",
+    "name": "com.zzs.iam.upms.domain.model.user.OtherPlatAuthDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1782,11 +1782,11 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.user.OtherPlatAuthRepository",
+    "name": "com.zzs.iam.upms.domain.model.user.OtherPlatAuthRepository",
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.user.UserDO",
+    "name": "com.zzs.iam.upms.domain.model.user.UserDO",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -1794,7 +1794,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.user.UserProvider",
+    "name": "com.zzs.iam.upms.domain.model.user.UserProvider",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1803,7 +1803,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.domain.model.user.UserRepository",
+    "name": "com.zzs.iam.upms.domain.model.user.UserRepository",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1812,7 +1812,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.AddUserArgs",
+    "name": "com.zzs.iam.upms.dto.args.AddUserArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1821,7 +1821,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.AssignMenuArgs",
+    "name": "com.zzs.iam.upms.dto.args.AssignMenuArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1830,7 +1830,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.ChangeAccountArgs",
+    "name": "com.zzs.iam.upms.dto.args.ChangeAccountArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1839,7 +1839,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.ChangeEmailArgs",
+    "name": "com.zzs.iam.upms.dto.args.ChangeEmailArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1848,7 +1848,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.ChangePasswordArgs",
+    "name": "com.zzs.iam.upms.dto.args.ChangePasswordArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1857,7 +1857,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.ChangePhoneArgs",
+    "name": "com.zzs.iam.upms.dto.args.ChangePhoneArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1866,7 +1866,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.ChangeUserRoleArgs",
+    "name": "com.zzs.iam.upms.dto.args.ChangeUserRoleArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1875,7 +1875,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.CreateAuthClientArgs",
+    "name": "com.zzs.iam.upms.dto.args.CreateAuthClientArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1884,7 +1884,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.CreateMenuArgs",
+    "name": "com.zzs.iam.upms.dto.args.CreateMenuArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1893,7 +1893,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.CreatePlatformArgs",
+    "name": "com.zzs.iam.upms.dto.args.CreatePlatformArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1902,7 +1902,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.CreateTenantArgs",
+    "name": "com.zzs.iam.upms.dto.args.CreateTenantArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1911,7 +1911,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.CreateTerminalArgs",
+    "name": "com.zzs.iam.upms.dto.args.CreateTerminalArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1920,7 +1920,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.QueryTenantArgs",
+    "name": "com.zzs.iam.upms.dto.args.QueryTenantArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1929,7 +1929,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.QueryUserArgs",
+    "name": "com.zzs.iam.upms.dto.args.QueryUserArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1938,7 +1938,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.RegisterUserArgs",
+    "name": "com.zzs.iam.upms.dto.args.RegisterUserArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1947,7 +1947,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.RoleArgs",
+    "name": "com.zzs.iam.upms.dto.args.RoleArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1956,7 +1956,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.UpdateMenuArgs",
+    "name": "com.zzs.iam.upms.dto.args.UpdateMenuArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1965,7 +1965,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.UpdateTerminalArgs",
+    "name": "com.zzs.iam.upms.dto.args.UpdateTerminalArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1974,7 +1974,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.UpdateUserArgs",
+    "name": "com.zzs.iam.upms.dto.args.UpdateUserArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1983,7 +1983,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.args.UserIdsArgs",
+    "name": "com.zzs.iam.upms.dto.args.UserIdsArgs",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -1992,7 +1992,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.resp.MenuTree",
+    "name": "com.zzs.iam.upms.dto.resp.MenuTree",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2001,7 +2001,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.resp.SimpleMenuTree",
+    "name": "com.zzs.iam.upms.dto.resp.SimpleMenuTree",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2010,7 +2010,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.resp.TenantTree",
+    "name": "com.zzs.iam.upms.dto.resp.TenantTree",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2019,7 +2019,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.dto.resp.UserTenantInfo",
+    "name": "com.zzs.iam.upms.dto.resp.UserTenantInfo",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2028,7 +2028,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.IamIDGenerator",
+    "name": "com.zzs.iam.upms.infrastructure.IamIDGenerator",
     "allDeclaredMethods": true,
     "methods": [
       {
@@ -2040,312 +2040,312 @@
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.IamOperationLogStore",
+    "name": "com.zzs.iam.upms.infrastructure.IamOperationLogStore",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.domain.model.log.OperationLogRepository"
+          "com.zzs.iam.upms.domain.model.log.OperationLogRepository"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.IamOperationLogStore$$SpringProxy$19d6c198",
+    "name": "com.zzs.iam.upms.infrastructure.IamOperationLogStore$$SpringProxy$19d6c198",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.ActionRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.ActionRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.ActionRepositoryImpl$$SpringProxy$2c57be63",
+    "name": "com.zzs.iam.upms.infrastructure.repository.ActionRepositoryImpl$$SpringProxy$2c57be63",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.AuthClientRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.AuthClientRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.AuthClientRepositoryImpl$$SpringProxy$d2773e28",
+    "name": "com.zzs.iam.upms.infrastructure.repository.AuthClientRepositoryImpl$$SpringProxy$d2773e28",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.HistPasswordRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.HistPasswordRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.HistPasswordRepositoryImpl$$SpringProxy$1ebfd402",
+    "name": "com.zzs.iam.upms.infrastructure.repository.HistPasswordRepositoryImpl$$SpringProxy$1ebfd402",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.LoginLogRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.LoginLogRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.LoginLogRepositoryImpl$$SpringProxy$993cb4b0",
+    "name": "com.zzs.iam.upms.infrastructure.repository.LoginLogRepositoryImpl$$SpringProxy$993cb4b0",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.MenuRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.MenuRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.MenuRepositoryImpl$$SpringProxy$24cde94",
+    "name": "com.zzs.iam.upms.infrastructure.repository.MenuRepositoryImpl$$SpringProxy$24cde94",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.OperationLogRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.OperationLogRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.OperationLogRepositoryImpl$$SpringProxy$7710482",
+    "name": "com.zzs.iam.upms.infrastructure.repository.OperationLogRepositoryImpl$$SpringProxy$7710482",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.OtherPlatAuthRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.OtherPlatAuthRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.OtherPlatAuthRepositoryImpl$$SpringProxy$61312b46",
+    "name": "com.zzs.iam.upms.infrastructure.repository.OtherPlatAuthRepositoryImpl$$SpringProxy$61312b46",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.PlatformRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.PlatformRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.PlatformRepositoryImpl$$SpringProxy$15e788c8",
+    "name": "com.zzs.iam.upms.infrastructure.repository.PlatformRepositoryImpl$$SpringProxy$15e788c8",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.PlatformUserRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.PlatformUserRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.PlatformUserRepositoryImpl$$SpringProxy$dd01940b",
+    "name": "com.zzs.iam.upms.infrastructure.repository.PlatformUserRepositoryImpl$$SpringProxy$dd01940b",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.RoleMenuRelRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.RoleMenuRelRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.RoleMenuRelRepositoryImpl$$SpringProxy$6056782b",
+    "name": "com.zzs.iam.upms.infrastructure.repository.RoleMenuRelRepositoryImpl$$SpringProxy$6056782b",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.RoleRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.RoleRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.RoleRepositoryImpl$$SpringProxy$6a4c8d63",
+    "name": "com.zzs.iam.upms.infrastructure.repository.RoleRepositoryImpl$$SpringProxy$6a4c8d63",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.TenantRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.TenantRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.TenantRepositoryImpl$$SpringProxy$5afd6077",
+    "name": "com.zzs.iam.upms.infrastructure.repository.TenantRepositoryImpl$$SpringProxy$5afd6077",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.TenantUserRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.TenantUserRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.TenantUserRepositoryImpl$$SpringProxy$6ef5fc3a",
+    "name": "com.zzs.iam.upms.infrastructure.repository.TenantUserRepositoryImpl$$SpringProxy$6ef5fc3a",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.TerminalRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.TerminalRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.TerminalRepositoryImpl$$SpringProxy$8903b819",
+    "name": "com.zzs.iam.upms.infrastructure.repository.TerminalRepositoryImpl$$SpringProxy$8903b819",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.TwoStepCfgRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.TwoStepCfgRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.TwoStepCfgRepositoryImpl$$SpringProxy$c2eedd69",
+    "name": "com.zzs.iam.upms.infrastructure.repository.TwoStepCfgRepositoryImpl$$SpringProxy$c2eedd69",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.UserRepositoryImpl",
+    "name": "com.zzs.iam.upms.infrastructure.repository.UserRepositoryImpl",
     "allDeclaredMethods": true,
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.infrastructure.IamIDGenerator",
+          "com.zzs.iam.upms.infrastructure.IamIDGenerator",
           "org.springframework.data.mongodb.core.ReactiveMongoTemplate"
         ]
       }
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.repository.UserRepositoryImpl$$SpringProxy$9f7de460",
+    "name": "com.zzs.iam.upms.infrastructure.repository.UserRepositoryImpl$$SpringProxy$9f7de460",
     "allDeclaredConstructors": true,
     "allDeclaredMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.security.SecurityContextFilter",
+    "name": "com.zzs.iam.upms.infrastructure.security.SecurityContextFilter",
     "methods": [
       {
         "name": "<init>",
@@ -2354,7 +2354,7 @@
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.sender.EmailSender",
+    "name": "com.zzs.iam.upms.infrastructure.sender.EmailSender",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2363,7 +2363,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.sender.SmsSender",
+    "name": "com.zzs.iam.upms.infrastructure.sender.SmsSender",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2372,7 +2372,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.sender.impl.SpringEmailSender",
+    "name": "com.zzs.iam.upms.infrastructure.sender.impl.SpringEmailSender",
     "allDeclaredMethods": true,
     "fields": [
       {
@@ -2390,7 +2390,7 @@
     ]
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.wechat.MockWechatProperties",
+    "name": "com.zzs.iam.upms.infrastructure.wechat.MockWechatProperties",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2399,7 +2399,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.wechat.WechatProperties",
+    "name": "com.zzs.iam.upms.infrastructure.wechat.WechatProperties",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2408,7 +2408,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.wechat.resp.AccessTokenResp",
+    "name": "com.zzs.iam.upms.infrastructure.wechat.resp.AccessTokenResp",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -2416,7 +2416,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.wechat.resp.Code2SessionResp",
+    "name": "com.zzs.iam.upms.infrastructure.wechat.resp.Code2SessionResp",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -2424,7 +2424,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.wechat.resp.PhoneInfo",
+    "name": "com.zzs.iam.upms.infrastructure.wechat.resp.PhoneInfo",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -2432,7 +2432,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.wechat.resp.PhoneNumberResp",
+    "name": "com.zzs.iam.upms.infrastructure.wechat.resp.PhoneNumberResp",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -2440,7 +2440,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.infrastructure.wechat.resp.Watermark",
+    "name": "com.zzs.iam.upms.infrastructure.wechat.resp.Watermark",
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
     "allPublicConstructors": true,
@@ -2448,15 +2448,15 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.event.UserEventListener",
+    "name": "com.zzs.iam.upms.port.event.UserEventListener",
     "methods": [
       {
         "name": "<init>",
         "parameterTypes": [
-          "com.zzs.iam.server.application.UserAffService",
-          "com.zzs.iam.server.application.UserAuthService",
-          "com.zzs.iam.server.domain.model.org.PlatformRepository",
-          "com.zzs.iam.server.domain.model.org.TenantUserRepository",
+          "com.zzs.iam.upms.application.UserAffService",
+          "com.zzs.iam.upms.application.UserAuthService",
+          "com.zzs.iam.upms.domain.model.org.PlatformRepository",
+          "com.zzs.iam.upms.domain.model.org.TenantUserRepository",
           "com.zzs.framework.core.event.coroutine.EventListenerManager"
         ]
       },
@@ -2495,7 +2495,7 @@
     ]
   },
   {
-    "name": "com.zzs.iam.server.port.http.AuthClientController",
+    "name": "com.zzs.iam.upms.port.http.AuthClientController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2504,7 +2504,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.LoginController",
+    "name": "com.zzs.iam.upms.port.http.LoginController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2513,7 +2513,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.MenuController",
+    "name": "com.zzs.iam.upms.port.http.MenuController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2522,7 +2522,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.PlatformController",
+    "name": "com.zzs.iam.upms.port.http.PlatformController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2531,7 +2531,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.RoleController",
+    "name": "com.zzs.iam.upms.port.http.RoleController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2540,7 +2540,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.TenantController",
+    "name": "com.zzs.iam.upms.port.http.TenantController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2549,7 +2549,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.TerminalController",
+    "name": "com.zzs.iam.upms.port.http.TerminalController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2558,7 +2558,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.TwoStepController",
+    "name": "com.zzs.iam.upms.port.http.TwoStepController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2567,7 +2567,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.UserAffController",
+    "name": "com.zzs.iam.upms.port.http.UserAffController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2576,7 +2576,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.UserAuthController",
+    "name": "com.zzs.iam.upms.port.http.UserAuthController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2585,7 +2585,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.UserController",
+    "name": "com.zzs.iam.upms.port.http.UserController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,
@@ -2594,7 +2594,7 @@
     "allPublicMethods": true
   },
   {
-    "name": "com.zzs.iam.server.port.http.UserSelfController",
+    "name": "com.zzs.iam.upms.port.http.UserSelfController",
     "allPublicFields": true,
     "allDeclaredFields": true,
     "allDeclaredConstructors": true,

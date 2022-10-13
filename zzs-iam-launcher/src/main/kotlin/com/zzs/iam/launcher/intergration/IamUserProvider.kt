@@ -2,11 +2,11 @@ package com.zzs.iam.launcher.intergration
 
 import cn.idealframework2.exception.ResourceNotFoundException
 import cn.idealframework2.trace.coroutine.TraceContextHolder
-import com.zzs.iam.server.application.UserService
-import com.zzs.iam.server.domain.model.user.AuthUser
-import com.zzs.iam.server.domain.model.user.UserDO
-import com.zzs.iam.server.domain.model.user.UserProvider
-import com.zzs.iam.server.domain.model.user.UserRepository
+import com.zzs.iam.upms.application.UserService
+import com.zzs.iam.upms.domain.model.user.AuthUser
+import com.zzs.iam.upms.domain.model.user.UserDO
+import com.zzs.iam.upms.domain.model.user.UserProvider
+import com.zzs.iam.upms.domain.model.user.UserRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component

@@ -1,96 +1,96 @@
 [
   [
-    "com.zzs.iam.server.domain.model.log.OperationLogRepository",
+    "com.zzs.iam.upms.domain.model.log.OperationLogRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.org.TenantRepository",
+    "com.zzs.iam.upms.domain.model.org.TenantRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.org.PlatformRepository",
+    "com.zzs.iam.upms.domain.model.org.PlatformRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.twostep.ActionRepository",
+    "com.zzs.iam.upms.domain.model.twostep.ActionRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.user.OtherPlatAuthRepository",
+    "com.zzs.iam.upms.domain.model.user.OtherPlatAuthRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.role.RoleMenuRelRepository",
+    "com.zzs.iam.upms.domain.model.role.RoleMenuRelRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.log.LoginLogRepository",
+    "com.zzs.iam.upms.domain.model.log.LoginLogRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.org.PlatformUserRepository",
+    "com.zzs.iam.upms.domain.model.org.PlatformUserRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.org.AuthClientRepository",
+    "com.zzs.iam.upms.domain.model.org.AuthClientRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.role.RoleRepository",
+    "com.zzs.iam.upms.domain.model.role.RoleRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.twostep.TwoStepCfgRepository",
+    "com.zzs.iam.upms.domain.model.twostep.TwoStepCfgRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.user.UserRepository",
+    "com.zzs.iam.upms.domain.model.user.UserRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.user.HistPasswordRepository",
+    "com.zzs.iam.upms.domain.model.user.HistPasswordRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.org.TenantUserRepository",
+    "com.zzs.iam.upms.domain.model.org.TenantUserRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.web.TerminalRepository",
+    "com.zzs.iam.upms.domain.model.web.TerminalRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.web.MenuRepository",
+    "com.zzs.iam.upms.domain.model.web.MenuRepository",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"
@@ -102,7 +102,7 @@
     "org.springframework.core.DecoratingProxy"
   ],
   [
-    "com.zzs.iam.server.domain.model.captcha.CaptchaStore",
+    "com.zzs.iam.upms.domain.model.captcha.CaptchaStore",
     "org.springframework.aop.SpringProxy",
     "org.springframework.aop.framework.Advised",
     "org.springframework.core.DecoratingProxy"

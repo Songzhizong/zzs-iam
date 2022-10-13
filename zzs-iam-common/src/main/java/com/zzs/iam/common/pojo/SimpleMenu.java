@@ -28,22 +28,6 @@ public class SimpleMenu {
   /** 排序 */
   private int order = 0;
 
-  /** 图标 */
-  @Nonnull
-  private String icon = "";
-
-  /** 选中状态下的图标 */
-  @Nonnull
-  private String selectedIcon = "";
-
-  /** 路由 */
-  @Nonnull
-  private String url = "";
-
-  /** 地址 */
-  @Nonnull
-  private String path = "";
-
   public long getId() {
     return id;
   }
@@ -93,41 +77,5 @@ public class SimpleMenu {
 
   public void setOrder(int order) {
     this.order = order;
-  }
-
-  @Nonnull
-  public String getIcon() {
-    return icon;
-  }
-
-  public void setIcon(@Nonnull String icon) {
-    this.icon = icon;
-  }
-
-  @Nonnull
-  public String getSelectedIcon() {
-    return selectedIcon;
-  }
-
-  public void setSelectedIcon(@Nonnull String selectedIcon) {
-    this.selectedIcon = selectedIcon;
-  }
-
-  @Nonnull
-  public String getUrl() {
-    return url;
-  }
-
-  public void setUrl(@Nonnull String url) {
-    this.url = url;
-  }
-
-  @Nonnull
-  public String getPath() {
-    return path;
-  }
-
-  public void setPath(@Nonnull String path) {
-    this.path = path;
   }
 }

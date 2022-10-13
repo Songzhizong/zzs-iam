@@ -1,7 +1,7 @@
 package com.zzs.iam.launcher.intergration
 
 import com.zzs.iam.gateway.filter.auth.IamAuthenticateService
-import com.zzs.iam.server.application.UserAuthService
+import com.zzs.iam.upms.application.UserAuthService
 import org.springframework.stereotype.Component
 import org.springframework.util.LinkedMultiValueMap
 
